@@ -26,7 +26,3 @@ docker ps
 
 * Check the `control-center` port using `docker-compose ps` command result
 ![picture](img/000002-kafka-confluent-control-center.jpg)
-------
-# Reference
-* https://nielsberglund.com/2019/06/18/confluent-platform--kafka-for-a-.net-developer-on-windows/
-* https://nielsberglund.com/2018/07/10/install-confluent-platform-kafka-on-windows/
