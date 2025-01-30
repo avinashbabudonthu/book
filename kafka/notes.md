@@ -254,30 +254,30 @@ auto.create.topics.enable=false(optional)
 * Controller distributes the ownership of partitions to available brokers. This concept of distributing partitions to brokers is called `Leader Assignment`
 * Finally `test` topic is distributed across kafka cluster\
 ![picture](img/Apache-Kafka-Architecture.png)
-------
+
 ### Kafka distribute Kafka Producer client requests
 * Messages will go through `partitioner`
 * Producer requests are distributed based on partitions. Since partitions present on different brokers, messages will go to different brokers
-------
+
 ### Kafka distribute Kafka Consumer client requests
 * When poll is executed then request goes to all partitions and retrieve records from them
-------
+
 ### Kafka distribute Kafka Consumer Groups client requests 
 * Let's say we have 2 brokers, each with 1 partition
 * We have 3 consumers with same group id. Now each consumer will be polling on each partition
 * Now requests from consumer will be routed to respective partition and get message
-------
+
 ### Summary
-* Parition leader is assigned during topic creation
+* Partition leader is assigned during topic creation
 * Clients only invoke leader of partition  to produce and consume data
 	* Load is evenly distributed between the brokers
-	
+------	
 ## How kafka handles data loss when broker fails?
 * We have kafka cluster with 3 brokers
 	* broker-1
 	* broker-2
 	* broker-3
-* We have 3 partitions distributed to 3 brokers
+* We have 1 topic with 3 partitions. Distributed to 3 brokers
 	* partition-0 to broker-1
 	* partition-1 to broker-2
 	* partition-2 to broker-3
@@ -299,7 +299,14 @@ kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --pa
 	* broker-1 is `Leader Replica`
 	* broker-2, broker-3 are `Follower Replica`\
 ![picture](img/replication-factor.png)
-	
+
+## Concept of Leader for Partition
+* At any time only ONE broker can be leader for given partition
+* Only that leader can receive or send data for partition
+* The other brokers will synchronize the data
+* So each partition will have 1 leader and multiple ISR (In Sync Replica)\
+![picture](img/partition-leader-and-replication.jpg)
+------
 ## In-sync replica (ISR)
 * Represents the number of replicas in sync with each other in the cluster including leader and follower replica
 * Recommended value for in-sync-replica is greater than 1
@@ -309,10 +316,11 @@ kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --pa
 ```
 kafka-topics.bat --alter --zookeeper localhost:2181 --topic library-events --config min.insync.replicas=2
 ```	
+------
 ## Fault Tolerance and Robustness
 * Even though broker is down in cluster then clients does not know about it
 * Client can still send and receive messages
-
+------
 ## How to send message from spring boot to kafka
 * Using `org.springframework.kafka.core.KafkaTemplate<K, V>`
 ### How KafkaTemplate works
@@ -413,13 +421,6 @@ public class AppConfig{
 	* Support Schemas
 	* Support Evolution
 	* Lightweight
-
-## Concept of Leader for Partition
-* At any time only ONE broker can be leader for given partition
-* Only that leader can receive or send data for partition
-* The other brokers will synchronize the data
-* So each partition will have 1 leader and multiple ISR (In Sync Replica)\
-![picture](img/partition-leader-and-replication.jpg)
 
 ## Kafka broker discovery
 * Every kafka broker is called `bootstrap server`
