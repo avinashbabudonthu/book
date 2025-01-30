@@ -17,8 +17,8 @@
 		* Database
 		* Analytics systems
 		* Schema systems
-
-## Basics
+------
+# Basics
 * Message retaining
 	* Traditional messaging system has transient message persistance. Means once message is consumed by consumer it will be deleted from the message broker
 	* In the case of Kafka - event will be saved in the file system where kafka is installed. Events are retained for certain time
@@ -34,8 +34,8 @@
 	* Can have 100s of brokers
 	* Can scale to millions of messages per second
 * High performance (latency of less than 10 ms)
-
-## Use cases
+------
+# Use cases
 * Messaging system
 * Activity Tracking
 * Gather metrics from many different locations
@@ -49,17 +49,17 @@
 	* Flink
 	* Storm
 	* Hadoop
-
+------
 ## History
 * Kafka Connect introduced in Kafka 0.9.x in Nov-2015
 * Kafka Streams API introduced in Kafka 0.10.x in May-2016
 * Kafka 0.10.1 and 0.10.2 - end of 2016 to March 2017
 	* Improved Connect API
 	* Single Message Transforms API
-
+------
 # Architecture
 ![picture](img/Apache-Kafka-Architecture.png)
-	
+------
 ## Kafka Terminology and Client APIs
 * Broker: all kafka clients interact with
 * Cluster
@@ -174,7 +174,7 @@
 		* Preferred
 		* Offsets are committed after the message is processed
 		* If process went wrong then message will be read again
-		* This technique is duplicates messages processing so make sure processing again the message won't impact the system
+		* This technique duplicates messages processing so make sure processing message again won't impact the system
 	* Exactly once
 		* Can be achieved for Kafka-to-Kafka workflows using Kafka Streams API
 		* For Kafka to external system workflows (like databases), we have to use idempotent consumers to make sure there are no duplicate records
@@ -232,8 +232,10 @@ auto.create.topics.enable=false(optional)
 ```
 \zoo-keeper\apache-zookeeper-3.6.1-bin.tar\apache-zookeeper-3.6.1-bin\apache-zookeeper-3.6.1-bin\bin\zkServer.cmd
 ```
-* Create 3 new `server.properties` files. Pass each `server.properties` while starting the broker
-	* Refer samples `server.properties` files - https://github.com/avinashbabudonthu/jms/tree/master/kafka/kafka-server-properies-files
+* Create 3 new `server.properties` files. Pass each `server.properties` while starting the broker. Refer samples `server.properties` files
+	* [server.properties](server.properties)
+	* [server1.properties](server-1.properties)
+	* [server2.properties](server-2.properties)
 * Start 3 brokers
 ```
 .\bin\windows\kafka-server-start.bat .\config\server.properties
@@ -242,16 +244,18 @@ auto.create.topics.enable=false(optional)
 ```
 * Go to log files
 	* we will have log folder with log files each with respective broker's logs
-	
-## How kafka cluster distributes the client requests
+------
+# How kafka cluster distributes the client requests
 ### How Topics are distributed across available brokers
 * Let's say we have kafka cluster with 3 brokers
-	* out of 3 brokers 1 broker will behave as `controller`. Normally this will be first broker which joined the cluster
-* when create topic command is executed then zoo-keeper redirects request to controller
+	* out of 3 brokers 1 broker will behave as `controller` called as `Active Controller`. Normally this will be first broker which joined the cluster
+* when create topic command is executed then zoo-keeper redirects request to active controller
 	* Let's say want to create `test` topic with 3 partitions
 * Controller distributes the ownership of partitions to available brokers. This concept of distributing partitions to brokers is called `Leader Assignment`
-* Finally `test` topic is distributed across kafka cluster
-### Kafka distribute client requests from Kafka Producer
+* Finally `test` topic is distributed across kafka cluster\
+![picture](img/Apache-Kafka-Architecture.png)
+------
+# Kafka distribute Kafka Producer client requests
 * Messages will go through `partitioner`
 * Producer requests are distributed based on partitions. Since partitions present on different brokers, messages will go to different brokers
 ### Kafka distribute client requests from Kafka Consumer
