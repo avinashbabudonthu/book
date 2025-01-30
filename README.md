@@ -1,4 +1,4 @@
 # Table of contents
-* [AWS](aws)
-* [Kafka](kafka)
-* [Maven](maven)
+* [AWS](aws#readme)
+* [Kafka](kafka#readme)
+* [Maven](maven#readme)
