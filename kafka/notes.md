@@ -162,7 +162,7 @@
 	* latest: read only messages that came after consumer started. `Default value`
 	* specific offset: read messages in the topic by passing `offset` values from consumer. This option can only be done programmatically
 * Consumer read each message and after reading message offset incremented by 1. Once all the poll records are read then consumer commits the offset to the topic named `__consumer_offsets` with the group id. Now consumer is down and brought up after some time. By this time producer produced some more messages. Now consumer know where to start to consume message with the value present in `__consumer_offsets` topic with the group id
-
+------
 ## Delivery semantics for consumers
 * Consumers can choose when to commit offsets
 * There are 3 delivery semantics
@@ -178,7 +178,12 @@
 	* Exactly once
 		* Can be achieved for Kafka-to-Kafka workflows using Kafka Streams API
 		* For Kafka to external system workflows (like databases), we have to use idempotent consumers to make sure there are no duplicate records
-
+------
+# What is Exactly Once?
+* Exactly once is ability to guarantee that data processing on each message will happen only once and that pushing message back to kafka will also happen only once (kafka will de-dup)
+* Guarantee when both input and output system is kafka, not for kafka to external system
+* Can get exactly once if kafka brokers version is `>=0.11` and kafka streams client version is `>=0.11`
+------
 ## Sending message without key
 * When we send message to topic, it will go through `Partitioner`
 * If key is not present with message `partitioner` will follow round robin technique
@@ -443,10 +448,4 @@ public class AppConfig{
 ![picture](img/zookeeper.jpg)
 ------
 # Log Compaction
-
-------
-# What is Exactly Once?
-* Exactly once is ability to guarantee that data processing on each message will happen only once and that pushing message back to kafka will also happen only once (kafka will de-dup)
-* Guarantee when both input and output system is kafka, not for kafka to external system
-* Can get exactly once if kafka brokers version is `>=0.11` and kafka streams client version is `>=0.11`
-------
+* What is log compaction?
