@@ -1,6 +1,5 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Kafka commands
+------
 * Pre requisite - [setup Kafka using docker](setup-with-docker.md)
 * Create topic
 ```
@@ -38,6 +37,3 @@ kafka-console-consumer.bat --zookeeper localhost:2181 --topic [topic-name] --fro
 ```
 kafka-console-consumer.bat --zookeeper localhost:2181 --topic [Topic-Name] --from-beginning
 ```
-
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
