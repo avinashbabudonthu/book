@@ -255,15 +255,18 @@ auto.create.topics.enable=false(optional)
 * Finally `test` topic is distributed across kafka cluster\
 ![picture](img/Apache-Kafka-Architecture.png)
 ------
-# Kafka distribute Kafka Producer client requests
+### Kafka distribute Kafka Producer client requests
 * Messages will go through `partitioner`
 * Producer requests are distributed based on partitions. Since partitions present on different brokers, messages will go to different brokers
-### Kafka distribute client requests from Kafka Consumer
+------
+### Kafka distribute Kafka Consumer client requests
 * When poll is executed then request goes to all partitions and retrieve records from them
-### Kafka distribute client requests with Kafka Consumer Groups
+------
+### Kafka distribute Kafka Consumer Groups client requests 
 * Let's say we have 2 brokers, each with 1 partition
 * We have 3 consumers with same group id. Now each consumer will be polling on each partition
 * Now requests from consumer will be routed to respective partition and get message
+------
 ### Summary
 * Parition leader is assigned during topic creation
 * Clients only invoke leader of partition  to produce and consume data
