@@ -1,6 +1,6 @@
-# Kafka
+# Kafka Table of contents
 ------
-# Table of contents
+# Theory
 * [Notes](notes.md)
 * [Setup with Docker](setup-with-docker.md)
 * [Kafka confluent Platform Setup](kafka-confluent-platform-setup.md)
@@ -27,5 +27,5 @@
 * [Kafka Streams Spring Boot 3](kafka-streams-spring-boot-3-001)
 * [Deserialization Error Handling in Kafka with Spring Boot](deserialization-error-handling-spring-boot)
 ------
-# Materials
+# Materials and References
 * [Materials](materials.md)
