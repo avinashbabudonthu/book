@@ -16,7 +16,7 @@ public class Consumer {
 
 	@Test
 	public void consumeByTopicBySubcribe() {
-		final String topicName = "topic1";
+		final String topicName = "topic-1";
 
 		Properties properties = new Properties();
 		properties.put("bootstrap.servers", "localhost:9092");
