@@ -11,7 +11,6 @@
 * Exactly once capabilities - means process the record exactly once
 * Processes one record at a time (no batching)
 * Works for any application size\
-![picture](img/000001.jpg)
 ------
 # Internal topics
 * Running kafka streams creates internal intermediary topics
