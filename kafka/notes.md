@@ -65,15 +65,15 @@
 * Cluster
 	* consists of multiple brokers
 	* In order to manage multiple brokers in cluster we need Zookeeper. Zookeeper keeps track of health of brokers and manage the cluster for you
-* [Topic](#topic)
-* [Partition](#partitions)
+* Topic
+* Partition
 * Partitioner
-	* [Send message without key](#sending-message-without-key)
-	* [Send message with key](#sending-message-with-key)
-* [Producers](#producers)
+	* Send message without key
+	* Send message with key
+* Producers
 	* Client to kafka broker
 	* Produce new data to kafka
-* [Consumer](#consumer)
+* Consumer
 	* Consume messages from kafka broker
 * Kafka Connect
 	* Source Connector: Used to pull the data from external data source such as database, file system, ElasticSearch into kafka topic
@@ -82,15 +82,15 @@
 	* Kafka to Kafka data transfer
 	* Take the data from kafka and perform simple to complex transformations and put it back to kafka
 * Offset
-* [__consumer_offsets](#consumer-offset)
-* [Consumer Groups](#consumer-groups)
-* [Commit Logs](#commit-log)
-* [Retention Policy](#retention-policy): Determines how long the message is going to be retained
+* __consumer_offsets
+* Consumer Groups
+* Commit Logs
+* Retention Policy: Determines how long the message is going to be retained
 * Broker Controller: Let's say we have kafka cluster with 3 brokers. out of 3 brokers 1 broker will behave as controller. Normally this will be first broker which joined the cluster
 * replication-factor: number of copies of same message
-* [ISR - In-sync replica](#in-sync-replica-isr): Represents the number of replicas in sync with each other in the cluster including leader and follower replica
-* [Leader Replica](#kafka-handling-data-loss)
-* [Follower Replica](#kafka-handling-data-loss)
+* ISR - In-sync replica: Represents the number of replicas in sync with each other in the cluster including leader and follower replica
+* Leader Replica
+* Follower Replica
 * Record Accumulator
 * RecordBatch
 	
