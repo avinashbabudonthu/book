@@ -227,3 +227,23 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
     <version>3.16.0</version>
 </dependency>
 ```
+* Add java faker dependencies
+```
+<dependency>
+	<groupId>com.github.javafaker</groupId>
+	<artifactId>javafaker</artifactId>
+	<version>1.0.2</version>
+	<exclusions>
+		<exclusion>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+
+<dependency>
+    <groupId>org.yaml</groupId>
+    <artifactId>snakeyaml</artifactId>
+    <version>2.2</version>
+</dependency>
+```
