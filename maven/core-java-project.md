@@ -2,18 +2,23 @@
 * Create maven core java project
 * Add required dependencies
 ------
+# Create project
+```
+mvn archetype:generate -DgroupId=com.java -DartifactId=[project-name] -Dversion=1.0.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+* Create `README.md` file at project level
+* Add [.gitignore](../.gitignore) file
+* Add [Dockerfile](Dockerfile)
+* Create `resources` folder under `src/main`
+* Add [log4j.xml](log4j.xml) and copy under `src/main/resources` folder
 ------
-# Steps
+# Step 1 - Download files and update some fields
 * Copy [pom.xml](core-java-pom.xml) file and update below fields or follw below steps
     * groupId
     * artifactId
     * projectNameSameAsArtifactId
-* Create project
-```
-mvn archetype:generate -DgroupId=com.java -DartifactId=[project-name] -Dversion=1.0.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-```
-* Add `README.md` file
-* Add [.gitignore](../.gitignore) file
+------
+# Steps 2 - Add content individually
 * Open `pom.xml`
 * Add below properties
 ```
