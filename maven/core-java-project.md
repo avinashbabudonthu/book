@@ -2,7 +2,12 @@
 * Create maven core java project
 * Add required dependencies
 ------
+------
 # Steps
+* Copy [pom.xml](core-java-pom.xml) file and update below fields or follw below steps
+    * groupId
+    * artifactId
+    * projectNameSameAsArtifactId
 * Create project
 ```
 mvn archetype:generate -DgroupId=com.java -DartifactId=[project-name] -Dversion=1.0.0 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
