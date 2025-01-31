@@ -34,7 +34,7 @@ SELECT ...;
 * FORCE: Tries a fast refresh, but does a complete refresh if a fast refresh is not possible.
 * ON COMMIT: Refreshes the materialized view whenever a transaction on one of the base tables is committed.
 * ON DEMAND: Refreshes the materialized view only when explicitly requested.
-* Example: In this example, a materialized view named sales_mv is created to store the total quantity sold for each product
+* Example: In this example, a materialized view named `sales_mv` is created to store the total quantity sold for each product
 ```
 CREATE MATERIALIZED VIEW sales_mv
 BUILD IMMEDIATE
