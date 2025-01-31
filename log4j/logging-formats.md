@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Formats
 * Some logging formats. Refer - https://logging.apache.org/log4j/2.x/manual/layouts.html#PatternLayout
 
@@ -13,5 +11,3 @@ Format            					| Description
 %m%n								| The message to log and line break
 %M									| To get method name in log. logging with location is 4 - 20 times slower than without location
 %t                  | Current thread name
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

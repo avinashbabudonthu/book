@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Log4J Slf4J dependencies
 * Add following dependencies
 ```
@@ -16,5 +14,3 @@
 </dependency>
 ```
 * Add `log4j.xml` or `log4j.properties` file in classpath. For maven project add to `src/main/resources` folder
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

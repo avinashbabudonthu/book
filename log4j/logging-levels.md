@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Logging Levels
 * The org.apache.log4j.Level levels. You can also define your custom levels by sub-classing the Level class
 * ALL - All levels including custom levels.
@@ -18,5 +16,3 @@ ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF
 * If `ALL` is given then all levels are logged
 * If `DEBUG` is given then DEBUG to all above levels are logged
 * Other levels also same as DEBUG
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
