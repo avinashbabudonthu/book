@@ -44,7 +44,7 @@
 * [TreeSet](core-java/src/main/java/com/practice/java/util/TreeSetTest.java)
 * [Locale](core-java/src/main/java/com/practice/java/util/LocalePracticeTest.java)
 * [ResourceBundle](core-java/src/main/java/com/practice/java/util/ResourceBundleTest.java)
-- [PropertiesTest.java](core-java/src/main/java/com/practice/java/util/PropertiesTest.java) - Examples to Properties class
+* [PropertiesTest.java](core-java/src/main/java/com/practice/java/util/PropertiesTest.java) - Examples to Properties class
 
 ## java.util.concurrent
 * [CopyOnWriteArrayList](core-java/src/main/java/com/practice/java/util/concurrent/CopyOnWriteArrayListTest.java)
