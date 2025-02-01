@@ -61,6 +61,10 @@ Key Files:
 - [NumberFormatTest.java](src/main/java/com/java/text/NumberFormatTest.java): Shows usage of `NumberFormat` class for formatting and parsing numeric data in a locale-specific manner.
 - [DecimalFormatPracticeTest.java](src/main/java/com/java/text/DecimalFormatPracticeTest.java): Demonstrates usage of `DecimalFormat` class for custom number formatting.
 
+### com.java.math
+
+- [BigDecimalTest.java](src/main/java/com/java/math/BigDecimalTest.java): Demonstrates the usage of the `BigDecimal` class for precise decimal arithmetic. This class includes methods for creating `BigDecimal` objects from string values, extracting integer and byte values, and finding minimum and maximum values between `BigDecimal` objects.
+
 ### com.practice.java.lang
 
 - [StringTest.java](src/main/java/com/practice/java/lang/StringTest.java): Demonstrates various string manipulation techniques and utilities.
@@ -85,6 +89,7 @@ Key Files:
 - [ResourceBundleTest.java](src/main/java/com/practice/java/util/ResourceBundleTest.java): Demonstrates reading from property-based and list-based resource bundles.
 - [MyListResourceBundle.java](src/main/java/com/practice/java/util/MyListResourceBundle.java): Defines a custom ListResourceBundle for providing localized resources.
 - [MyListResourceBundle_telugu.java](src/main/java/com/practice/java/util/MyListResourceBundle_telugu.java): Provides Telugu translations for the custom ListResourceBundle.
+- [PropertiesTest.java](src/main/java/com/practice/java/util/PropertiesTest.java) - Examples to Properties class
 
 #### com.practice.java.util.concurrent
 

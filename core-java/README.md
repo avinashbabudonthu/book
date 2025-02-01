@@ -44,9 +44,10 @@
 * [TreeSet](core-java/src/main/java/com/practice/java/util/TreeSetTest.java)
 * [Locale](core-java/src/main/java/com/practice/java/util/LocalePracticeTest.java)
 * [ResourceBundle](core-java/src/main/java/com/practice/java/util/ResourceBundleTest.java)
+- [PropertiesTest.java](core-java/src/main/java/com/practice/java/util/PropertiesTest.java) - Examples to Properties class
 
 ## java.util.concurrent
-* [CopyOnWriteArrayList](../core-java/src/main/java/com/practice/java/util/concurrent/CopyOnWriteArrayListTest.java)
+* [CopyOnWriteArrayList](core-java/src/main/java/com/practice/java/util/concurrent/CopyOnWriteArrayListTest.java)
 
 ## java.util.stream
 * [java.util.stream.IntStream](core-java/src/main/java/com/practice/java/util/stream/IntStreamTest.java)
@@ -55,7 +56,7 @@
 * [Regex Expressions](core-java/src/main/java/com/java/util/regex/RegexExpressionsTest.java)
 
 ## java.math
-* [java.math.BigDecimal](core-java/basics/src/main/java/com/java/math/BigDecimalPractice.java)
+* [java.math.BigDecimal](core-java/src/main/java/com/java/math/BigDecimalTest.java)
 
 ## java.text
 * [DecimalFormat](core-java/src/main/java/com/java/text/DecimalFormatPracticeTest.java)
@@ -75,7 +76,7 @@
 * [ZonedDateTime](core-java/src/main/java/com/date/apis/ZonedDateTimePracticeTest.java)
 
 ## Others
-* [Displaying Name of the Day of the Week in Java](core-java/src/main/java/com/practice/dates/DisplayDayNameOfWeek.java)
+* [Displaying Name of the Day of the Week in Java](core-java/src/main/java/com/practice/dates/DisplayDayNameOfWeekTest.java)
 ------
 # Materials and References
 * [https://jenkov.com/tutorials/java/index.html](https://jenkov.com/tutorials/java/index.html)
