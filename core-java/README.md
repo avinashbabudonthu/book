@@ -14,8 +14,8 @@
 * [Java 11 Notes](java-11-notes.md)
 ------
 # POCs
-# [Core Java](core-java#readme)
-
+## Refer below for detailed classes or Refer [Core Java Project](core-java#readme)
+------
 ## Basics
 * [Overriding method](core-java/src/main/java/com/practice/overriding)
 * [Enum - java.lang.ExceptionInInitializerError java.lang.NullPointerException: Cannot invoke .clone() because Enum.$VALUES is null](core-java/src/main/java/com/practice/enums/README.md)
