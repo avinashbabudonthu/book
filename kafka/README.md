@@ -17,7 +17,7 @@
 * [Kafka Connect Java Dependencies](kafka-connect-dependencies.md)
 ------
 # POCs
-* [Kafka Core Java](kafka-core-java)
+* [Kafka Core Java](kafka-core-java#readme)
 * [Kafka Core Java](kafka-example-001)
 * [Spring Boot 2 Kafka Consumer](spring-boot2-kafka-consumer)
 * [Spring Boot 2 Kafka Producer](spring-boot2-kafka-producer)
