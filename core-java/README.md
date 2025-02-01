@@ -14,7 +14,7 @@
 * [Java 11 Notes](java-11-notes.md)
 ------
 # POCs
-## Refer below for detailed classes or Refer [Core Java Project](core-java#readme)
+* Refer below for detailed classes or Refer [Core Java Project](core-java#readme)
 ------
 ## Basics
 * [Overriding method](core-java/src/main/java/com/practice/overriding)
