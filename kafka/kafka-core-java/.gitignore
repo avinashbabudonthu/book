@@ -93,3 +93,10 @@ build
 *.iml
 /.gradle/
 */.gradle/*
+/gradle/
+*/gradle/*
+gradle
+/node_modules/
+*/node_modules/*
+node_modules
+.mvn
