@@ -35,7 +35,7 @@ public class TopicTest {
         Properties properties = new Properties();
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         AdminClient adminClient = AdminClient.create(properties);
-        String topicName = "topic-2";
+        String topicName = "input-topic-001";
         DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(List.of(topicName));
         KafkaFuture<Void> all = deleteTopicsResult.all();
         all.get();
