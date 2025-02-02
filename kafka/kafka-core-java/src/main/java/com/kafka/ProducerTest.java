@@ -151,7 +151,7 @@ public class ProducerTest {
                 log.info("Message sent, i={}, message={}, topic={}, key={}, partition={}, offset={}", i, message, recordMetadata.topic(), key, recordMetadata.partition(), recordMetadata.offset());
                 j++;
                 j = (j == 5) ? 0 : j; // reset j to 0 if j is 5
-                Thread.sleep(1000 * 5);
+//                Thread.sleep(1000 * 5);
             }
         } catch (ExecutionException | InterruptedException e) {
             log.info("Exception in sending message", e);

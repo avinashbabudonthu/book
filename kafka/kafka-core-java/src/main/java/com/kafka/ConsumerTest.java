@@ -26,12 +26,18 @@ public class ConsumerTest {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         // group.id
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
+        // auto.offset.reset
+        // earliest: automatically reset the offset to the earliest offset
+        // latest: automatically reset the offset to the latest offset
+        // none: throw exception to the consumer if no previous offset is found for the consumer's group</li>
+        // anything else: throw exception to the consumer
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.subscribe(List.of("topic-1"));
 
             while (true) {
-                Thread.sleep(1000 * 10);
+//                Thread.sleep(1000 * 10);
 
                 ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
                 for (ConsumerRecord<String, String> record : records) {
@@ -39,9 +45,9 @@ public class ConsumerTest {
                             record.offset(), record.key(), record.value());
                 }
             }
-        } catch (InterruptedException e) {
+        } /*catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }
+        }*/
     }
 
     /**
@@ -58,6 +64,12 @@ public class ConsumerTest {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         // group.id
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
+        // auto.offset.reset
+        // earliest: automatically reset the offset to the earliest offset
+        // latest: automatically reset the offset to the latest offset
+        // none: throw exception to the consumer if no previous offset is found for the consumer's group</li>
+        // anything else: throw exception to the consumer
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.assign(List.of(new TopicPartition("topic-1", 0)));
