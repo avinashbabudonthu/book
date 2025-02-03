@@ -16,42 +16,42 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
- * Execution steps:
- * Create topic named topic-1 with partitions 3, in sync replicas 3, replication factor 1
- * Create 3 consumers with same group.id = group-1. Run test cases {@link this#consumer1()}, {@link this#consumer2()}, {@link this#consumer3()}
- * Run test case {@link this#sendMessageWithDifferentKeys()}
+ * Execution steps: <br />
+ * Create topic named topic-1 with partitions 3, in sync replicas 3, replication factor 1<br />
+ * Create 3 consumers with same group.id = group-1. Run test cases {@link this#consumer1()}, {@link this#consumer2()}, {@link this#consumer3()}<br />
+ * Run test case {@link this#sendMessageWithDifferentKeys()}<br /><br />
  *
- * Producer sends messages with key. Same keys messages goes to same partition
- * We have 3 partitions and 3 consumers so each consumer is consuming from 1 partition
- * Check logs that each consumer is consuming from different partitions
+ * Producer sends messages with key. Same keys messages goes to same partition<br />
+ * We have 3 partitions and 3 consumers so each consumer is consuming from 1 partition<br />
+ * Check logs that each consumer is consuming from different partitions<br /><br />
  *
- * Producer Output:
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=1, message=Amos Diggory, topic=topic-1, key=key1, partition=2, offset=40
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=2, message=Molly Weasley, topic=topic-1, key=key2, partition=2, offset=41
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=3, message=Madam Rosmerta, topic=topic-1, key=key3, partition=1, offset=40
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=4, message=Penelope Clearwater, topic=topic-1, key=key4, partition=0, offset=20
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=5, message=Dudley Dursley, topic=topic-1, key=key5, partition=1, offset=41
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=6, message=Anthony Goldstein, topic=topic-1, key=key1, partition=2, offset=42
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=7, message=Remus Lupin, topic=topic-1, key=key2, partition=2, offset=43
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=8, message=Charlie Weasley, topic=topic-1, key=key3, partition=1, offset=42
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=9, message=Rolanda Hooch, topic=topic-1, key=key4, partition=0, offset=21
- * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=10, message=Errol, topic=topic-1, key=key5, partition=1, offset=43
+ * Producer Output:<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=1, message=Amos Diggory, topic=topic-1, key=key1, partition=2, offset=40<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=2, message=Molly Weasley, topic=topic-1, key=key2, partition=2, offset=41<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=3, message=Madam Rosmerta, topic=topic-1, key=key3, partition=1, offset=40<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=4, message=Penelope Clearwater, topic=topic-1, key=key4, partition=0, offset=20<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=5, message=Dudley Dursley, topic=topic-1, key=key5, partition=1, offset=41<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=6, message=Anthony Goldstein, topic=topic-1, key=key1, partition=2, offset=42<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=7, message=Remus Lupin, topic=topic-1, key=key2, partition=2, offset=43<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=8, message=Charlie Weasley, topic=topic-1, key=key3, partition=1, offset=42<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=9, message=Rolanda Hooch, topic=topic-1, key=key4, partition=0, offset=21<br />
+ * [MultipleConsumersByPartitionTest.sendMessageWithDifferentKeys] - Message sent, i=10, message=Errol, topic=topic-1, key=key5, partition=1, offset=43<br /><br />
  *
- * Consumer 1 Output:
- * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=40, key=key1, value=Amos Diggory
- * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=41, key=key2, value=Molly Weasley
- * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=42, key=key1, value=Anthony Goldstein
- * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=43, key=key2, value=Remus Lupin
+ * Consumer 1 Output:<br />
+ * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=40, key=key1, value=Amos Diggory<br />
+ * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=41, key=key2, value=Molly Weasley<br />
+ * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=42, key=key1, value=Anthony Goldstein<br />
+ * [MultipleConsumersByPartitionTest.consumer1] - Topic=topic-1, partition=2, offset=43, key=key2, value=Remus Lupin<br /><br />
  *
- * Consumer 2 Output:
- * [MultipleConsumersByPartitionTest.consumer2] - Topic=topic-1, partition=0, offset=20, key=key4, value=Penelope Clearwater
- * [MultipleConsumersByPartitionTest.consumer2] - Topic=topic-1, partition=0, offset=21, key=key4, value=Rolanda Hooch
+ * Consumer 2 Output:<br />
+ * [MultipleConsumersByPartitionTest.consumer2] - Topic=topic-1, partition=0, offset=20, key=key4, value=Penelope Clearwater<br />
+ * [MultipleConsumersByPartitionTest.consumer2] - Topic=topic-1, partition=0, offset=21, key=key4, value=Rolanda Hooch<br /><br />
  *
- * Consumer 3 Output:
- * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=40, key=key3, value=Madam Rosmerta
- * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=41, key=key5, value=Dudley Dursley
- * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=42, key=key3, value=Charlie Weasley
- * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=43, key=key5, value=Errol
+ * Consumer 3 Output:<br />
+ * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=40, key=key3, value=Madam Rosmerta<br />
+ * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=41, key=key5, value=Dudley Dursley<br />
+ * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=42, key=key3, value=Charlie Weasley<br />
+ * [MultipleConsumersByPartitionTest.consumer3] - Topic=topic-1, partition=1, offset=43, key=key5, value=Errol<br /><br />
  *
  */
 @Slf4j
