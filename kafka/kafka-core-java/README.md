@@ -5,6 +5,7 @@
 - [src/main/java/com/kafka/TopicTest.java](src/main/java/com/kafka/TopicTest.java): Contains test methods for creating and deleting Kafka topics using the Kafka Admin Client API.
 - [src/main/java/com/kafka/ProducerTest.java](src/main/java/com/kafka/ProducerTest.java): Demonstrates Kafka producer functionality, including sending messages with and without keys.
 - [src/main/java/com/kafka/ConsumerTest.java](src/main/java/com/kafka/ConsumerTest.java): Shows how to set up and use a Kafka consumer to consume messages from a Kafka topic.
+- [src/main/java/com/kafka/MultipleConsumersByPartitionTest.java](src/main/java/com/kafka/MultipleConsumersByPartitionTest.java): In a group consumers consume from exclusive partitions of one topic 
 - [pom.xml](pom.xml): Maven project configuration file specifying dependencies and build settings.
 - [Dockerfile](Dockerfile): Defines the Docker image for the application using OpenJDK 17.
 
