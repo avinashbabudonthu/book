@@ -38,7 +38,6 @@ CASE
 END
 AS JOB_CD FROM EMPLOYEE E;
 ```
-![picture](images/case-query-output.jpg)
 
 ## Date Queries
 * Add 30 seconds to current date
