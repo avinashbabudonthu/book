@@ -13,6 +13,23 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class DurationPracticeTest {
 
+	/**
+	 * Output: <br>
+	 * duration1=PT10S, duration2=PT240H, duration3=PT10H, duration4=PT10M, duration5=PT10S, duration6=PT1S, duration7=PT0.0001S
+	 */
+	@Test
+	void create() {
+		Duration duration1 = Duration.of(10, ChronoUnit.SECONDS);
+		Duration duration2 = Duration.ofDays(10);
+		Duration duration3 = Duration.ofHours(10);
+		Duration duration4 = Duration.ofMinutes(10);
+		Duration duration5 = Duration.ofSeconds(10);
+		Duration duration6 = Duration.ofMillis(1000);
+		Duration duration7 = Duration.ofNanos(100000);
+
+		log.info("duration1={}, duration2={}, duration3={}, duration4={}, duration5={}, duration6={}, duration7={}", duration1, duration2, duration3, duration4, duration5, duration6, duration7);
+	}
+
 	@SneakyThrows
 	@Test
 	public void durationBetweenTwoDates() {
