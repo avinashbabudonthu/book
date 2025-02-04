@@ -197,4 +197,27 @@ public class UtilDateTest {
 		log.info("differenceInHours={}", differenceInHours);
 	}
 
+	@Test
+	void dateTimeByZone() {
+		ZonedDateTime zonedDateTime = ZonedDateTime.now();
+		log.info("zonedDateTime={}", zonedDateTime);
+
+		ZonedDateTime zonedDateTime1 = ZonedDateTime.now(ZoneId.of("-05:00"));
+		log.info("{}", zonedDateTime1);
+
+		int hour = zonedDateTime1.getHour();
+		log.info("hour={}", hour);
+	}
+
+	@Test
+	void isTimeInBusinessHours(){
+		for(int i=0;i<=23;i++) {
+			log.info("i={}, value={}", i, isTimeInBusinessHours(i));
+		}
+	}
+
+	private boolean isTimeInBusinessHours(int hour) {
+		return (hour >= 9 && hour <= 17);
+	}
+
 }
