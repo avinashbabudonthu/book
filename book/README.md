@@ -7,3 +7,4 @@
 * [Maven](maven#readme)
 * [MySQL](mysql#readme)
 * [Oracle](oracle#readme)
+* [Solr](solr)
