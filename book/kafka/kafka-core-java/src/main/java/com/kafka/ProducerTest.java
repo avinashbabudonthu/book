@@ -21,11 +21,6 @@ import java.util.stream.IntStream;
 public class ProducerTest {
 
     private static final Faker FAKER = Faker.instance();
-    public static final String TOPIC_1 = "topic-1";
-
-    public ProducerTest() {
-
-    }
 
     /**
      * Create topic-1 with 1 partition - then all messages go to same partition
@@ -54,7 +49,7 @@ public class ProducerTest {
             for (int i = 0; i <= 100; i++) {
                 String message = FAKER.name().fullName();
                 log.info("Sending message, i={}, message={}", i, message);
-                ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_1, message);
+                ProducerRecord<String, String> producerRecord = new ProducerRecord<>("topic-1", message);
                 Future<RecordMetadata> recordMetadataFuture = producer.send(producerRecord);
                 RecordMetadata recordMetadata = recordMetadataFuture.get();
                 log.info("Message sent, i={}, message={}, topic={}, partition={}, offset={}", i, message, recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
@@ -92,7 +87,7 @@ public class ProducerTest {
             for (int i = 0; i <= 100; i++) {
                 String message = FAKER.name().fullName();
                 log.info("Sending message, i={}, message={}", i, message);
-                ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_1, "key-1", message);
+                ProducerRecord<String, String> producerRecord = new ProducerRecord<>("topic-1", "key-1", message);
                 Future<RecordMetadata> recordMetadataFuture = producer.send(producerRecord);
                 RecordMetadata recordMetadata = recordMetadataFuture.get();
                 log.info("Message sent, i={}, message={}, topic={}, partition={}, offset={}", i, message, recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
