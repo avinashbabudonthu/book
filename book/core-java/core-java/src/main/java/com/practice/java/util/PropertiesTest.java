@@ -1,6 +1,7 @@
 package com.practice.java.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -163,9 +164,9 @@ public class PropertiesTest {
             properties.load(inputStream);
 
             // config.properties={db.user=user1, db.port=8126, db.pwd=pass1, db.url=localhost}
-            // log.info("config.properties={}", properties);
+             log.info("config.properties={}", properties);
 
-            //log.info("properties to string={}", ToStringBuilder.reflectionToString(properties));
+            log.info("properties to string={}", ToStringBuilder.reflectionToString(properties));
         }catch (Exception e) {
             log.error("Exception while reading properties file", e);
         }
