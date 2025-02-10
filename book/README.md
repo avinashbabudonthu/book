@@ -1,6 +1,7 @@
 # Table of contents
 * [AWS](aws#readme)
 * [Core Java](core-java#readme)
+* [Git](git#readme)
 * [Kafka](kafka#readme)
 * [Log4J](log4j#readme)
 * [MapStruct](map-struct#readme)
