@@ -25,6 +25,7 @@ The repository contains a collection of Java classes that demonstrate the usage 
         │       │   ├── overriding
         │       │   └── RecordClassTest.java
         │       └── serialization
+        |       └── exceptions
         └── resources
             └── log4j.xml
 ```
@@ -134,6 +135,23 @@ Key Files:
 
 - [StudentModel.java](src/main/java/com/serialization/StudentModel.java): Defines a serializable class with custom serialization methods.
 - [SerializationTest.java](src/main/java/com/serialization/SerializationTest.java): Demonstrates the serialization and deserialization of objects.
+
+### com.exceptions
+
+- [TryWithResourceTest](src/main/java/com/exceptions/TryWithResourceTest.java) - Different scenarios of using try-with-resource block. With customized close method
+- [ExceptionUtilsTest](src/main/java/com/exceptions/ExceptionUtilsTest.java) - Utils methods while working with exceptions
+
+### com.exceptions
+
+- [EnumTest](src/main/java/com/enums/EnumTest.java) - Different methods of using enums
+- [EnumLook](src/main/java/com/enums/EnumLookUpTest.java) - Enum lookup
+
+### com.io
+
+- [File IO Examples](src/main/java/com/io/FileIOTest.java)
+- [Random Access File Example](src/main/java/com/io/RandomAccessFileTest.java)
+- [Read Input from keyboard](src/main/java/com/io/ReadInputFromKeyboardTest.java)
+- [Zip File Util methods](src/main/java/com/io/ZipFileTest.java)
 
 ## Usage Instructions
 

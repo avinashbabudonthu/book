@@ -15,7 +15,7 @@
 ------
 # POCs
 * Refer below for detailed classes or Refer [Core Java Project](core-java#readme)
-------
+
 ## Basics
 * [Overriding method](core-java/src/main/java/com/practice/overriding)
 * [Enum - java.lang.ExceptionInInitializerError java.lang.NullPointerException: Cannot invoke .clone() because Enum.$VALUES is null](core-java/src/main/java/com/practice/enums/README.md)
@@ -23,6 +23,10 @@
 * [Annotations](core-java/src/main/java/com/practice/annotations/TableTest.java)
 * [Repeating annotations](core-java/src/main/java/com/practice/annotations/repeating/BookTest.java)
 * [Serialization](core-java/src/main/java/com/serialization/SerializationTest.java)
+* [Exceptions - Try with resource](core-java/src/main/java/com/exceptions/TryWithResourceTest.java) - Different scenarios of using try-with-resource block. With customized close method
+* [Exceptions - Util methods](core-java/src/main/java/com/exceptions/ExceptionUtilsTest.java) - Utils methods while working with exceptions
+* [Enums](core-java/src/main/java/com/enums/EnumTest.java)
+* [Enum Lookup](core-java/src/main/java/com/enums/EnumLookUpTest.java)
 
 ## java.lang package
 * [java.lang.Runtime Example](core-java/src/main/java/com/practice/java/lang/RuntimeTest.java)
@@ -74,6 +78,12 @@
 * [OffsetDateTime](core-java/src/main/java/com/date/apis/OffsetDateTimePracticeTest.java)
 * [Util Date](core-java/src/main/java/com/date/apis/UtilDateTest.java)
 * [ZonedDateTime](core-java/src/main/java/com/date/apis/ZonedDateTimePracticeTest.java)
+
+## File IO
+- [File IO Examples](core-java/src/main/java/com/io/FileIOTest.java)
+- [Random Access File Example](core-java/src/main/java/com/io/RandomAccessFileTest.java)
+- [Read Input from keyboard](core-java/src/main/java/com/io/ReadInputFromKeyboardTest.java)
+- [Zip File Util methods](core-java/src/main/java/com/io/ZipFileTest.java)
 
 ## Others
 * [Displaying Name of the Day of the Week in Java](core-java/src/main/java/com/practice/dates/DisplayDayNameOfWeekTest.java)
