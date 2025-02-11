@@ -103,18 +103,10 @@ mvn archetype:generate -DgroupId=com.example -DartifactId=simple-service-webapp 
 ```
 mvn site
 ```
-![picture](images/creating_pjt_documentation.jpg)
+![picture](img/creating_pjt_documentation.jpg)
 * find outdated dependency versions from your modules
 ```
 mvn versions:display-dependency-updates
-```
-* Compile test cases
-```
-mvn test-compile
-```
-* Skip Test cases
-```
-mvn install -Dmaven.test.skip=true
 ```
 * Execute `build` target on running `package` target
 ```
@@ -126,24 +118,6 @@ mvn install -Dmaven.test.skip=true
 		</goals>
 	</execution>
 </executions>
-```
-* Run all test cases
-```
-mvn test
-```
-* Run all methods in specific test class
-```
-mvn test -Dtest=[fully-packaged-class-name]
-mvn test -Dtest=com.test.EmployeeService
-```
-* Run one test method in specific test class
-```
-mvn test -Dtest=[fully-packaged-class-name]#methodName
-mvn test -Dtest=com.test.EmployeeService#getEmployees
-```
-* Run full package
-```
-mvn test -Dtest="com.tests.**"
 ```
 * Execute main class
 ```

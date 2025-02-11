@@ -6,6 +6,7 @@
 # POCs
 * [Installation](installation.md)
 * [Commands](commands.md)
+* [Maven Test Cases Commands](test-cases.md)
 * [Spotless Plugin](spotless-plugin.md)
 * [Core Java Project](core-java-project.md)
 * [Setting the Java Version in Maven](maven-java-version.md)
