@@ -152,6 +152,37 @@ public class MultipleConsumersByPartitionTest {
         }
     }
 
+    @Test
+    void consumer4DifferentConsumerGroup() {
+        Properties properties = new Properties();
+        // bootstrap. servers
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        // key.deserializer
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        // value.deserializer
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        // group.id
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-2");
+        // auto.offset.reset
+        // earliest: automatically reset the offset to the earliest offset
+        // latest: automatically reset the offset to the latest offset
+        // none: throw exception to the consumer if no previous offset is found for the consumer's group</li>
+        // anything else: throw exception to the consumer
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
+            consumer.subscribe(List.of("topic-1"));
+
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
+                for (ConsumerRecord<String, String> record : records) {
+                    log.info("Topic={}, partition={}, offset={}, key={}, value={}", record.topic(), record.partition(),
+                            record.offset(), record.key(), record.value());
+                }
+            }
+        }
+    }
+
     /**
      * Messages with same key always goes to same partition. Below is output:
      * <p>

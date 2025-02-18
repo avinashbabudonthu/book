@@ -37,3 +37,15 @@ kafka-console-consumer.bat --zookeeper localhost:2181 --topic [topic-name] --fro
 ```
 kafka-console-consumer.bat --zookeeper localhost:2181 --topic [Topic-Name] --from-beginning
 ```
+* Dry run - Reset the offsets to the beginning of each partition
+```
+kafka-consumer-groups.bat --bootstrap-server localhost:29092 --group my-group-1 --reset-offsets --to-earliest --topic topic-1 --dry-run
+```
+* `execute` flag is needed to reset offsets
+```
+kafka-consumer-groups.bat --bootstrap-server localhost:29092 --group my-group-1 --reset-offsets --to-earliest --topic topic-1 --execute
+```
+* Describe consumer groups
+```
+kafka-consumer-groups.bat --bootstrap-server localhost:29092 --describe --group my-group-1
+```
