@@ -2,7 +2,7 @@
 
 ## Source Files
 
-- [src/main/java/com/kafka/TopicTest.java](src/main/java/com/kafka/TopicTest.java): Contains test methods for creating and deleting Kafka topics using the Kafka Admin Client API.
+- [src/main/java/com/kafka/AdminClientTest.java](src/main/java/com/kafka/AdminClientTest.java): Contains test methods for creating and deleting Kafka topics using the Kafka Admin Client API.
 - [src/main/java/com/kafka/ProducerTest.java](src/main/java/com/kafka/ProducerTest.java): Demonstrates Kafka producer functionality, including sending messages with and without keys.
 - [src/main/java/com/kafka/ConsumerTest.java](src/main/java/com/kafka/ConsumerTest.java): Shows how to set up and use a Kafka consumer to consume messages from a Kafka topic.
 - [src/main/java/com/kafka/MultipleConsumersByPartitionTest.java](src/main/java/com/kafka/MultipleConsumersByPartitionTest.java): In a group consumers consume from exclusive partitions of one topic 
@@ -36,7 +36,7 @@ Key features of this project include:
         │           ├── ConsumerTest.java
         │           ├── Main.java
         │           ├── ProducerTest.java
-        │           └── TopicTest.java
+        │           └── AdminClientTest.java
         └── resources
             └── log4j.xml
 ```
@@ -45,7 +45,7 @@ Key Files:
 - `pom.xml`: Maven project configuration file
 - `Dockerfile`: Defines the Docker image for the application
 - `src/main/java/com/kafka/Main.java`: Entry point of the application
-- `src/main/java/com/kafka/TopicTest.java`: Tests for Kafka topic creation and deletion
+- `src/main/java/com/kafka/AdminClientTest.java`: Tests for Kafka topic creation and deletion
 - `src/main/java/com/kafka/ProducerTest.java`: Tests for Kafka message production
 - `src/main/java/com/kafka/ConsumerTest.java`: Tests for Kafka message consumption
 
@@ -81,12 +81,12 @@ mvn test
 
 ### Topic Management
 
-The `TopicTest` class demonstrates how to create and delete Kafka topics:
+The `AdminClientTest` class demonstrates how to create and delete Kafka topics:
 
 ```java
-TopicTest topicTest = new TopicTest();
-topicTest.createTopic(); // Creates a topic named "topic-2"
-topicTest.deleteTopic(); // Deletes the "topic-2" topic
+AdminClientTest adminClientTest = new AdminClientTest();
+adminClientTest.createTopic(); // Creates a topic named "topic-2"
+adminClientTest.deleteTopic(); // Deletes the "topic-2" topic
 ```
 
 ### Producing Messages
@@ -126,7 +126,7 @@ Common issues and solutions:
 2. Topic not found:
    - Problem: Attempting to produce or consume from a non-existent topic
    - Error message: "Topic topic-1 not present in metadata after 60000 ms."
-   - Solution: Use the `TopicTest.createTopic()` method to create the topic before producing or consuming messages.
+   - Solution: Use the `AdminClientTest.createTopic()` method to create the topic before producing or consuming messages.
 
 Debugging:
 - Enable debug logging by modifying `src/main/resources/log4j.xml`:

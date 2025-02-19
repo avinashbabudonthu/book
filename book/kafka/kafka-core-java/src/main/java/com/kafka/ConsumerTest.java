@@ -48,7 +48,7 @@ public class ConsumerTest {
     }
 
     /**
-     * Set concsumer with specific topic & specific partition
+     * Set concsumer to consume from specific topic & specific partition
      */
     @Test
     void consumeWithAssign() {

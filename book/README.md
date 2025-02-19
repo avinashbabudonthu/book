@@ -2,6 +2,7 @@
 * [AWS](aws#readme)
 * [Core Java](core-java#readme)
 * [Git](git#readme)
+* [JSON Jackson Library](json-jackson#readme)
 * [Kafka](kafka#readme)
 * [Log4J](log4j#readme)
 * [MapStruct](map-struct#readme)

@@ -1,7 +1,7 @@
 # Kafka Table of contents
 ------
 # Theory
-* [Notes](notes.md)
+* [Kafka Notes](notes.md)
 * [Setup with Docker](setup-with-docker.md)
 * [Kafka confluent Platform Setup](kafka-confluent-platform-setup.md)
 * [Kafka Java dependencies](dependencies.md)
