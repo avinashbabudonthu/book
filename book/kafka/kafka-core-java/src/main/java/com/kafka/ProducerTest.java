@@ -87,6 +87,7 @@ public class ProducerTest {
     }
 
     /**
+     * Messages with same key always goes to same partition
      * Send message with key every 5 seconds
      */
     @Test
@@ -179,6 +180,7 @@ public class ProducerTest {
 
     /**
      * Send message with key every 5 seconds
+     * Pass callback to producer send method. So callback will be executed after sending message
      */
     @Test
     void producerCallback() throws ExecutionException, InterruptedException {
