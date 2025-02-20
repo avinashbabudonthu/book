@@ -37,3 +37,11 @@ git rebase -i develop
 ```
 git push -f
 ```
+* Abort rebase
+```
+git rebase --abort
+```
+------
+# Reference
+* https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase
+* https://www.youtube.com/watch?v=f1wnYdLEpgI&ab_channel=TheModernCoder
