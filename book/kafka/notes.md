@@ -452,5 +452,5 @@ public class AppConfig{
 ------
 # Round Robin vs Sticky Partition
 * Round robin - sends messages to each partition in round robin order
-* sticy partition - sends group of messages to same partition 
+* sticy partition - sends group of messages to same partition\
 ![picture](img/round-robin-vs-sticky-partition.jpg)
