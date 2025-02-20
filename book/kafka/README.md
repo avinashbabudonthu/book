@@ -6,6 +6,7 @@
 * [Kafka confluent Platform Setup](kafka-confluent-platform-setup.md)
 * [Kafka Java dependencies](dependencies.md)
 * [Kafka Producer Java Connection Properties](kafka-producer-properties.md)
+* [Kafka consumer java connection Properties](kafka-consumer-properties.md)
 * [Kafka Commands](kafka-commands.md)
 * [Kafka Producer](kafka-producer.md)
 * [Properties to connect to Kafka for Kafka Streams Java application](connect-to-kafka-from-java.md)
@@ -15,6 +16,7 @@
 * [Create Kafka Stream - Java Code](create-kafka-stream.md)
 * [Kafka Connect Notes](kafka-connect-notes.md)
 * [Kafka Connect Java Dependencies](kafka-connect-dependencies.md)
+* [auto.commit.interval.ms consumer config property explanation](img/auto-commit-interval-ms.jpg)
 ------
 # POCs
 * [Kafka Core Java](kafka-core-java#readme)
@@ -38,3 +40,4 @@
 * Udemy - Apache Kafka Series - Confluent Schema Registry & REST Proxy
 * Udemy - Apache Kafka Series - KSQL on ksqlDB for Stream Processing !
 * Udemy - Kafka & Kafka Streams With Java Spring Boot - Hands-on Coding
+* https://learn.conduktor.io/kafka/what-is-apache-kafka/

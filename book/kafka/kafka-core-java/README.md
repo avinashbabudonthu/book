@@ -81,7 +81,10 @@ mvn test
 
 ### Topic Management
 
-The `AdminClientTest` class demonstrates how to create and delete Kafka topics:
+The `AdminClientTest` class demonstrates 
+
+- how to create, delete Kafka topics
+- consumer group offset reset:
 
 ```java
 AdminClientTest adminClientTest = new AdminClientTest();
