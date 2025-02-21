@@ -2,7 +2,6 @@
 ------
 # Theory
 * [Kafka Notes](notes.md)
-* [Setup with Docker](setup-with-docker.md)
 * [Kafka confluent Platform Setup](kafka-confluent-platform-setup.md)
 * [Kafka Java dependencies](dependencies.md)
 * [Kafka Producer Java Connection Properties](kafka-producer-properties.md)
@@ -19,6 +18,7 @@
 * [auto.commit.interval.ms consumer config property explanation](img/auto-commit-interval-ms.jpg)
 ------
 # POCs
+* [Setup with Docker](setup-with-docker.md)
 * [Kafka Core Java](kafka-core-java#readme)
 * [Spring Boot 2 Kafka Consumer](spring-boot2-kafka-consumer)
 * [Spring Boot 2 Kafka Producer](spring-boot2-kafka-producer)
