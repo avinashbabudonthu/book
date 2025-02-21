@@ -12,3 +12,4 @@
 * PostgreSQL
 * MongoDB
 * Oracle
+* IDE - IntelliJ/Eclipse
