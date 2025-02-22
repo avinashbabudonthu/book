@@ -2,17 +2,12 @@ package com.kafka;
 
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.clients.producer.RoundRobinPartitioner;
+import org.apache.kafka.clients.CommonClientConfigs;
+import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.clients.producer.internals.DefaultPartitioner;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.Test;
 
-import org.apache.kafka.clients.producer.Callback;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +24,8 @@ public class ProducerTest {
     private Properties getProperties() {
         Properties properties = new Properties();
         // bootstrap.servers
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+//        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
 
         // key.serializer
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -262,12 +257,13 @@ public class ProducerTest {
         String topic = "topic-2";
         for (int i = 0; i < 100; i++) {
             String key = new SimpleDateFormat("SSS").format(new Date());
-            Employee value = Employee.builder().id(FAKER.number().randomDigitNotZero())
+            Employee value = Employee.builder()
+                    .id(FAKER.number().randomDigitNotZero())
                     .name(FAKER.name().fullName())
                     .dept(FAKER.company().name())
-                    // .joiningDate(FAKER.date().between(new Date(80, 01, 01), new Date(125, 01, 01)))
-                    .joiningDate(new Date())
+                    .joiningDate(FAKER.date().between(new Date(80, 01, 01), new Date(125, 01, 01)))
                     .build();
+            log.info("message sending, i={}, key={}, value={}", i, key, value);
             producer.send(new ProducerRecord<>(topic, key, value), callback);
             Thread.sleep(1000);
         }

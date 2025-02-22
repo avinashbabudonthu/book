@@ -2,29 +2,15 @@ package com.kafka;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.CommonClientConfigs;
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.AlterConsumerGroupOffsetsResult;
-import org.apache.kafka.clients.admin.CreateTopicsResult;
-import org.apache.kafka.clients.admin.DeleteRecordsResult;
-import org.apache.kafka.clients.admin.DeleteTopicsResult;
-import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.admin.RecordsToDelete;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.CooperativeStickyAssignor;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.consumer.OffsetAndMetadata;
+import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -33,11 +19,18 @@ public class AdminClientTest {
     @Test
     void createTopic() throws ExecutionException, InterruptedException {
         Properties properties = new Properties();
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        AdminClient adminClient = AdminClient.create(properties);
+
+        /*properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         List<NewTopic> topicList = List.of(
                 new NewTopic("topic-1", 3, (short) 1),
-                new NewTopic("topic-2", 3, (short) 1));
+                new NewTopic("topic-2", 3, (short) 1));*/
+
+        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+        List<NewTopic> topicList = List.of(
+                new NewTopic("topic-1", 3, (short) 3),
+                new NewTopic("topic-2", 3, (short) 3));
+
+        AdminClient adminClient = AdminClient.create(properties);
         CreateTopicsResult topics = adminClient.createTopics(topicList);
         KafkaFuture<Void> all = topics.all();
         all.get();
@@ -49,6 +42,7 @@ public class AdminClientTest {
     void deleteTopic() throws ExecutionException, InterruptedException {
         Properties properties = new Properties();
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
         AdminClient adminClient = AdminClient.create(properties);
         List<String> topicsList = List.of("topic-1", "topic-2");
         DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
@@ -81,6 +75,8 @@ public class AdminClientTest {
     void deleteMessagesWithOffsetsHardCoded() throws ExecutionException, InterruptedException {
         Properties properties = new Properties();
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+
         AdminClient adminClient = AdminClient.create(properties);
         String topicName = "topic-1";
 
@@ -100,6 +96,8 @@ public class AdminClientTest {
 
         Properties consumerProperties = new Properties();
         consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -113,6 +111,7 @@ public class AdminClientTest {
 
         Properties adminProperties = new Properties();
         adminProperties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
         AdminClient adminClient = AdminClient.create(adminProperties);
 
         // get each partition and it's offset

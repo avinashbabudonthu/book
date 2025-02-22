@@ -3,6 +3,7 @@ package com.kafka;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -21,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.kafka.clients.consumer.Consumer;
 
 @SuppressWarnings("all")
@@ -30,8 +33,8 @@ public class ConsumerTest {
     private Properties getProperties() {
         Properties properties = new Properties();
         // bootstrap. servers
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+//        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
 
         // key.deserializer
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -201,12 +204,13 @@ public class ConsumerTest {
     }
 
     @Test
-    void consumeEmployeeObject() {
+    void consumeEmployeeObject() throws InterruptedException {
         Properties properties = getProperties();
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class.getName());
         Consumer<String, Employee> consumer = new KafkaConsumer<>(properties);
         consumer.subscribe(List.of("topic-2"));
         while (true) {
+            TimeUnit.SECONDS.sleep(1);
             ConsumerRecords<String, Employee> records = consumer.poll(Duration.ofSeconds(20));
             for (ConsumerRecord<String, Employee> record : records) {
                 // record processing logic
