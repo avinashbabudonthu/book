@@ -35,13 +35,14 @@ public class AdminClientTest {
         Properties properties = new Properties();
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         AdminClient adminClient = AdminClient.create(properties);
-        String topicName = "topic-1";
-        NewTopic newTopic = new NewTopic(topicName, 3, (short) 1);
-        CreateTopicsResult topics = adminClient.createTopics(List.of(newTopic));
+        List<NewTopic> topicList = List.of(
+                new NewTopic("topic-1", 3, (short) 1),
+                new NewTopic("topic-2", 3, (short) 1));
+        CreateTopicsResult topics = adminClient.createTopics(topicList);
         KafkaFuture<Void> all = topics.all();
         all.get();
         adminClient.close();
-        log.info("Created topic={}", topicName);
+        log.info("Created topics={}", topicList);
     }
 
     @Test
@@ -49,12 +50,12 @@ public class AdminClientTest {
         Properties properties = new Properties();
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         AdminClient adminClient = AdminClient.create(properties);
-        String topicName = "topic-1";
-        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(List.of(topicName));
+        List<String> topicsList = List.of("topic-1", "topic-2");
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
         KafkaFuture<Void> all = deleteTopicsResult.all();
         all.get();
         adminClient.close();
-        log.info("Deleted topic={}", topicName);
+        log.info("Deleted topics={}", topicsList);
     }
 
     @Test
@@ -95,7 +96,7 @@ public class AdminClientTest {
 
     @Test
     void deleteMessages_ByGettingOffsets_Dynamically() throws ExecutionException, InterruptedException {
-        String topicName = "topic-1";
+        String topicName = "topic-2";
 
         Properties consumerProperties = new Properties();
         consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");

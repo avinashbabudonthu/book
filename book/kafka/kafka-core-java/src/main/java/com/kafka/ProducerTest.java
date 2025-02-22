@@ -259,7 +259,7 @@ public class ProducerTest {
                 log.info("message sent, topic={}, partition={}, offset={}",
                         recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
         Producer<String, Employee> producer = new KafkaProducer<>(properties);
-        String topic = "topic-1";
+        String topic = "topic-2";
         for (int i = 0; i < 100; i++) {
             String key = new SimpleDateFormat("SSS").format(new Date());
             Employee value = Employee.builder().id(FAKER.number().randomDigitNotZero())

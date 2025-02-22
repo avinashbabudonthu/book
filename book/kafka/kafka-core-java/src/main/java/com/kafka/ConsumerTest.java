@@ -1,5 +1,6 @@
 package com.kafka;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -34,8 +35,10 @@ public class ConsumerTest {
 
         // key.deserializer
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+
         // value.deserializer
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+
         // group.id
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
 
@@ -66,21 +69,7 @@ public class ConsumerTest {
 
     @Test
     void consumeWithSubscription() {
-        Properties properties = new Properties();
-        // bootstrap. servers
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // key.deserializer
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // value.deserializer
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // group.id
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
-        // auto.offset.reset
-        // earliest: automatically reset the offset to the earliest offset
-        // latest: automatically reset the offset to the latest offset
-        // none: throw exception to the consumer if no previous offset is found for the consumer's group</li>
-        // anything else: throw exception to the consumer
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        Properties properties = getProperties();
 
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.subscribe(List.of("topic-1"));
@@ -100,21 +89,7 @@ public class ConsumerTest {
      */
     @Test
     void consumeWithAssign() {
-        Properties properties = new Properties();
-        // bootstrap. servers
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // key.deserializer
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // value.deserializer
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // group.id
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
-        // auto.offset.reset
-        // earliest: automatically reset the offset to the earliest offset
-        // latest: automatically reset the offset to the latest offset
-        // none: throw exception to the consumer if no previous offset is found for the consumer's group</li>
-        // anything else: throw exception to the consumer
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        Properties properties = getProperties();
 
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.assign(List.of(new TopicPartition("topic-1", 0)));
@@ -149,22 +124,7 @@ public class ConsumerTest {
      */
     @Test
     void manualCommitConsumer() {
-        Properties properties = new Properties();
-        // bootstrap. servers
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // key.deserializer
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // value.deserializer
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        // group.id
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
-
-        // auto.offset.reset
-        // earliest: automatically reset the offset to the earliest offset
-        // latest: automatically reset the offset to the latest offset
-        // none: throw exception to the consumer if no previous offset is found for the consumer's group</li>
-        // anything else: throw exception to the consumer
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        Properties properties = getProperties();
 
         // enable.auto.commit
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
@@ -235,8 +195,26 @@ public class ConsumerTest {
                 .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
         Map<TopicPartition, Long> offsets = consumer.endOffsets(partitions);
         offsets.forEach(((topicPartition, offset) -> {
-            System.out.println(topicPartition + " ---- " + offset);
+            log.info("topic-partition={}, offset={}", topicPartition, offset);
         }));
+        consumer.close();
+    }
+
+    @Test
+    void consumeEmployeeObject() {
+        Properties properties = getProperties();
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class.getName());
+        Consumer<String, Employee> consumer = new KafkaConsumer<>(properties);
+        consumer.subscribe(List.of("topic-2"));
+        while (true) {
+            ConsumerRecords<String, Employee> records = consumer.poll(Duration.ofSeconds(20));
+            for (ConsumerRecord<String, Employee> record : records) {
+                // record processing logic
+                log.info("thread={}, Topic={}, partition={}, offset={}, key={}, value={}",
+                        Thread.currentThread().getName(), record.topic(), record.partition(),
+                        record.offset(), record.key(), record.value());
+            }
+        }
     }
 
 }
