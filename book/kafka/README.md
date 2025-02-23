@@ -18,6 +18,10 @@
 * [auto.commit.interval.ms consumer config property explanation](img/auto-commit-interval-ms.jpg)
 * [Topic Naming Conventions](topic-naming-conventions.md)
 * [Kafka to Big Data Ingestion flow diagram](img/big-data-ingestion.jpg)
+* [Logging and Metrics Aggregation flow diagram](img/logging-metrics-aggregation.jpg)
+* [Partitions and segements](partitions-and-segments.md)
+* [Segments and Indexes](segments-and-indexes.md)
+* [Log Cleanup Policies](Log-Cleanup-Policies.md)
 ------
 # POCs
 * [Setup with Docker](setup-with-docker.md)
@@ -43,3 +47,4 @@
 * Udemy - Apache Kafka Series - KSQL on ksqlDB for Stream Processing !
 * Udemy - Kafka & Kafka Streams With Java Spring Boot - Hands-on Coding
 * https://learn.conduktor.io/kafka/what-is-apache-kafka/
+* Kafka documentation - https://kafka.apache.org/documentation/

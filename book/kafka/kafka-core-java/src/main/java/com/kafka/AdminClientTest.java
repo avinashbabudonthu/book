@@ -16,33 +16,55 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class AdminClientTest {
 
+    private Properties getProperties() {
+        Properties properties = new Properties();
+//        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+
+        return properties;
+    }
+
     @Test
     void createTopic() throws ExecutionException, InterruptedException {
-        Properties properties = new Properties();
-
-        /*properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        List<NewTopic> topicList = List.of(
+        Properties properties = getProperties();
+        // If 1 broker
+        /*List<NewTopic> topicList = List.of(
                 new NewTopic("topic-1", 3, (short) 1),
                 new NewTopic("topic-2", 3, (short) 1));*/
 
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
-        List<NewTopic> topicList = List.of(
+        // If 3 brokers
+         List<NewTopic> topicList = List.of(
                 new NewTopic("topic-1", 3, (short) 3),
                 new NewTopic("topic-2", 3, (short) 3));
 
         AdminClient adminClient = AdminClient.create(properties);
+
         CreateTopicsResult topics = adminClient.createTopics(topicList);
         KafkaFuture<Void> all = topics.all();
         all.get();
         adminClient.close();
+
         log.info("Created topics={}", topicList);
     }
 
     @Test
+    void listTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        ListTopicsResult listTopicsResult = adminClient.listTopics();
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        for(TopicListing topicListing : topicListings) {
+            log.info("topicId={}, name={}, isInternal={}", topicListing.topicId(), topicListing.name(), topicListing.isInternal());
+        }
+
+        adminClient.close();
+    }
+
+    @Test
     void deleteTopic() throws ExecutionException, InterruptedException {
-        Properties properties = new Properties();
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+        Properties properties = getProperties();
         AdminClient adminClient = AdminClient.create(properties);
         List<String> topicsList = List.of("topic-1", "topic-2");
         DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
@@ -54,9 +76,7 @@ public class AdminClientTest {
 
     @Test
     void resetOffsets() throws ExecutionException, InterruptedException {
-        Properties properties = new Properties();
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+        Properties properties = getProperties();
 
         AdminClient adminClient = AdminClient.create(properties);
         String topicName = "topic-1";
@@ -73,9 +93,7 @@ public class AdminClientTest {
 
     @Test
     void deleteMessagesWithOffsetsHardCoded() throws ExecutionException, InterruptedException {
-        Properties properties = new Properties();
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+        Properties properties = getProperties();
 
         AdminClient adminClient = AdminClient.create(properties);
         String topicName = "topic-1";
@@ -94,10 +112,7 @@ public class AdminClientTest {
     void deleteMessages_ByGettingOffsets_Dynamically() throws ExecutionException, InterruptedException {
         String topicName = "topic-2";
 
-        Properties consumerProperties = new Properties();
-        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
-
+        Properties consumerProperties = getProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -129,4 +144,5 @@ public class AdminClientTest {
         adminClient.close();
         consumer.close();
     }
+
 }
