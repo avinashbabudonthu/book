@@ -16,6 +16,7 @@
 * [Kafka Connect Notes](kafka-connect-notes.md)
 * [Kafka Connect Java Dependencies](kafka-connect-dependencies.md)
 * [auto.commit.interval.ms consumer config property explanation](img/auto-commit-interval-ms.jpg)
+* [Topic Naming Conventions](topic-naming-conventions.md)
 ------
 # POCs
 * [Setup with Docker](setup-with-docker.md)
