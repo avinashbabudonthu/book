@@ -48,3 +48,4 @@
 * Udemy - Kafka & Kafka Streams With Java Spring Boot - Hands-on Coding
 * https://learn.conduktor.io/kafka/what-is-apache-kafka/
 * Kafka documentation - https://kafka.apache.org/documentation/
+* Kafka connectors - https://www.confluent.io/hub/
