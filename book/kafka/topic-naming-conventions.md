@@ -9,7 +9,7 @@
 * logging: For logging data (slf4j, syslog etc)
 * queuing: For classic queuing use cases
 * tracking: For tracking events such as user clicks, page views, ad views etc
-* etl/db: For ETL and CDC use cases such as database feeds
+* etl/db: For ETL and CDC (change data capture) use cases such as database feeds
 * streaming: For intermediate topics created by streaming processing pipelines
 * push: For data that is being pushed from offline (batch computation) environments into online environments
 * user: For user specific data such as scratch and test topics
