@@ -23,3 +23,38 @@
 * Infinite Retention: By default, there is no time or space limit for logs managed by this policy, making it useful for scenarios where you need to keep the latest state of data indefinitely.
 ------
 ![picture](img/log-cleanup-policies.jpg)
+------
+### Log Cleanup: Why and When?
+* Deleting data from Kafka allows you to:
+    * Control the size of the data on the disk, delete obsolete data
+    * Overall: Limit maintenance work on the Kafka Cluster
+* How often does log cleanup happen?
+    * Log cleanup happens on your partition segments!
+    * Smaller / More segments mean that log cleanup will happen more often!
+    * Log cleanup should not happen too often => takes CPU and RAM resources
+    * The cleaner checks for work every 15 seconds (log.cleaner.backoff.ms)
+------
+### Log Cleanup Policy: Delete
+* log.retention.hours:
+    * number of hours to keep data for (default is 168 that is one week)
+    * Higher number means more disk space
+    * Lower number means that less data is retained (if your consumers are down for too long, they can miss data)
+    * Other parameters allowed: log.retention.ms, log.retention.minutes (smaller unit has precedence)
+* log.retention.bytes:
+    * Max size in Bytes for each partition (default is -1 that is infinite)
+    * Useful to keep the size of a log under a threshold
+![picture](img/log-cleanup-policy-delete.jpg)
+------
+### Log Cleanup Policy: Compact
+* Log compaction ensures that your log contains at least the last known value for a specific key within a partition.
+* Very useful if we just require a SNAPSHOT instead of the full history (such as for a data table in a database).
+* The idea is that we only keep the latest `update` for a key in our log.
+![picture](img/log-compact-example.jpg)
+------
+### Log Compaction Guarantees
+* Any consumer that is reading from the tail of a log (most current data) will still see all the messages sent to the topic
+* Ordering of messages is kept, log compaction only removes some messages, but does not re-order them
+* The offset of a message is immutable (it never changes). Offsets are just skipped if a message is missing
+* Deleted records can still be seen by consumers for a period of delete.retention.ms (default is 24 hours)
+------
+![picture](img/log-compaction-how-it-works.jpg)

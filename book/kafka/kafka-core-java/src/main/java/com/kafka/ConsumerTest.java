@@ -193,7 +193,9 @@ public class ConsumerTest {
     void getLastOffsetOfEachPartition() {
         Properties properties = getProperties();
         Consumer<String, String> consumer = new KafkaConsumer<>(properties);
-        List<PartitionInfo> partitionInfos = consumer.partitionsFor("topic-1");
+        String topicName1 =  "__consumer_offsets";
+        String topicName2 = "topic-1";
+        List<PartitionInfo> partitionInfos = consumer.partitionsFor(topicName1);
         List<TopicPartition> partitions = partitionInfos.stream()
                 .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
         Map<TopicPartition, Long> offsets = consumer.endOffsets(partitions);

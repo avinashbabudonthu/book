@@ -22,6 +22,8 @@
 * [Partitions and segements](partitions-and-segments.md)
 * [Segments and Indexes](segments-and-indexes.md)
 * [Log Cleanup Policies](Log-Cleanup-Policies.md)
+* [Unclean Leader Election](unclean-leader-elections.md)
+* [Large Messages in Apache Kafka](large-messages.md)
 ------
 # POCs
 * [Setup with Docker](setup-with-docker.md)
@@ -33,6 +35,21 @@
 * [Kafka Streams Core Java](kafka-streams-001)
 * [Kafka Streams Spring Boot 3](kafka-streams-spring-boot-3-001)
 * [Deserialization Error Handling in Kafka with Spring Boot](deserialization-error-handling-spring-boot)
+------
+# Kafka Roles and Certifications
+## Kafka Developer
+- Kafka Connect
+- Kafka Streams
+- Confluent ksqlDB
+- Confluent Schema Registry
+## Kafka Admin
+- Kafka Setup
+- Kafka Monitoring
+- Kafka Security
+------
+# Confluent Certifications
+- Certified Developer for Apache Kafka
+- Certified Administrator for Apache Kafka
 ------
 # Materials and References
 * Apache Kafka Tutorial for Beginners - https://howtodoinjava.com/kafka/apache-kafka-tutorial/
