@@ -447,9 +447,6 @@ public class AppConfig{
 * zookeeper has leader (handle writes) the rest of servers are followers (handle reads)\
 ![picture](img/zookeeper.jpg)
 ------
-# Log Compaction
-* What is log compaction?
-------
 # Round Robin vs Sticky Partition
 * Round robin - sends messages to each partition in round robin order
 * sticy partition - sends group of messages to same partition\
