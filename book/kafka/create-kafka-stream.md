@@ -1,6 +1,5 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Create Kafka Stream
+------
 * Create kafka stream. Write business logic in between `StreamsBuilder.stream` and `kafkaStreams.start`
 * Properties - [Properties to connect to Kafka from Java application](connect-to-kafka-from-java.md)
 ```
@@ -40,7 +39,7 @@ private void execute() {
 }
 ```
 * Set custom serdes
-* For `JsonSerializer`, `JsonDeserializer` add `kafka-connect` dependency. Refer [Kafka connect dependencies](../../kafka-connect/files/dependencies.md)
+* For `JsonSerializer`, `JsonDeserializer` add `kafka-connect` dependency. Refer [Kafka connect dependencies](kafka-connect-dependencies.md)
 ```
 import org.apache.kafka.common.serialization.Serializer;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -75,6 +74,4 @@ System.out.println(kafkaStreams);
 // graceful shutdown of kafka streams application
 // Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
 ```
-* [Source Code](../kafka-streams-001)
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
+* [Source Code](kafka-streams-001)

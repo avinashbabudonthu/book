@@ -8,7 +8,7 @@
 * [Ignore Unknown Properties](ignore-unknown-properties.md)
 * [Ignore properties](ignore-properties.md)
 * [JSON file to object](json-file-to-object.md)
-* [Jackson JSON Examples](jackson-json#readme)'
+* [Jackson JSON Examples](jackson-json#readme)
 * [Date formatting](date-formatting.md)
 ------
 # Materials and References
