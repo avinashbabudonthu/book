@@ -63,4 +63,3 @@ public void sendMessageWithKey() {
 	}
 }
 ```
-* [Source code](kafka-example-001)

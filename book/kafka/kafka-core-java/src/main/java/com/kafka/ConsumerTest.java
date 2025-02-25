@@ -1,9 +1,9 @@
 package com.kafka;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.CommonClientConfigs;
+import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -24,8 +24,6 @@ import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.kafka.clients.consumer.Consumer;
-
 @SuppressWarnings("all")
 @Slf4j
 public class ConsumerTest {
@@ -34,7 +32,7 @@ public class ConsumerTest {
         Properties properties = new Properties();
         // bootstrap. servers
 //        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
 
         // key.deserializer
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -76,7 +74,6 @@ public class ConsumerTest {
 
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.subscribe(List.of("topic-1"));
-
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
                 for (ConsumerRecord<String, String> record : records) {
@@ -99,7 +96,6 @@ public class ConsumerTest {
 
             while (true) {
                 Thread.sleep(1000 * 10);
-
                 ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
                 for (ConsumerRecord<String, String> record : records) {
                     log.info("thread={}, Topic={}, partition={}, offset={}, key={}, value={}", Thread.currentThread().getName(), record.topic(), record.partition(),
@@ -145,6 +141,8 @@ public class ConsumerTest {
                     Map<TopicPartition, OffsetAndMetadata> commitMap = Map.of(
                             new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1)
                     );
+
+                    // any of below methods does commit
                     consumer.commitSync(commitMap);
                     // consumer.commitAsync();
                 }
@@ -193,7 +191,7 @@ public class ConsumerTest {
     void getLastOffsetOfEachPartition() {
         Properties properties = getProperties();
         Consumer<String, String> consumer = new KafkaConsumer<>(properties);
-        String topicName1 =  "__consumer_offsets";
+        String topicName1 = "__consumer_offsets";
         String topicName2 = "topic-1";
         List<PartitionInfo> partitionInfos = consumer.partitionsFor(topicName1);
         List<TopicPartition> partitions = partitionInfos.stream()

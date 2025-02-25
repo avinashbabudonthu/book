@@ -8,6 +8,7 @@ import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -52,7 +53,10 @@ public class AdminClientTest {
         Properties properties = getProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
-        ListTopicsResult listTopicsResult = adminClient.listTopics();
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
+
         KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
         Collection<TopicListing> topicListings = listings.get();
         for(TopicListing topicListing : topicListings) {
@@ -92,6 +96,7 @@ public class AdminClientTest {
     }
 
     @Test
+    @DisplayName("Delete messages from topic where offset of each partition is hard coded")
     void deleteMessagesWithOffsetsHardCoded() throws ExecutionException, InterruptedException {
         Properties properties = getProperties();
 
@@ -109,9 +114,11 @@ public class AdminClientTest {
     }
 
     @Test
+    @DisplayName("Delete messages from topic where partition and respective offsets fetched dynamically")
     void deleteMessages_ByGettingOffsets_Dynamically() throws ExecutionException, InterruptedException {
         String topicName = "topic-2";
 
+        // consumer properties
         Properties consumerProperties = getProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
@@ -124,14 +131,15 @@ public class AdminClientTest {
         consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
         Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
 
+        // admin properties
         Properties adminProperties = new Properties();
-        adminProperties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        // properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+        // adminProperties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        adminProperties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
         AdminClient adminClient = AdminClient.create(adminProperties);
 
         // get each partition and it's offset
-        List<PartitionInfo> partitionInfos = consumer.partitionsFor(topicName);
-        List<TopicPartition> partitions = partitionInfos.stream()
+        List<PartitionInfo> partitionInfoList = consumer.partitionsFor(topicName);
+        List<TopicPartition> partitions = partitionInfoList.stream()
                 .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
         Map<TopicPartition, Long> offsets = consumer.endOffsets(partitions);
 
@@ -141,6 +149,7 @@ public class AdminClientTest {
         DeleteRecordsResult deleteRecordsResult = adminClient.deleteRecords(recordsToDelete);
         deleteRecordsResult.all().get();
 
+        // close
         adminClient.close();
         consumer.close();
     }

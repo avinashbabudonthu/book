@@ -25,7 +25,7 @@
     * Timestamp Index 3
 
 ### Conclusion
-Segments and their associated indexes play a crucial role in Kafka's ability to efficiently store and retrieve messages. Proper understanding and configuration of these components ensure optimal performance and timely data access.
+* Segments and their associated indexes play a crucial role in Kafka's ability to efficiently store and retrieve messages. Proper understanding and configuration of these components ensure optimal performance and timely data access.
 ------
 ![picture](img/segments-and-indexes.jpg)
 ------

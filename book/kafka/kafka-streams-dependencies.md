@@ -1,6 +1,5 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Kafka streams dependencies
+------
 * Maven dependencies. Refer central repository for latest version
 ```
 <dependency>
@@ -18,5 +17,3 @@
     <scope>test</scope>
 </dependency>
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

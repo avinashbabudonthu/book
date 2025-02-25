@@ -36,9 +36,9 @@
 # Kafka POCs
 * [Setup with Docker](setup-with-docker.md)
 * [Kafka Core Java](kafka-core-java#readme)
+* [Kafka Core Java Avro Message](kafka-avro-message.md)
 * [Spring Boot 2 Kafka Consumer](spring-boot2-kafka-consumer)
 * [Spring Boot 2 Kafka Producer](spring-boot2-kafka-producer)
-* [Kafka Core Java Avro](kafka-core-java-avro)
 * [Kafka Spring Boot Avro](kafka/kafka-spring-boot-avro)
 * [Deserialization Error Handling in Kafka with Spring Boot](deserialization-error-handling-spring-boot)
 ------

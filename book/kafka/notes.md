@@ -40,9 +40,7 @@
 * Activity Tracking
 * Gather metrics from many different locations
 * Application log gathering
-* Stream processing
-	* Kafka streams API
-	* Spark
+* Stream processing - Kafka streams API
 * De-coupling system dependencies
 * Integration with big data systems like
 	* Spark
@@ -61,7 +59,7 @@
 ![picture](img/Apache-Kafka-Architecture.png)
 ------
 ## Kafka Terminology and Client APIs
-* Broker: all kafka clients interact with
+* Broker: all kafka clients (producers and consumers) interact with
 * Cluster
 	* consists of multiple brokers
 	* In order to manage multiple brokers in cluster we need Zookeeper. Zookeeper keeps track of health of brokers and manage the cluster for you
@@ -87,7 +85,7 @@
 * Commit Logs
 * Retention Policy: Determines how long the message is going to be retained
 * Broker Controller: Let's say we have kafka cluster with 3 brokers. out of 3 brokers 1 broker will behave as controller. Normally this will be first broker which joined the cluster
-* replication-factor: number of copies of same message
+* replication-factor: number of copies of same message. `replication-factor <= number of brokers in cluster` means if cluster has 3 brokers then replication-factor should be less than or equal to 3
 * ISR - In-sync replica: Represents the number of replicas in sync with each other in the cluster including leader and follower replica
 * Leader Replica
 * Follower Replica
