@@ -22,4 +22,5 @@
 * [Maven](maven#readme)
 * [MySQL](mysql#readme)
 * [Oracle](oracle#readme)
-* [Solr](solr)
+* [Solr](solr#readme)
+* [Windows](windows#readme)
