@@ -35,7 +35,7 @@
 * Similar to table
 * Parallel with log compacted topics
 ------
-# When to KStrams vs KTable
+# When to KStreams vs KTable
 * KStreams reading from topic that is not compacted
 * KTable reading from topic that is log compacted (aggregations)
 
@@ -322,6 +322,3 @@ KStream<byte[], String> printStream = stream.peek(
 
 ## Outer Join
 * Only available for KStream / KStream Joins
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------

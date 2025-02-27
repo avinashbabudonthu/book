@@ -46,5 +46,5 @@ space | leave space for positive number |
 * Refer `removeHTMLFromString` method in [String Examples](../core-java/src/main/java/com/practice/java/lang/StringTest.java)
 ------
 # Examples
-* [String Examples](../core-java/src/main/java/com/practice/java/lang/StringTest.java)
-* [String Joiner Examples](../core-java/src/main/java/com/practice/java/util/StringJoinerTest.java)
+* [String Examples](../core-java/core-java/src/main/java/com/practice/java/lang/StringTest.java)
+* [String Joiner Examples](../core-java/core-java/src/main/java/com/practice/java/util/StringJoinerTest.java)

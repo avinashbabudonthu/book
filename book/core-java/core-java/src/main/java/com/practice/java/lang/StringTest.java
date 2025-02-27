@@ -811,4 +811,26 @@ public class StringTest {
         String str2 = url.substring(StringUtils.lastOrdinalIndexOf(url, "/", 2) + 1);
         log.info("str2={}", str2); // str2=2018/employees
     }
+
+    /**
+     * <ul>
+     *     <li>From Java 15 we can use the new native feature called Text Blocks</li>
+     *     <li>use Text Blocks by declaring the string with """ (three double quote marks)</li>
+     *     <li>we don't have to deal with line separators or indentation spaces</li>
+     * </ul>
+     *
+     * Output:
+     * Welcome to Java
+     * Multiline
+     * String
+     */
+    @Test
+    void multilineString() {
+        String multilineString1 = """
+                Welcome to Java
+                Multiline
+                String
+                """;
+        log.info("{}",multilineString1);
+    }
 }

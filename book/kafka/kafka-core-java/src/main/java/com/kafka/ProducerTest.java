@@ -238,8 +238,9 @@ public class ProducerTest {
                 log.error("Exception in producer", e);
             }
         };
+
+        String topic = "topic-1";
         for (int i = 0; i <= 100; i++) {
-            String topic = "topic-1";
             String key = new SimpleDateFormat("SSS").format(new Date());
             String value = FAKER.name().fullName();
             producer.send(new ProducerRecord<>(topic, key, value), callback);
@@ -272,6 +273,9 @@ public class ProducerTest {
         producer.close();
     }
 
+    /**
+     * TODO - Not working - Getting deserialization exception
+     */
     @Test
     void sendAvroMessage() throws InterruptedException {
         Properties properties = getProperties();

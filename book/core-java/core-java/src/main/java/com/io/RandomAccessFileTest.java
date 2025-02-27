@@ -1,11 +1,14 @@
 package com.io;
 
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.Test;
+
 import java.io.RandomAccessFile;
 
 public class RandomAccessFileTest {
 
-    @lombok.SneakyThrows
-    @org.junit.Test
+    @SneakyThrows
+    @Test
     public void readFromFile(){
         RandomAccessFile randomAccessFile = new RandomAccessFile("src/test/resources/file1.txt", "r");
         randomAccessFile.seek(0);
@@ -16,8 +19,8 @@ public class RandomAccessFileTest {
         System.out.println(output);
     }
 
-    @lombok.SneakyThrows
-    @org.junit.Test
+    @SneakyThrows
+    @Test
     public void writeToFile(){
         RandomAccessFile randomAccessFile = new RandomAccessFile("src/test/resources/file1.txt", "rw");
         randomAccessFile.seek(0);
