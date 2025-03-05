@@ -48,10 +48,13 @@ git branch -r | wc -l
 ```
 git checkout branch-name
 ```
-* Delete the feature branch from local repository
+* Delete branch from local repository
 ```
 git branch --delete branch_name
 git branch -d branch_name
+```
+* Force delete branch from local repository
+```
 git branch -D branch_name
 ```
 * change the default branch from master to main
