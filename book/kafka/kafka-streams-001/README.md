@@ -1,22 +1,35 @@
 # Kafka Streams Examples
 ------
-### Problem
-* Take message from one topic (input topic)
+### Example 1 - Print messages
+* Send message to input topic - `input-topic-001`
 * Print using `peek`
-* send to another topic (output topic)
+* send to output topic - `output-topic-001`
 
 ### Solution
-* open class - [Example0001](src/main/java/com/java/Example0001.java)
+* open class - [Example1](src/main/java/com/java/Example1.java)
 * Run main method
 * Run `consumer` test case
 * Run `producer` test case
 * Producer sends message to `input-topic-001` - streaming consumes it, prints it, send to `output-topic-001` - consumer consumes from `output-topic-001`
 ------
-### Problem
-* Take message from one topic (input topic)
+### Example 2 - Convert case
+* Send message input topic - `user.convert.case.input.txt`
 * Print using `peek`
 * convert to lower case
-* send to another topic (output topic)
+* send to output topic - `user.convert.case.output.txt`
 
 ### Solution
-* Refer - [Example0002](src/main/java/com/java/Example0002.java)
+* Refer - [Example2](src/main/java/com/java/Example2.java)
+------
+### Example 3 - Word count
+* Send message input topic - `user.word.count.input.txt`
+* Print - `peek`
+* convert to lower case - `mapValues`
+* Divide by space - `flatMapValues`
+* Use word as key - `selectKey`
+* Group by key - `groupByKey`
+* count - `count`
+* send to output topic - `user.word.count.output.txt`
+
+### Solution
+* Refer - [Example3](src/main/java/com/java/Example3.java)

@@ -2,20 +2,12 @@ package com.java;
 
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.kafka.clients.CommonClientConfigs;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.CooperativeStickyAssignor;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.clients.producer.RoundRobinPartitioner;
+import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -28,31 +20,36 @@ import org.junit.jupiter.api.Test;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 @SuppressWarnings("all")
 @Slf4j
-public class Example0001 {
+public class Example2 {
 
     private static final Faker FAKER = Faker.instance();
+
+    private Properties getAdminProperties() {
+        Properties properties = new Properties();
+//        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+
+        return properties;
+    }
 
     private Properties getStreamsProperties() {
         Properties properties = new Properties();
 
         /* application.id
-        * Specific to streams application. will be used for:
-        * group.id = application.id
-        * Default client.id prefix
-        * Prefix to internal changelog topics
-        * */
-        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "word-count-001");
+         * Specific to streams application. will be used for:
+         * group.id = application.id
+         * Default client.id prefix
+         * Prefix to internal changelog topics
+         * */
+        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "convert-case");
 
         // bootstrap.servers
-        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        // properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
 
         // default.key.serde
@@ -178,48 +175,40 @@ public class Example0001 {
         return properties;
     }
 
-    public static void main(String[] args) {
-        new Example0001().stream();
-    }
-
-    /**
-     * do not call this message as Junit test case else it will run and stop immediately without waiting
-     *
-     * <ul>
-     *     <li>Take messages from input topic - input-topic-001</li>
-     *     <li>print the message</li>
-     *     <li>send to output topic - output-topic-001</li>
-     * </ul>
-     */
-    private void stream() {
-        Properties streamsProperties = getStreamsProperties();
-        StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> inputStream = builder.stream("input-topic-001");
-        KStream<String, String> peekStream = inputStream.peek((key, value) -> log.info("key={}, value={}", key, value));
-        peekStream.to("output-topic-001");
-
-        // never call this in try-with-source. If called then application will stop immediately without waiting
-        KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), streamsProperties);
-        kafkaStreams.start();
-    }
-
-    /**
-     * Consume messages from "output-topic-001" topic
-     */
     @Test
-    void consumer() {
-        Properties properties = getConsumerProperties();
+    void createTopic() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
 
-        try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
-            consumer.subscribe(List.of("output-topic-001"));
-            while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
-                for (ConsumerRecord<String, String> record : records) {
-                    log.info("Topic={}, partition={}, offset={}, key={}, value={}", record.topic(), record.partition(),
-                            record.offset(), record.key(), record.value());
-                }
-            }
+        List<String> topicNames = List.of("user.convert.case.input.txt", "user.convert.case.output.txt");
+        // If 1 broker
+        // List<NewTopic> topicList = topicNames.stream().map(topicName -> new NewTopic(topicName, 1, (short) 3)).toList();
+        // If 3 brokers
+        List<NewTopic> topicList = topicNames.stream().map(topicName -> new NewTopic(topicName, 3, (short) 3)).toList();
+        CreateTopicsResult topics = adminClient.createTopics(topicList);
+        KafkaFuture<Void> all = topics.all();
+        all.get();
+        adminClient.close();
+
+        log.info("Created topics={}", topicList);
+    }
+
+    @Test
+    void listTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        for (TopicListing topicListing : topicListings) {
+            log.info("topicId={}, name={}, isInternal={}", topicListing.topicId(), topicListing.name(), topicListing.isInternal());
         }
+
+        adminClient.close();
     }
 
     /**
@@ -229,15 +218,14 @@ public class Example0001 {
     @Test
     void producer() throws ExecutionException, InterruptedException {
         Properties properties = getProducerProperties();
+        String topic = "user.convert.case.input.txt";
 
         Producer<String, String> producer = new KafkaProducer<>(properties);
-
         // producer callback
         Callback callback = (RecordMetadata recordMetadata, Exception e) ->
                 log.info("message sent, topic={}, partition={}, offset={}",
                         recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
 
-        String topic = "input-topic-001";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("SSS");
 
         // send messages
@@ -251,6 +239,58 @@ public class Example0001 {
 
         // close producer
         producer.close();
+    }
+
+    /**
+     * Consume messages from "output-topic-001" topic
+     */
+    @Test
+    void consumer() {
+        Properties properties = getConsumerProperties();
+        String topic = "user.convert.case.output.txt";
+
+        try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
+            consumer.subscribe(List.of(topic));
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
+                for (ConsumerRecord<String, String> record : records) {
+                    log.info("Topic={}, partition={}, offset={}, key={}, value={}", record.topic(), record.partition(),
+                            record.offset(), record.key(), record.value());
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new Example2().stream();
+    }
+
+    /**
+     * do not call this message as Junit test case else it will run and stop immediately without waiting
+     *
+     * <ul>
+     *     <li>Stream messages from input topic - user.convert.case.input.txt</li>
+     *     <li>Convert case</li>
+     *     <li>Send to output topic - user.convert.case.output.txt</li>
+     * </ul>
+     */
+    private void stream() {
+        Properties properties = getStreamsProperties();
+        String inputTopic = "user.convert.case.input.txt";
+        String outputTopic = "user.convert.case.output.txt";
+
+        StreamsBuilder builder = new StreamsBuilder();
+        KStream<String, String> inputStream = builder.stream(inputTopic);
+        // @formatter:off
+        inputStream
+                .peek(((key, value) -> log.info("key={}, value={}", key, value)))
+                .mapValues(value -> StringUtils.defaultIfBlank(value, "unknown").toLowerCase())
+                .to(outputTopic);
+        // @formatter:on
+
+        // never call this in try-with-source. If called then application will stop immediately without waiting
+        KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), properties);
+        kafkaStreams.start();
     }
 
 }
