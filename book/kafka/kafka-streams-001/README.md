@@ -5,11 +5,11 @@
 * Print using `peek`
 * send to output topic - `output-topic-001`
 
-### Solution
-* open class - [Example1](src/main/java/com/java/Example1.java)
-* Run main method
-* Run `consumer` test case
-* Run `producer` test case
+### Execution
+* Open [Example1](src/main/java/com/java/Example1.java)
+* Execute method `main`
+* Execute method `consumer`
+* Execute method `producer`
 * Producer sends message to `input-topic-001` - streaming consumes it, prints it, send to `output-topic-001` - consumer consumes from `output-topic-001`
 ------
 ### Example 2 - Convert case
@@ -18,8 +18,11 @@
 * convert to lower case
 * send to output topic - `user.convert.case.output.txt`
 
-### Solution
-* Refer - [Example2](src/main/java/com/java/Example2.java)
+### Execution
+* Open [Example2](src/main/java/com/java/Example2.java)
+* Execute method `main`
+* Execute method `consumer`
+* Execute method `producer`
 ------
 ### Example 3 - Word count
 * Send message input topic - `user.word.count.input.txt`
@@ -31,5 +34,8 @@
 * count - `count`
 * send to output topic - `user.word.count.output.txt`
 
-### Solution
-* Refer - [Example3](src/main/java/com/java/Example3.java)
+### Execution
+* Open [Example3](src/main/java/com/java/Example3.java)
+* Execute method `main`
+* Execute method `consumer`
+* Execute method `producer`

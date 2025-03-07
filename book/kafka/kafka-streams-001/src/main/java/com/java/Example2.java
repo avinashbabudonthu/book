@@ -62,7 +62,7 @@ public class Example2 {
         // This path must be unique for each streams instance sharing the same underlying filesystem.
         // Note that if not configured, then the default location will be different in each environment as
         // it is computed using System.getProperty("java.io.tmpdir")
-        properties.put(StreamsConfig.STATE_DIR_CONFIG, "C:\\one-place\\kafka-streams\\data");
+        properties.put(StreamsConfig.STATE_DIR_CONFIG, "C:\\MyPC\\one-place\\kafka-streams\\data");
 
         // processing.guarantee - exactly once
         // properties.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE);
