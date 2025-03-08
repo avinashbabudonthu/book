@@ -15,5 +15,6 @@
 * [DBA Queries](dba.sql)
 * [Create Indexes Queries](create-indexes.sql)
 * [Drop Indexes Queries](drop-indexes.sql)
+* [Java Connection Details](java-connection-details.md)
 ------
 # Materials and References

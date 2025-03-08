@@ -16,6 +16,7 @@
 * [Core Java](core-java#readme)
 * [Git](git#readme)
 * [Guava](guava#readme)
+* [HikariCP](hikari-cp#readme)
 * [Java Faker](java-faker#readme)
 * [JSON Jackson Library](json-jackson#readme)
 * [Kafka](kafka#readme)

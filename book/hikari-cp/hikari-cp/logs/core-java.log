@@ -1,0 +1,54 @@
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1103] - oracle-connection-pool - configuration:
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - allowPoolSuspension................................false
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - autoCommit................................true
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - catalog................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - connectionInitSql................................"select sysdate from dual"
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - connectionTestQuery................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - connectionTimeout................................5000
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - dataSource................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - dataSourceClassName................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - dataSourceJNDI................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - dataSourceProperties................................{password=<masked>, prepStmtCacheSqlLimit=2048, cachePrepStmts=true, prepStmtCacheSize=250}
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - driverClassName................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - exceptionOverrideClassName................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - healthCheckProperties................................{}
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - healthCheckRegistry................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - idleTimeout................................600000
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - initializationFailTimeout................................1
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - isolateInternalQueries................................false
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - jdbcUrl................................jdbc:oracle:thin:@localhost:1521
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - keepaliveTime................................0
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - leakDetectionThreshold................................0
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - maxLifetime................................1800000
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - maximumPoolSize................................20
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - metricRegistry................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - metricsTrackerFactory................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - minimumIdle................................20
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - password................................<masked>
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - poolName................................"oracle-connection-pool"
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - readOnly................................false
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - registerMbeans................................false
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - scheduledExecutor................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - schema................................none
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - threadFactory................................internal
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - transactionIsolation................................default
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - username................................"practice"
+[2025-03-08 14:39:37] [DEBUG] [HikariConfig:1135] - validationTimeout................................5000
+[2025-03-08 14:39:37] [INFO ] [HikariDataSource:80] - oracle-connection-pool - Starting...
+[2025-03-08 14:39:37] [DEBUG] [DriverDataSource:107] - Loaded driver with class name oracle.jdbc.OracleDriver for jdbcUrl=jdbc:oracle:thin:@localhost:1521
+[2025-03-08 14:39:37] [DEBUG] [HikariPool:565] - oracle-connection-pool - Added connection oracle.jdbc.driver.T4CConnection@3d9c13b5
+[2025-03-08 14:39:37] [INFO ] [HikariDataSource:82] - oracle-connection-pool - Start completed.
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7839, ename=KING
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7698, ename=BLAKE
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7782, ename=CLARK
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7566, ename=JONES
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7654, ename=MARTIN
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7499, ename=ALLEN
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7844, ename=TURNER
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7900, ename=JAMES
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7521, ename=WARD
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7902, ename=FORD
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7369, ename=SMITH
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7788, ename=SCOTT
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7876, ename=ADAMS
+[2025-03-08 14:39:38] [INFO ] [OracleHikariCPTest:106] - empno=7934, ename=MILLER

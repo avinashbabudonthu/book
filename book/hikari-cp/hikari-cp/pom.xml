@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.java</groupId>
+  <artifactId>hikari-cp</artifactId>
+  <packaging>jar</packaging>
+  <version>1</version>
+  
+  <name>hikari-cp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+        <maven.build.timestamp.format>yyyy-MM-dd-HH-mm</maven.build.timestamp.format>
+        <maven.compiler.release>17</maven.compiler.release>
+
+<!--        <junit.jupitor.engine>5.8.1</junit.jupitor.engine>-->
+<!--        <junit.platform.launcher>1.4.2</junit.platform.launcher>-->
+<!--        <maven.compiler>3.8.1</maven.compiler>-->
+<!--        <java>1.8</java>-->
+<!--        <slf4j>1.7.5</slf4j>-->
+<!--        <lombok>1.18.24</lombok>-->
+        <mysql>8.0.21</mysql>
+        <!--<hikariCp>5.0.1</hikariCp>--> <!-- Java 11 and above -->
+        <hikariCp>4.0.3</hikariCp> <!-- Java 8 maintenance -->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.3</version>
+<!--            <scope>test</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.21.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>2.23.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.34</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.5.0-M2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.16.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
+        <!-- HikariCP -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikariCp}</version>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.8.0.0</version> <!-- Change the version number based on your requirement -->
+        </dependency>
+
+       <!-- <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>23.7.0.25.01</version>
+        </dependency>-->
+
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
+        <plugins>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler}</version>
+                <configuration>
+                    <source>${java}</source>
+                    <target>${java}</target>
+                </configuration>
+            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.12.1</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
