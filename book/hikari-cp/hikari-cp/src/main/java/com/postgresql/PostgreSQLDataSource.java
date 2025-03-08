@@ -1,4 +1,4 @@
-package com.oracle;
+package com.postgresql;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -6,9 +6,9 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class OracleDataSource {
+public class PostgreSQLDataSource {
 
-    private OracleDataSource() {
+    private PostgreSQLDataSource() {
     }
 
     private static final HikariConfig config = new HikariConfig();
@@ -19,18 +19,18 @@ public class OracleDataSource {
      * https://github.com/brettwooldridge/HikariCP
      */
     static {
-        config.setJdbcUrl("jdbc:oracle:thin:@localhost:1521");
-        // config.setDriverClassName(OracleDataSource.class.getName());
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/practice");
+        // config.setDriverClassName(MysqlDataSource.class.getName());
         config.setUsername("practice");
         config.setPassword("practice");
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         config.setAutoCommit(true);
-        config.setPoolName("oracle-connection-pool");
+        config.setPoolName("postgresql-connection-pool");
         config.setMaximumPoolSize(20);
         config.setConnectionTimeout(1000 * 5); // connection timeout in milli seconds
-        config.setConnectionInitSql("select sysdate from dual");
+        config.setConnectionInitSql("select curdate()");
 
         dataSource = new HikariDataSource(config);
     }
@@ -39,7 +39,7 @@ public class OracleDataSource {
         return dataSource.getConnection();
     }
 
-    public static HikariDataSource dataSource() {
+    public static HikariDataSource dataSource(){
         return dataSource;
     }
 
