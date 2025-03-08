@@ -28,4 +28,5 @@
 * [Postgresql](postgre-sql#readme)
 * [REST API](rest-api#readme)
 * [Solr](solr#readme)
+* [Spring Boot](spring-boot#readme)
 * [Windows](windows#readme)
