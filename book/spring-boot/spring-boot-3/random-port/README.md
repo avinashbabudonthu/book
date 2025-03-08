@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Requirement
 * Start spring boot 3 application with embedded tomcat on random available port
 ------
@@ -52,5 +50,3 @@ SpringApplication.run(Application.class, "--server.port=0");
 * Refer [Application](src/main/java/com/java/Application.java)
 * Now application will start on random available port
 * We can see port number on console
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
