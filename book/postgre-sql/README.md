@@ -1,7 +1,7 @@
 # Postgresql Table of Contents
 ------
 # Theory
-* [Notes](notes.md)
+
 ------
 # POCs and Examples
 * [Create database](create-database.sql)
@@ -10,6 +10,8 @@
 * [Insert Queries](insert-queries.sql)
 * [Partitions](partitions.sql)
 * [Partitions on Demand](partitions-on-demand.sql)
+* [Date Column Mapping](date-column-mapping.md)
+* [Xml Column Mapping](xml-column-mapping.md)
 ------
 # Materials and References
 * Datetime documentation: https://www.postgresql.org/docs/8.2/functions-datetime.html

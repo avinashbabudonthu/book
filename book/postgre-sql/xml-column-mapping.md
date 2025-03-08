@@ -1,19 +1,3 @@
-# Map Timestamp with Time Zone column
-* Use `columnDefinition` attribute in `Column` annotation
-```
-@Column(name = "run_from", columnDefinition= "TIMESTAMP WITH TIME ZONE")
-@NotNull
-@Temporal(TemporalType.TIMESTAMP)
-private Date runFrom;
-```
-* We can use `not null` also like below
-```
-@Column(name = "run_from", columnDefinition = "timestamp with time zone not null")
-@NotNull
-@Temporal(TemporalType.TIMESTAMP)
-private Date runFrom;
-```
-------
 # Mapping XML type
 * This Java class can be used to enable Hibernate to store and retrieve PostgreSQL "xml" typed fields as String objects. It's trivially adapted to parse the XML into a DOM and store from a DOM or whatever your preferred XML representation instead.
 * To tell Hibernate to use this UserType for a given mapped field, specify a Type annotation on the property, like:
@@ -113,11 +97,3 @@ public class SQLXMLType implements org.hibernate.usertype.UserType {
     }
 }
 ```
-------
-# Partitioning
-* DDL Partitioning
-	* https://www.postgresql.org/docs/current/ddl-partitioning.html
-	* Example - [partitions.sql](partitions.sql)
-* Automatic On Demand Partitioning
-	* https://www.cybertec-postgresql.com/en/automatic-partition-creation-in-postgresql/
-	* Example - [partitions-on-demand.sql](partitions-on-demand.sql)
