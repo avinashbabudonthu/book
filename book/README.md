@@ -26,5 +26,6 @@
 * [MySQL](mysql#readme)
 * [Oracle](oracle#readme)
 * [Postgresql](postgre-sql#readme)
+* [REST API](rest-api#readme)
 * [Solr](solr#readme)
 * [Windows](windows#readme)
