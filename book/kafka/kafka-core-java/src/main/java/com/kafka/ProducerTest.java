@@ -250,7 +250,7 @@ public class ProducerTest {
     }
 
     @Test
-    void sendJsonMessage() throws InterruptedException {
+    void sendEmployeeObjectAsJson() throws InterruptedException {
         Properties properties = getProperties();
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class.getName());
         Callback callback = (RecordMetadata recordMetadata, Exception e) ->

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class AdminClientTest {
@@ -153,7 +154,7 @@ public class AdminClientTest {
         consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);
         consumerProperties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
-        consumerProperties.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "consumerGracefulShutdown-" + UUID.randomUUID());
+        consumerProperties.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "resetOffsets_OfAllAvailableTopics-" + UUID.randomUUID());
         consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
         Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
 
@@ -172,6 +173,62 @@ public class AdminClientTest {
         AlterConsumerGroupOffsetsResult alterConsumerGroupOffsetsResult = adminClient.alterConsumerGroupOffsets("group-1", offsets);
         KafkaFuture<Void> all = alterConsumerGroupOffsetsResult.all();
         all.get();
+
+        // close
+        adminClient.close();
+        consumer.close();
+    }
+
+    /**
+     * How to test
+     * Run producer - {@link ProducerTest#sendEmployeeObjectAsJson()}
+     * Run consumer - {@link ConsumerTest#consumeEmployeeObject()}
+     * Stop producer
+     * Wait 1 min
+     * stop consumer
+     * Wait 1 min
+     * Run consumer - {@link ConsumerTest#consumeEmployeeObject()} - This all messages consumed so now consumer won't consume any messages
+     * Run this method
+     * Run consumer - {@link ConsumerTest#consumeEmployeeObject()} - Since offsets deleted so consumer will consume all messages from start
+     */
+    @Test
+    void deleteOffsets_OfAllAvailableTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        // get all available topics
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        // List<String> topicsNames = topicListings.stream().map(TopicListing::name).toList();
+        List<String> topicsNames = List.of("topic-2");
+
+        // consumer properties
+        Properties consumerProperties = getProperties();
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
+        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);
+        consumerProperties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
+        consumerProperties.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "resetOffsets_OfAllAvailableTopics-" + UUID.randomUUID());
+        consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+        Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
+
+        for (String topicName : topicsNames) {
+            // get each partition and it's offset
+            List<PartitionInfo> partitionInfoList = consumer.partitionsFor(topicName);
+            Set<TopicPartition> partitions = partitionInfoList.stream()
+                    .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).collect(Collectors.toSet());
+
+            DeleteConsumerGroupOffsetsResult alterConsumerGroupOffsetsResult = adminClient.deleteConsumerGroupOffsets("group-1", partitions);
+            KafkaFuture<Void> all = alterConsumerGroupOffsetsResult.all();
+            all.get();
+        }
 
         // close
         adminClient.close();
@@ -278,6 +335,49 @@ public class AdminClientTest {
         deleteRecordsResult.all().get();
 
         log.info("Deleted messages of topics={}", topicNames.stream().sorted());
+
+        // close
+        adminClient.close();
+        consumer.close();
+    }
+
+    @Test
+    void topics_Partitions_And_Offsets() throws ExecutionException, InterruptedException {
+        Properties properties = getProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        // consumer properties
+        Properties consumerProperties = getProperties();
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
+        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);
+        consumerProperties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
+        consumerProperties.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "consumerGracefulShutdown-" + UUID.randomUUID());
+        consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+        Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
+
+        // get all available topics
+        ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        List<String> topicNames = topicListings.stream().map(TopicListing::name).toList();
+
+        List<PartitionInfo> partitionInfoList = new ArrayList<>();
+        for (String topicName : topicNames) {
+            // get each partition and it's offset
+            partitionInfoList.addAll(consumer.partitionsFor(topicName));
+        }
+
+        List<TopicPartition> partitions = partitionInfoList.stream()
+                .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
+        Map<TopicPartition, Long> offsets = consumer.endOffsets(partitions);
+        offsets.forEach(((topicPartition, offset) -> {
+           log.info("topic={}, partition={}, offset={}", topicPartition.topic(), topicPartition.partition(), offset);
+        }));
 
         // close
         adminClient.close();
