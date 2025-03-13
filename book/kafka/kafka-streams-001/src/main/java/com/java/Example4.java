@@ -3,7 +3,13 @@ package com.java;
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.CommonClientConfigs;
-import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.CreateTopicsResult;
+import org.apache.kafka.clients.admin.DeleteTopicsResult;
+import org.apache.kafka.clients.admin.ListTopicsOptions;
+import org.apache.kafka.clients.admin.ListTopicsResult;
+import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.admin.TopicListing;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -22,36 +28,47 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.Topology;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 @SuppressWarnings("all")
 @Slf4j
-public class Example1 {
+public class Example4 {
 
     private static final Faker FAKER = Faker.instance();
-    private static final String INTPUT_TOPIC = "input-topic-001";
-    private static final String OUTPUT_TOPIC = "output-topic-001";
-    private static final List<String> TOPIC_NAMES = List.of(INTPUT_TOPIC, OUTPUT_TOPIC);
+    private static final String INPUT_TOPIC = "user.topology.input.txt";
+    private static final String OUTPUT_TOPIC = "user.topology.output.txt";
+    private static final List<String> TOPIC_NAMES = List.of(INPUT_TOPIC, OUTPUT_TOPIC);
+
+    private Properties getAdminProperties() {
+        Properties properties = new Properties();
+//        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+
+        return properties;
+    }
 
     private Properties getStreamsProperties() {
         Properties properties = new Properties();
 
         /* application.id
-        * Specific to streams application. will be used for:
-        * group.id = application.id
-        * Default client.id prefix
-        * Prefix to internal changelog topics
-        * */
-        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "print-message");
+         * Specific to streams application. will be used for:
+         * group.id = application.id
+         * Default client.id prefix
+         * Prefix to internal changelog topics
+         * */
+        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "convert-case");
 
         // bootstrap.servers
         // properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
@@ -180,14 +197,6 @@ public class Example1 {
         return properties;
     }
 
-    private Properties getAdminProperties() {
-        Properties properties = new Properties();
-//        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
-
-        return properties;
-    }
-
     @Test
     void createTopic() throws ExecutionException, InterruptedException {
         Properties properties = getAdminProperties();
@@ -264,30 +273,24 @@ public class Example1 {
     }
 
     public static void main(String[] args) {
-        new Example1().stream();
+        new Example4().stream();
     }
 
-    /**
-     * do not call this message as Junit test case else it will run and stop immediately without waiting
-     *
-     * <ul>
-     *     <li>Take messages from input topic - input-topic-001</li>
-     *     <li>print the message</li>
-     *     <li>send to output topic - output-topic-001</li>
-     * </ul>
-     */
     private void stream() {
-        Properties streamsProperties = getStreamsProperties();
-        StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> inputStream = builder.stream(INTPUT_TOPIC);
-        KStream<String, String> peekStream = inputStream.peek((key, value) -> log.info("key={}, value={}", key, value));
-        peekStream.to(OUTPUT_TOPIC);
+        Topology topology = new Topology();
+        String sourceName = "example-4-source";
+        String sinkName = "example-4-sink";
+        topology.addSource(sourceName, INPUT_TOPIC);
+        topology.addProcessor("example-4-processor-1", Example4Processor::new, sourceName);
+        topology.addProcessor("example-4-processor-2", Example4Processor2::new, sourceName);
+        topology.addProcessor("example-4-processor-3", Example4Processor3::new, sourceName);
+        topology.addSink(sinkName, OUTPUT_TOPIC, new StringSerializer(), new StringSerializer(), sourceName);
 
-        // never call this in try-with-source. If called then application will stop immediately without waiting
-        KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), streamsProperties);
+        Properties properties = getStreamsProperties();
+        KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);
         kafkaStreams.start();
 
-        // shutdown gracefull
+        // geaceful shutdown
         Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
     }
 
@@ -297,7 +300,6 @@ public class Example1 {
     @Test
     void consumer() {
         Properties properties = getConsumerProperties();
-
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.subscribe(List.of(OUTPUT_TOPIC));
             while (true) {
@@ -317,15 +319,12 @@ public class Example1 {
     @Test
     void producer() throws ExecutionException, InterruptedException {
         Properties properties = getProducerProperties();
-
         Producer<String, String> producer = new KafkaProducer<>(properties);
-
         // producer callback
         Callback callback = (RecordMetadata recordMetadata, Exception e) ->
                 log.info("message sent, topic={}, partition={}, offset={}",
                         recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
 
-        String topic = INTPUT_TOPIC;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("SSS");
 
         // send messages
@@ -333,7 +332,7 @@ public class Example1 {
             String key = simpleDateFormat.format(new Date());
             String value = FAKER.name().fullName();
             log.info("Sending value, i={}, key={}, value={}", i, key, value);
-            producer.send(new ProducerRecord<>(topic, key, value), callback);
+            producer.send(new ProducerRecord<>(INPUT_TOPIC, key, value), callback);
             Thread.sleep(1000 * 5); // wait 5 seconds to send next value
         }
 

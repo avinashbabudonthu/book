@@ -29,6 +29,9 @@ import java.util.concurrent.ExecutionException;
 public class Example3 {
 
     private static final Faker FAKER = Faker.instance();
+    private static final String INPUT_TOPIC = "user.word.count.input.txt";
+    private static final String OUTPUT_TOPIC = "user.word.count.output.txt";
+    private static final List<String> TOPIC_NAMES = List.of(INPUT_TOPIC, OUTPUT_TOPIC);
 
     private Properties getAdminProperties() {
         Properties properties = new Properties();
@@ -182,11 +185,10 @@ public class Example3 {
         Properties properties = getAdminProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
-        List<String> topicNames = List.of("user.word.count.input.txt", "user.word.count.output.txt");
         // If 1 broker
-        // List<NewTopic> topicList = topicNames.stream().map(topicName -> new NewTopic(topicName, 1, (short) 3)).toList();
+        // List<NewTopic> topicList = TOPIC_NAMES.stream().map(topicName -> new NewTopic(topicName, 1, (short) 3)).toList();
         // If 3 brokers
-        List<NewTopic> topicList = topicNames.stream().map(topicName -> new NewTopic(topicName, 3, (short) 3)).toList();
+        List<NewTopic> topicList = TOPIC_NAMES.stream().map(topicName -> new NewTopic(topicName, 3, (short) 3)).toList();
         CreateTopicsResult topics = adminClient.createTopics(topicList);
         KafkaFuture<Void> all = topics.all();
         all.get();
@@ -213,6 +215,46 @@ public class Example3 {
         adminClient.close();
     }
 
+    @Test
+    void deleteTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        // get all available topics
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        // delete topics
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(TOPIC_NAMES);
+        KafkaFuture<Void> all = deleteTopicsResult.all();
+        all.get();
+        adminClient.close();
+        log.info("Deleted topics={}", TOPIC_NAMES);
+    }
+
+    @Test
+    void deleteAllAvailableTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        // get all available topics
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        List<String> topicsList = topicListings.stream().map(TopicListing::name).toList();
+
+        // delete topics
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
+        KafkaFuture<Void> all = deleteTopicsResult.all();
+        all.get();
+        adminClient.close();
+        log.info("Deleted topics={}", topicsList);
+    }
+
     public static void main(String[] args) {
         new Example3().stream();
     }
@@ -228,11 +270,8 @@ public class Example3 {
      */
     private void stream() {
         Properties properties = getStreamsProperties();
-        String inputTopic = "user.word.count.input.txt";
-        String outputTopic = "user.word.count.output.txt";
-
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> inputStream = builder.stream(inputTopic);
+        KStream<String, String> inputStream = builder.stream(INPUT_TOPIC);
         // @formatter:off
         KTable<String,Long> countKTable = inputStream
                 .peek(((key, value) -> log.info("key={}, value={}", key, value)))
@@ -243,12 +282,15 @@ public class Example3 {
                 .count(Named.as("Counts"));
 
         // send result to output topic
-        countKTable.toStream().to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
+        countKTable.toStream().to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.Long()));
         // @formatter:on
 
         // never call this in try-with-source. If called then application will stop immediately without waiting
         KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), properties);
         kafkaStreams.start();
+
+        // shutdown gracefull
+        Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
     }
 
     /**
@@ -257,10 +299,8 @@ public class Example3 {
     @Test
     void consumer() {
         Properties properties = getConsumerProperties();
-        String topic = "user.word.count.output.txt";
-
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
-            consumer.subscribe(List.of(topic));
+            consumer.subscribe(List.of(OUTPUT_TOPIC));
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
                 for (ConsumerRecord<String, String> record : records) {
@@ -278,8 +318,6 @@ public class Example3 {
     @Test
     void producer() throws ExecutionException, InterruptedException {
         Properties properties = getProducerProperties();
-        String topic = "user.word.count.input.txt";
-
         Producer<String, String> producer = new KafkaProducer<>(properties);
         // producer callback
         Callback callback = (RecordMetadata recordMetadata, Exception e) ->
@@ -293,7 +331,7 @@ public class Example3 {
             String key = simpleDateFormat.format(new Date());
             String value = FAKER.name().fullName();
             log.info("Sending value, i={}, key={}, value={}", i, key, value);
-            producer.send(new ProducerRecord<>(topic, key, value), callback);
+            producer.send(new ProducerRecord<>(INPUT_TOPIC, key, value), callback);
             Thread.sleep(1000 * 5); // wait 5 seconds to send next value
         }
 

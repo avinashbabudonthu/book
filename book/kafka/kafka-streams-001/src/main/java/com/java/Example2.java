@@ -28,6 +28,9 @@ import java.util.concurrent.ExecutionException;
 public class Example2 {
 
     private static final Faker FAKER = Faker.instance();
+    private static final String INPUT_TOPIC = "user.convert.case.input.txt";
+    private static final String OUTPUT_TOPIC = "user.convert.case.output.txt";
+    private static final List<String> TOPIC_NAMES = List.of(INPUT_TOPIC, OUTPUT_TOPIC);
 
     private Properties getAdminProperties() {
         Properties properties = new Properties();
@@ -180,11 +183,10 @@ public class Example2 {
         Properties properties = getAdminProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
-        List<String> topicNames = List.of("user.convert.case.input.txt", "user.convert.case.output.txt");
         // If 1 broker
         // List<NewTopic> topicList = topicNames.stream().map(topicName -> new NewTopic(topicName, 1, (short) 3)).toList();
         // If 3 brokers
-        List<NewTopic> topicList = topicNames.stream().map(topicName -> new NewTopic(topicName, 3, (short) 3)).toList();
+        List<NewTopic> topicList = TOPIC_NAMES.stream().map(topicName -> new NewTopic(topicName, 3, (short) 3)).toList();
         CreateTopicsResult topics = adminClient.createTopics(topicList);
         KafkaFuture<Void> all = topics.all();
         all.get();
@@ -211,54 +213,44 @@ public class Example2 {
         adminClient.close();
     }
 
-    /**
-     * Send message to "input-topic-001" with key every 5 seconds
-     * Pass callback to producer send method. So callback will be executed after sending message
-     */
     @Test
-    void producer() throws ExecutionException, InterruptedException {
-        Properties properties = getProducerProperties();
-        String topic = "user.convert.case.input.txt";
+    void deleteTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
 
-        Producer<String, String> producer = new KafkaProducer<>(properties);
-        // producer callback
-        Callback callback = (RecordMetadata recordMetadata, Exception e) ->
-                log.info("message sent, topic={}, partition={}, offset={}",
-                        recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
+        // get all available topics
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("SSS");
-
-        // send messages
-        for (int i = 0; i <= 100; i++) {
-            String key = simpleDateFormat.format(new Date());
-            String value = FAKER.name().fullName();
-            log.info("Sending value, i={}, key={}, value={}", i, key, value);
-            producer.send(new ProducerRecord<>(topic, key, value), callback);
-            Thread.sleep(1000 * 5); // wait 5 seconds to send next value
-        }
-
-        // close producer
-        producer.close();
+        // delete topics
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(TOPIC_NAMES);
+        KafkaFuture<Void> all = deleteTopicsResult.all();
+        all.get();
+        adminClient.close();
+        log.info("Deleted topics={}", TOPIC_NAMES);
     }
 
-    /**
-     * Consume messages from "output-topic-001" topic
-     */
     @Test
-    void consumer() {
-        Properties properties = getConsumerProperties();
-        String topic = "user.convert.case.output.txt";
+    void deleteAllAvailableTopics() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
 
-        try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
-            consumer.subscribe(List.of(topic));
-            while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
-                for (ConsumerRecord<String, String> record : records) {
-                    log.info("Topic={}, partition={}, offset={}, key={}, value={}", record.topic(), record.partition(),
-                            record.offset(), record.key(), record.value());
-                }
-            }
-        }
+        // get all available topics
+        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
+        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
+        // ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        List<String> topicsList = topicListings.stream().map(TopicListing::name).toList();
+
+        // delete topics
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
+        KafkaFuture<Void> all = deleteTopicsResult.all();
+        all.get();
+        adminClient.close();
+        log.info("Deleted topics={}", topicsList);
     }
 
     public static void main(String[] args) {
@@ -276,21 +268,70 @@ public class Example2 {
      */
     private void stream() {
         Properties properties = getStreamsProperties();
-        String inputTopic = "user.convert.case.input.txt";
-        String outputTopic = "user.convert.case.output.txt";
 
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> inputStream = builder.stream(inputTopic);
+        KStream<String, String> inputStream = builder.stream(INPUT_TOPIC);
         // @formatter:off
         inputStream
                 .peek(((key, value) -> log.info("key={}, value={}", key, value)))
                 .mapValues(value -> StringUtils.defaultIfBlank(value, "unknown").toLowerCase())
-                .to(outputTopic);
+                .to(OUTPUT_TOPIC);
         // @formatter:on
 
         // never call this in try-with-source. If called then application will stop immediately without waiting
         KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), properties);
         kafkaStreams.start();
+
+        // shutdown gracefull
+        Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
+    }
+
+    /**
+     * Consume messages from "output-topic-001" topic
+     */
+    @Test
+    void consumer() {
+        Properties properties = getConsumerProperties();
+
+        try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
+            consumer.subscribe(List.of(OUTPUT_TOPIC));
+            while (true) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.of(20, ChronoUnit.SECONDS));
+                for (ConsumerRecord<String, String> record : records) {
+                    log.info("Topic={}, partition={}, offset={}, key={}, value={}", record.topic(), record.partition(),
+                            record.offset(), record.key(), record.value());
+                }
+            }
+        }
+    }
+
+    /**
+     * Send message to "input-topic-001" with key every 5 seconds
+     * Pass callback to producer send method. So callback will be executed after sending message
+     */
+    @Test
+    void producer() throws ExecutionException, InterruptedException {
+        Properties properties = getProducerProperties();
+
+        Producer<String, String> producer = new KafkaProducer<>(properties);
+        // producer callback
+        Callback callback = (RecordMetadata recordMetadata, Exception e) ->
+                log.info("message sent, topic={}, partition={}, offset={}",
+                        recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("SSS");
+
+        // send messages
+        for (int i = 0; i <= 100; i++) {
+            String key = simpleDateFormat.format(new Date());
+            String value = FAKER.name().fullName();
+            log.info("Sending value, i={}, key={}, value={}", i, key, value);
+            producer.send(new ProducerRecord<>(INPUT_TOPIC, key, value), callback);
+            Thread.sleep(1000 * 5); // wait 5 seconds to send next value
+        }
+
+        // close producer
+        producer.close();
     }
 
 }
