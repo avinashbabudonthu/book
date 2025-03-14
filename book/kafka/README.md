@@ -77,3 +77,4 @@
 * Udemy - Apache Kafka Series - Kafka Streams for Data Processing
 * Udemy - Kafka & Kafka Streams With Java Spring Boot - Hands-on Coding
 * Udemy - Apache Kafka Series - KSQL on ksqlDB for Stream Processing !
+* Documentation - https://docs.confluent.io/platform/current/streams/developer-guide/overview.html

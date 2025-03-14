@@ -1,4 +1,4 @@
-# What is kafka streams?
+                                                                                                                                           # What is kafka streams?
 * Library to process and transform data within kafka 
 * Used for
 	* Data transformations
@@ -27,13 +27,15 @@
 * All `inserts`
 * Similar to log
 * Infinite
-* Unbounded data streams
+* Unbounded data streams\
+![picture](img/kstream.jpg)
 ------
 # KTable
 * Upserts on non null values
 * Deletes on null values
 * Similar to table
 * Parallel with log compacted topics
+![picture](img/ktable.jpg)
 ------
 # When to KStreams vs KTable
 * KStreams reading from topic that is not compacted
