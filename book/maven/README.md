@@ -10,6 +10,7 @@
 * [Spotless Plugin](spotless-plugin.md)
 * [Core Java Project](core-java-project.md)
 * [Setting the Java Version in Maven](maven-java-version.md)
+* [Create Core Java Project with Template](create-core-java-project-with-template.md)
 ------
 # Materials and References
 * [Maven Jenkov tutorial](http://tutorials.jenkov.com/maven/maven-tutorial.html)

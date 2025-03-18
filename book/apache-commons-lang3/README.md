@@ -1,5 +1,5 @@
 # Apache commons-lang3 Table of Contents
 ------
 ### POCs and Examples
-* RandomStringUtils
+* [commons lang3 examples](commons-lang3#readme)
 ------
