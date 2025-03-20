@@ -2,6 +2,9 @@
 ------
 # Theory
 * [Materialized Views](materialized-views.md)
+* [Index Hint](index-hint.md)
+* [Index Types](index-types.md)
+* [Generate the Execution Plan](execution-plan.md)
 ------
 # Query files
 * [Create Users](create-user.sql)
