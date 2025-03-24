@@ -1,4 +1,4 @@
-                                                                                                                                           # What is kafka streams?
+# What is kafka streams?
 * Library to process and transform data within kafka 
 * Used for
 	* Data transformations

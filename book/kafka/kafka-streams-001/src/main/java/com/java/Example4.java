@@ -30,6 +30,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.processor.ProcessorSupplier;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -38,7 +39,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
@@ -211,7 +214,8 @@ public class Example4 {
         all.get();
         adminClient.close();
 
-        log.info("Created topics={}", topicList);
+        List<String> topicNames = topicList.stream().map(NewTopic::name).toList();
+        log.info("{} topics created. topics={}", topicList.size(), topicNames);
     }
 
     @Test
@@ -225,6 +229,7 @@ public class Example4 {
 
         KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
         Collection<TopicListing> topicListings = listings.get();
+        log.info("{} topics found", topicListings.size());
         for (TopicListing topicListing : topicListings) {
             log.info("topicId={}, name={}, isInternal={}", topicListing.topicId(), topicListing.name(), topicListing.isInternal());
         }
@@ -247,44 +252,46 @@ public class Example4 {
         KafkaFuture<Void> all = deleteTopicsResult.all();
         all.get();
         adminClient.close();
-        log.info("Deleted topics={}", TOPIC_NAMES);
-    }
-
-    @Test
-    void deleteAllAvailableTopics() throws ExecutionException, InterruptedException {
-        Properties properties = getAdminProperties();
-        AdminClient adminClient = AdminClient.create(properties);
-
-        // get all available topics
-        ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
-        ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
-        // ListTopicsResult listTopicsResult = adminClient.listTopics();
-
-        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
-        Collection<TopicListing> topicListings = listings.get();
-        List<String> topicsList = topicListings.stream().map(TopicListing::name).toList();
-
-        // delete topics
-        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
-        KafkaFuture<Void> all = deleteTopicsResult.all();
-        all.get();
-        adminClient.close();
-        log.info("Deleted topics={}", topicsList);
+        Map<String, KafkaFuture<Void>> topicNameValues = deleteTopicsResult.topicNameValues();
+        Set<String> topicNames = topicNameValues.keySet();
+        log.info("{} topics deleted. Topics={}", topicNames.size(), topicNames);
     }
 
     public static void main(String[] args) {
-        new Example4().stream();
+        new Example4().stream2();
     }
 
-    private void stream() {
+    /*private void stream() {
         Topology topology = new Topology();
         String sourceName = "example-4-source";
         String sinkName = "example-4-sink";
         topology.addSource(sourceName, INPUT_TOPIC);
-        topology.addProcessor("example-4-processor-1", Example4Processor::new, sourceName);
+        topology.addProcessor("example-4-processor-1", Example4Processor1::new, sourceName);
         topology.addProcessor("example-4-processor-2", Example4Processor2::new, sourceName);
         topology.addProcessor("example-4-processor-3", Example4Processor3::new, sourceName);
         topology.addSink(sinkName, OUTPUT_TOPIC, new StringSerializer(), new StringSerializer(), sourceName);
+
+        Properties properties = getStreamsProperties();
+        KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);
+        kafkaStreams.start();
+
+        // geaceful shutdown
+        Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
+    }*/
+
+    private void stream2() {
+        String sourceName = "example-4-source";
+        String sinkName = "example-4-sink";
+        String processor1 = "example-4-processor-1";
+        String processor2 = "example-4-processor-2";
+        String processor3 = "example-4-processor-3";
+
+        Topology topology = new Topology();
+        topology.addSource(sourceName, INPUT_TOPIC);
+        topology.addProcessor(processor1, () -> new Example4Processor1(processor2), sourceName);
+        topology.addProcessor(processor2, () -> new Example4Processor2(processor3), processor1);
+        topology.addProcessor(processor3, () -> new Example4Processor3(sinkName), processor2);
+        topology.addSink(sinkName, OUTPUT_TOPIC, Serdes.String().serializer(), Serdes.String().serializer(), processor3);
 
         Properties properties = getStreamsProperties();
         KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);

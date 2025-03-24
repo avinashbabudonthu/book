@@ -40,11 +40,11 @@
 * Execute method `consumer`
 * Execute method `producer`
 ------
-### Example 4 - Start starts using Topology
+### Example 4 - Start kafka stream using Topology
 * Send message input topic - `user.topology.input.txt`
 * Print - `peek`
 * send to output topic - `user.topology.output.txt`
-* Write new processor class - [Example4Processor](src/main/java/com/java/Example4Processor.java)
+* Write new processor class - [Example4Processor](src/main/java/com/java/Example4Processor1.java)
 * Write new processor class - [Example4Processor2](src/main/java/com/java/Example4Processor2.java)
 * Write new processor class - [Example4Processor3](src/main/java/com/java/Example4Processor3.java)
 * Build topology

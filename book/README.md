@@ -30,4 +30,5 @@
 * [REST API](rest-api#readme)
 * [Solr](solr#readme)
 * [Spring Boot](spring-boot#readme)
+* [SQL Server](sql-server#readme)
 * [Windows](windows#readme)

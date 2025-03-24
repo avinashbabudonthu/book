@@ -20,7 +20,7 @@ public class PostgreSQLDataSource {
      */
     static {
         config.setJdbcUrl("jdbc:postgresql://localhost:5432/practice");
-        // config.setDriverClassName(MysqlDataSource.class.getName());
+        config.setDriverClassName("org.postgresql.Driver");
         config.setUsername("practice");
         config.setPassword("practice");
         config.addDataSourceProperty("cachePrepStmts", "true");

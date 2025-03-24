@@ -41,7 +41,13 @@ public class AdminClientTest {
         all.get();
         adminClient.close();
 
-        log.info("Created topics={}", topicList);
+        // to print topic and details
+        // log.info("{} topics created. topics={}", topicList.size(), topicList);
+
+        // to print only topic names
+        List<String> createdTopicNames = topicList.stream().map(NewTopic::name).toList();
+        log.info("{} topics created. topics={}", createdTopicNames.size(), createdTopicNames);
+
     }
 
     @Test
@@ -55,6 +61,7 @@ public class AdminClientTest {
 
         KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
         Collection<TopicListing> topicListings = listings.get();
+        log.info("{} topics found", topicListings.size());
         for (TopicListing topicListing : topicListings) {
             log.info("topicId={}, name={}, isInternal={}", topicListing.topicId(), topicListing.name(), topicListing.isInternal());
         }
@@ -111,7 +118,10 @@ public class AdminClientTest {
         KafkaFuture<Void> all = deleteTopicsResult.all();
         all.get();
         adminClient.close();
-        log.info("Deleted topics={}", topicsList);
+
+        Map<String, KafkaFuture<Void>> topicNameValues = deleteTopicsResult.topicNameValues();
+        Set<String> topicNames = topicNameValues.keySet();
+        log.info("{} topics deleted. Topics={}", topicNames.size(), topicNames);
     }
 
     @Test

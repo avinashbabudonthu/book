@@ -16,6 +16,7 @@
 * [Update Data Queries](update-data.sql)
 * [Delete Date Queries](delete-data.sql)
 * [Views](views.sql)
+* [Index Queries](indexes.sql)
 ------
 * MySQL Java
 * [Java Connection Details](java-connection-details.md)
