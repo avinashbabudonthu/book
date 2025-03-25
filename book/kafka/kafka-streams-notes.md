@@ -38,9 +38,8 @@
 ![picture](img/ktable.jpg)
 ------
 # When to KStreams vs KTable
-* KStreams reading from topic that is not compacted
+* KStreams reading from topic that is not log compacted
 * KTable reading from topic that is log compacted (aggregations)
-
 * KStream if new data is partial information or transactional
 * KTable if you need structures like `database table` where every update is atomic (example: Total Bank balance)
 ------

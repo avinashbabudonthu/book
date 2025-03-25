@@ -5,10 +5,10 @@ import org.apache.kafka.streams.processor.AbstractProcessor;
 import org.apache.kafka.streams.processor.To;
 
 @Slf4j
-public class Example4Processor2 extends AbstractProcessor<String, String> {
+public class Processor5 extends AbstractProcessor<String, String> {
 
     private final String nextOnTopology;
-    public Example4Processor2(String nextOnTopology) {
+    public Processor5(String nextOnTopology) {
         this.nextOnTopology = nextOnTopology;
     }
 

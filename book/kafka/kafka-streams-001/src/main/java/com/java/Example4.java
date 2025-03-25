@@ -30,7 +30,6 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.processor.ProcessorSupplier;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -258,40 +257,18 @@ public class Example4 {
     }
 
     public static void main(String[] args) {
-        new Example4().stream2();
+        new Example4().stream();
     }
 
-    /*private void stream() {
+    private void stream() {
         Topology topology = new Topology();
         String sourceName = "example-4-source";
         String sinkName = "example-4-sink";
         topology.addSource(sourceName, INPUT_TOPIC);
-        topology.addProcessor("example-4-processor-1", Example4Processor1::new, sourceName);
-        topology.addProcessor("example-4-processor-2", Example4Processor2::new, sourceName);
-        topology.addProcessor("example-4-processor-3", Example4Processor3::new, sourceName);
+        topology.addProcessor("example-4-processor-1", Processor1::new, sourceName);
+        topology.addProcessor("example-4-processor-2", Processor2::new, sourceName);
+        topology.addProcessor("example-4-processor-3", Processor3::new, sourceName);
         topology.addSink(sinkName, OUTPUT_TOPIC, new StringSerializer(), new StringSerializer(), sourceName);
-
-        Properties properties = getStreamsProperties();
-        KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);
-        kafkaStreams.start();
-
-        // geaceful shutdown
-        Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
-    }*/
-
-    private void stream2() {
-        String sourceName = "example-4-source";
-        String sinkName = "example-4-sink";
-        String processor1 = "example-4-processor-1";
-        String processor2 = "example-4-processor-2";
-        String processor3 = "example-4-processor-3";
-
-        Topology topology = new Topology();
-        topology.addSource(sourceName, INPUT_TOPIC);
-        topology.addProcessor(processor1, () -> new Example4Processor1(processor2), sourceName);
-        topology.addProcessor(processor2, () -> new Example4Processor2(processor3), processor1);
-        topology.addProcessor(processor3, () -> new Example4Processor3(sinkName), processor2);
-        topology.addSink(sinkName, OUTPUT_TOPIC, Serdes.String().serializer(), Serdes.String().serializer(), processor3);
 
         Properties properties = getStreamsProperties();
         KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);
