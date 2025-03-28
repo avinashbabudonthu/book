@@ -12,6 +12,8 @@
 * [Partitions on Demand](partitions-on-demand.sql)
 * [Date Column Mapping](date-column-mapping.md)
 * [Xml Column Mapping](xml-column-mapping.md)
+* [Allow password based connection from Java](password-based-connection.md)
+* [Java connection details](java-connection-details.md)
 ------
 # Materials and References
 * Datetime documentation: https://www.postgresql.org/docs/8.2/functions-datetime.html

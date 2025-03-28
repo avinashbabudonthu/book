@@ -21,8 +21,9 @@ public class PostgreSQLDataSource {
     static {
         config.setJdbcUrl("jdbc:postgresql://localhost:5432/practice");
         config.setDriverClassName("org.postgresql.Driver");
-        config.setUsername("practice");
-        config.setPassword("practice");
+        config.setUsername("postgres");
+        config.setPassword("Password@25012025");
+
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
@@ -30,7 +31,7 @@ public class PostgreSQLDataSource {
         config.setPoolName("postgresql-connection-pool");
         config.setMaximumPoolSize(20);
         config.setConnectionTimeout(1000 * 5); // connection timeout in milli seconds
-        config.setConnectionInitSql("select curdate()");
+        config.setConnectionInitSql("select current_date");
 
         dataSource = new HikariDataSource(config);
     }
