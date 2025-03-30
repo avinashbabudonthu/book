@@ -9,3 +9,4 @@
 * [Kubectl Commands](kubectl-commands.md)
 ------
 # Materials and References
+* Youtube - https://www.youtube.com/watch?v=X48VuDVv0do&list=PLAAFXN2OG73Vi9hmqY5RMFt1xlRNZ6oAC&index=1&t=172s&ab_channel=TechWorldwithNana
