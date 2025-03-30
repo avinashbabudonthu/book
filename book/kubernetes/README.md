@@ -1,7 +1,7 @@
 # Kubernetes K8s Table of Contents
 ------
 # Theory
-
+* [Notes](notes.md)
 ------
 # POCs and Examples
 * [How to Install Minikube on Windows 11 Pro](minikube-kubectl-installation.md)
