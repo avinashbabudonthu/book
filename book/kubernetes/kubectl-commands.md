@@ -18,6 +18,7 @@ kubectl get services
 ```
 * Create `nginx` deployment
 ```
+kubectl create deployment NAME --image=image [--dry-run] [options]
 kubectl create deployment [deployment-name] --image=[image-name]
 kubectl create deployment nginx01 --image=nginx
 ```
