@@ -8,7 +8,7 @@
 * Enable Virtualization
 Open PowerShell as Administrator and run:
 ```
-* Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
 * Restart your system after enabling Hyper-V
 * Download Minikube. Visit the [Minikube releases page](https://github.com/kubernetes/minikube/releases) and download the latest installer for Windows. Alternatively, use PowerShell:
