@@ -28,12 +28,18 @@ import org.apache.kafka.clients.producer.RoundRobinPartitioner;
 import org.apache.kafka.common.KafkaFuture;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.KTable;
+import org.apache.kafka.streams.kstream.Named;
+import org.apache.kafka.streams.kstream.Produced;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,31 +48,21 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-@SuppressWarnings("all")
 @Slf4j
-public class Example5 {
+public class FavouriteColorTest {
 
     private static final Faker FAKER = Faker.instance();
-    private static final String INPUT_TOPIC = "user.ordered.topology.input.txt";
-    private static final String OUTPUT_TOPIC = "user.ordered.topology.output.txt";
-    private static final List<String> TOPIC_NAMES = List.of(INPUT_TOPIC, OUTPUT_TOPIC);
-
-    private Properties getAdminProperties() {
-        Properties properties = new Properties();
-//        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
-
-        return properties;
-    }
+    private static final String INPUT_TOPIC = "user.favourite.color.input.txt";
+    private static final String OUTPUT_TOPIC = "user.favourite.color.output.txt";
+    private static final String USER_COLORS_INTERMEDIATE_TXT = "user.colors.intermediate.txt";
+    private static final List<String> TOPIC_NAMES = List.of(INPUT_TOPIC, OUTPUT_TOPIC, USER_COLORS_INTERMEDIATE_TXT);
 
     private Properties getStreamsProperties() {
         Properties properties = new Properties();
@@ -77,7 +73,7 @@ public class Example5 {
          * Default client.id prefix
          * Prefix to internal changelog topics
          * */
-        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "convert-case");
+        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, "print-message");
 
         // bootstrap.servers
         // properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
@@ -176,7 +172,7 @@ public class Example5 {
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
         // value.deserializer
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
 
         // group.id
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -206,6 +202,14 @@ public class Example5 {
         return properties;
     }
 
+    private Properties getAdminProperties() {
+        Properties properties = new Properties();
+//        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
+
+        return properties;
+    }
+
     @Test
     void createTopic() throws ExecutionException, InterruptedException {
         Properties properties = getAdminProperties();
@@ -215,6 +219,7 @@ public class Example5 {
         // List<NewTopic> topicList = TOPIC_NAMES.stream().map(topicName -> new NewTopic(topicName, 1, (short) 3)).toList();
         // If 3 brokers
         List<NewTopic> topicList = TOPIC_NAMES.stream().map(topicName -> new NewTopic(topicName, 3, (short) 3)).toList();
+
         CreateTopicsResult topics = adminClient.createTopics(topicList);
         KafkaFuture<Void> all = topics.all();
         all.get();
@@ -235,7 +240,6 @@ public class Example5 {
 
         KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
         Collection<TopicListing> topicListings = listings.get();
-        log.info("{} topics found", topicListings.size());
         for (TopicListing topicListing : topicListings) {
             log.info("topicId={}, name={}, isInternal={}", topicListing.topicId(), topicListing.name(), topicListing.isInternal());
         }
@@ -244,7 +248,7 @@ public class Example5 {
     }
 
     @Test
-    void deleteTopics() throws ExecutionException, InterruptedException {
+    void deleteAllAvailableTopics() throws ExecutionException, InterruptedException {
         Properties properties = getAdminProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
@@ -253,14 +257,16 @@ public class Example5 {
         ListTopicsResult listTopicsResult = adminClient.listTopics(listTopicsOptions);
         // ListTopicsResult listTopicsResult = adminClient.listTopics();
 
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        List<String> topicsList = topicListings.stream().map(TopicListing::name).toList();
+
         // delete topics
-        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(TOPIC_NAMES);
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
         KafkaFuture<Void> all = deleteTopicsResult.all();
         all.get();
         adminClient.close();
-        Map<String, KafkaFuture<Void>> topicNameValues = deleteTopicsResult.topicNameValues();
-        Set<String> topicNames = topicNameValues.keySet();
-        log.info("{} topics deleted. Topics={}", topicNames.size(), topicNames);
+        log.info("Deleted {}. topics={}", topicsList.size(), topicsList);
     }
 
     @Test
@@ -271,29 +277,10 @@ public class Example5 {
 
         // consumer properties
         Properties consumerProperties = getConsumerProperties();
-        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
-        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-        consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);
-        consumerProperties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
-        consumerProperties.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "consumerGracefulShutdown-" + UUID.randomUUID());
-        consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
         Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
 
-        // get all available topics
-        ListTopicsResult listTopicsResult = adminClient.listTopics();
-
-        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
-        Collection<TopicListing> topicListings = listings.get();
-        List<String> topicNames = topicListings.stream().map(TopicListing::name).toList();
-
         List<PartitionInfo> partitionInfoList = new ArrayList<>();
-        for (String topicName : topicNames) {
-            // get each partition and it's offset
-            partitionInfoList.addAll(consumer.partitionsFor(topicName));
-        }
+        TOPIC_NAMES.forEach(topicName -> partitionInfoList.addAll(consumer.partitionsFor(topicName)));
 
         List<TopicPartition> partitions = partitionInfoList.stream()
                 .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
@@ -305,7 +292,7 @@ public class Example5 {
         DeleteRecordsResult deleteRecordsResult = adminClient.deleteRecords(recordsToDelete);
         deleteRecordsResult.all().get();
 
-        log.info("Deleted messages of topics={}", topicNames.stream().sorted());
+        log.info("Deleted messages of topics={}", TOPIC_NAMES.stream().sorted());
 
         // close
         adminClient.close();
@@ -313,28 +300,42 @@ public class Example5 {
     }
 
     public static void main(String[] args) {
-        new Example5().stream();
+        new FavouriteColorTest().stream();
     }
 
+    /**
+     * do not call this message as Junit test case else it will run and stop immediately without waiting
+     *
+     * <ul>
+     *     <li>Take messages from input topic - input-topic-001</li>
+     *     <li>print the message</li>
+     *     <li>send to output topic - output-topic-001</li>
+     * </ul>
+     */
     private void stream() {
-        String sourceName = "example-5-source";
-        String sinkName = "example-5-sink";
-        String processor1 = "example-5-processor-1";
-        String processor2 = "example-5-processor-2";
-        String processor3 = "example-5-processor-3";
+        Properties streamsProperties = getStreamsProperties();
+        StreamsBuilder builder = new StreamsBuilder();
+        KStream<String, String> inputStream = builder.stream(INPUT_TOPIC);
+        List<String> colors = List.of("green", "blue", "red");
+        inputStream
+                .peek((key, value) -> log.info("key={}, value={}", key, value))
+                .filter((key, value) -> value.contains(","))
+                .selectKey((key, value) -> value.split(",")[0].toLowerCase())
+                .mapValues(value -> value.split(",")[1].toLowerCase())
+                .filter((user, color) -> colors.contains(color))
+                .to(USER_COLORS_INTERMEDIATE_TXT);
 
-        Topology topology = new Topology();
-        topology.addSource(sourceName, INPUT_TOPIC);
-        topology.addProcessor(processor1, () -> new Processor4(processor2), sourceName);
-        topology.addProcessor(processor2, () -> new Processor5(processor3), processor1);
-        topology.addProcessor(processor3, () -> new Processor6(sinkName), processor2);
-        topology.addSink(sinkName, OUTPUT_TOPIC, Serdes.String().serializer(), Serdes.String().serializer(), processor3);
+        KTable<String, String> userColorsTable = builder.table(USER_COLORS_INTERMEDIATE_TXT);
+        KTable<String, Long> favouriteColor = userColorsTable
+                .groupBy((user, color) -> new KeyValue<>(color, color))
+                .count(Named.as("ColorCount"));
+        favouriteColor.toStream().to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.Long()));
 
-        Properties properties = getStreamsProperties();
-        KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);
+        // never call this in try-with-source. If called then application will stop immediately without waiting
+        KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), streamsProperties);
         kafkaStreams.start();
 
-        // geaceful shutdown
+        // shutdown gracefull
         Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
     }
 
@@ -344,6 +345,7 @@ public class Example5 {
     @Test
     void consumer() {
         Properties properties = getConsumerProperties();
+
         try (Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
             consumer.subscribe(List.of(OUTPUT_TOPIC));
             while (true) {
@@ -361,27 +363,25 @@ public class Example5 {
      * Pass callback to producer send method. So callback will be executed after sending message
      */
     @Test
-    void producer() throws ExecutionException, InterruptedException {
+    void producer() throws InterruptedException {
         Properties properties = getProducerProperties();
+
         Producer<String, String> producer = new KafkaProducer<>(properties);
+
         // producer callback
         Callback callback = (RecordMetadata recordMetadata, Exception e) ->
                 log.info("message sent, topic={}, partition={}, offset={}",
                         recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("SSS");
+        List<String> userAndColorsInput = List.of("a,green", "b,blue", "c,red", "d,green", "e,blue", "f,red", "a,red", "b,green", "c,blue");
 
-        // send messages
-        for (int i = 0; i <= 100; i++) {
-            String key = simpleDateFormat.format(new Date());
-            String value = FAKER.name().fullName();
-            log.info("Sending value, i={}, key={}, value={}", i, key, value);
-            producer.send(new ProducerRecord<>(INPUT_TOPIC, key, value), callback);
+        for(String value : userAndColorsInput) {
+            log.info("Sending value={}", value);
+            producer.send(new ProducerRecord<>(INPUT_TOPIC, value), callback);
             Thread.sleep(1000 * 5); // wait 5 seconds to send next value
         }
 
         // close producer
         producer.close();
     }
-
 }

@@ -18,6 +18,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.clients.producer.RoundRobinPartitioner;
 import org.apache.kafka.common.KafkaFuture;
+import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -25,6 +27,7 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -262,6 +265,46 @@ public class Example1 {
         all.get();
         adminClient.close();
         log.info("Deleted topics={}", topicsList);
+    }
+
+    @Test
+    @DisplayName("Delete messages from all topics where topics partition and respective offsets fetched dynamically")
+    void deleteMessagesOfAllTopics_ByGettingOffsets_Dynamically() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        // consumer properties
+        Properties consumerProperties = getConsumerProperties();
+        Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
+
+        // get all available topics
+        ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        List<String> topicNames = topicListings.stream().map(TopicListing::name).toList();
+
+        List<PartitionInfo> partitionInfoList = new ArrayList<>();
+        for (String topicName : topicNames) {
+            // get each partition and it's offset
+            partitionInfoList.addAll(consumer.partitionsFor(topicName));
+        }
+
+        List<TopicPartition> partitions = partitionInfoList.stream()
+                .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
+        Map<TopicPartition, Long> offsets = consumer.endOffsets(partitions);
+
+        // delete messages from above found offsets
+        Map<TopicPartition, RecordsToDelete> recordsToDelete = new HashMap<>();
+        offsets.forEach(((topicPartition, offset) -> recordsToDelete.put(topicPartition, RecordsToDelete.beforeOffset(offset))));
+        DeleteRecordsResult deleteRecordsResult = adminClient.deleteRecords(recordsToDelete);
+        deleteRecordsResult.all().get();
+
+        log.info("Deleted messages of topics={}", topicNames.stream().sorted());
+
+        // close
+        adminClient.close();
+        consumer.close();
     }
 
     public static void main(String[] args) {

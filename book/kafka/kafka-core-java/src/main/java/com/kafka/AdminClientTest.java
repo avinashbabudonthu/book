@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AdminClientTest {
 
-    private Properties getProperties() {
+    private Properties getBootstrapServersProperties() {
         Properties properties = new Properties();
 //        properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091,localhost:9092,localhost:9093");
@@ -28,7 +28,7 @@ public class AdminClientTest {
 
     @Test
     void createTopic() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         List<String> topicNames = List.of("topic-1", "topic-2", "topic-3", "input-topic-001", "output-topic-001");
@@ -52,7 +52,7 @@ public class AdminClientTest {
 
     @Test
     void listTopics() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         ListTopicsOptions listTopicsOptions = new ListTopicsOptions().listInternal(true);
@@ -71,7 +71,7 @@ public class AdminClientTest {
 
     @Test
     void allTopicNames() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         // get all available topics
@@ -89,7 +89,7 @@ public class AdminClientTest {
 
     @Test
     void deleteTopic() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
         List<String> topicsList = List.of("topic-1", "topic-2");
         DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(topicsList);
@@ -101,7 +101,7 @@ public class AdminClientTest {
 
     @Test
     void deleteAllAvailableTopics() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         // get all available topics
@@ -126,7 +126,7 @@ public class AdminClientTest {
 
     @Test
     void resetOffsets() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
 
         AdminClient adminClient = AdminClient.create(properties);
         String topicName = "topic-1";
@@ -143,7 +143,7 @@ public class AdminClientTest {
 
     @Test
     void resetOffsets_OfAllAvailableTopics() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         // get all available topics
@@ -156,7 +156,7 @@ public class AdminClientTest {
         List<String> topicsNames = topicListings.stream().map(TopicListing::name).toList();
 
         // consumer properties
-        Properties consumerProperties = getProperties();
+        Properties consumerProperties = getBootstrapServersProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -203,7 +203,7 @@ public class AdminClientTest {
      */
     @Test
     void deleteOffsets_OfAllAvailableTopics() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         // get all available topics
@@ -217,7 +217,7 @@ public class AdminClientTest {
         List<String> topicsNames = List.of("topic-2");
 
         // consumer properties
-        Properties consumerProperties = getProperties();
+        Properties consumerProperties = getBootstrapServersProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -248,7 +248,7 @@ public class AdminClientTest {
     @Test
     @DisplayName("Delete messages from topic where offset of each partition is hard coded")
     void deleteMessagesWithOffsetsHardCoded() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
 
         AdminClient adminClient = AdminClient.create(properties);
         String topicName = "topic-1";
@@ -269,7 +269,7 @@ public class AdminClientTest {
         String topicName = "topic-1";
 
         // consumer properties
-        Properties consumerProperties = getProperties();
+        Properties consumerProperties = getBootstrapServersProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -282,7 +282,7 @@ public class AdminClientTest {
         Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
 
         // admin properties
-        Properties adminProperties = getProperties();
+        Properties adminProperties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(adminProperties);
 
         // get each partition and it's offset
@@ -305,11 +305,11 @@ public class AdminClientTest {
     @Test
     @DisplayName("Delete messages from all topics where topics partition and respective offsets fetched dynamically")
     void deleteMessagesOfAllTopics_ByGettingOffsets_Dynamically() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         // consumer properties
-        Properties consumerProperties = getProperties();
+        Properties consumerProperties = getBootstrapServersProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
@@ -353,11 +353,11 @@ public class AdminClientTest {
 
     @Test
     void topics_Partitions_And_Offsets() throws ExecutionException, InterruptedException {
-        Properties properties = getProperties();
+        Properties properties = getBootstrapServersProperties();
         AdminClient adminClient = AdminClient.create(properties);
 
         // consumer properties
-        Properties consumerProperties = getProperties();
+        Properties consumerProperties = getBootstrapServersProperties();
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");

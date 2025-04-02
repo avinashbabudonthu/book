@@ -76,7 +76,7 @@ kubectl apply -f config-file.yaml
 ```
 * Delete deployment
 ```
-kubectl delete -f [file-name].yaml
+kubectl delete -f config-file.yaml
 ```
 * Get updated information of deployment. This actual stored in etcd
 ```

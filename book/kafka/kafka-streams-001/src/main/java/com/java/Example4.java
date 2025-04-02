@@ -5,10 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.CreateTopicsResult;
+import org.apache.kafka.clients.admin.DeleteRecordsResult;
 import org.apache.kafka.clients.admin.DeleteTopicsResult;
 import org.apache.kafka.clients.admin.ListTopicsOptions;
 import org.apache.kafka.clients.admin.ListTopicsResult;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.admin.RecordsToDelete;
 import org.apache.kafka.clients.admin.TopicListing;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -24,19 +26,24 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.clients.producer.RoundRobinPartitioner;
 import org.apache.kafka.common.KafkaFuture;
+import org.apache.kafka.common.PartitionInfo;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -254,6 +261,55 @@ public class Example4 {
         Map<String, KafkaFuture<Void>> topicNameValues = deleteTopicsResult.topicNameValues();
         Set<String> topicNames = topicNameValues.keySet();
         log.info("{} topics deleted. Topics={}", topicNames.size(), topicNames);
+    }
+
+    @Test
+    @DisplayName("Delete messages from all topics where topics partition and respective offsets fetched dynamically")
+    void deleteMessagesOfAllTopics_ByGettingOffsets_Dynamically() throws ExecutionException, InterruptedException {
+        Properties properties = getAdminProperties();
+        AdminClient adminClient = AdminClient.create(properties);
+
+        // consumer properties
+        Properties consumerProperties = getConsumerProperties();
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "group-1");
+        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        consumerProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        consumerProperties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 5000);
+        consumerProperties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
+        consumerProperties.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "consumerGracefulShutdown-" + UUID.randomUUID());
+        consumerProperties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+        Consumer<String, String> consumer = new KafkaConsumer<>(consumerProperties);
+
+        // get all available topics
+        ListTopicsResult listTopicsResult = adminClient.listTopics();
+
+        KafkaFuture<Collection<TopicListing>> listings = listTopicsResult.listings();
+        Collection<TopicListing> topicListings = listings.get();
+        List<String> topicNames = topicListings.stream().map(TopicListing::name).toList();
+
+        List<PartitionInfo> partitionInfoList = new ArrayList<>();
+        for (String topicName : topicNames) {
+            // get each partition and it's offset
+            partitionInfoList.addAll(consumer.partitionsFor(topicName));
+        }
+
+        List<TopicPartition> partitions = partitionInfoList.stream()
+                .map(partitionInfo -> new TopicPartition(partitionInfo.topic(), partitionInfo.partition())).toList();
+        Map<TopicPartition, Long> offsets = consumer.endOffsets(partitions);
+
+        // delete messages from above found offsets
+        Map<TopicPartition, RecordsToDelete> recordsToDelete = new HashMap<>();
+        offsets.forEach(((topicPartition, offset) -> recordsToDelete.put(topicPartition, RecordsToDelete.beforeOffset(offset))));
+        DeleteRecordsResult deleteRecordsResult = adminClient.deleteRecords(recordsToDelete);
+        deleteRecordsResult.all().get();
+
+        log.info("Deleted messages of topics={}", topicNames.stream().sorted());
+
+        // close
+        adminClient.close();
+        consumer.close();
     }
 
     public static void main(String[] args) {

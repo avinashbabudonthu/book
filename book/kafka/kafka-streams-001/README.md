@@ -108,3 +108,15 @@ kafkaStreams.start();
 * Execute method `main`
 * Execute method `consumer`
 * Execute method `producer`
+
+------
+# Favourite color
+* Count favourite color
+* Send user and color as input to input topic - Refer `producer` method in [FavouriteColor](src/main/java/com/java/FavouriteColorTest.java)
+* Refer streaming logic. `stream` method in [FavouriteColor](src/main/java/com/java/FavouriteColorTest.java)
+
+### Execution
+* Open [FavouriteColor](src/main/java/com/java/FavouriteColorTest.java)
+* Execute method `main`
+* Execute method `consumer`
+* Execute method `producer`
