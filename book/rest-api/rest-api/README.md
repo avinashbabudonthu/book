@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Technical stack
 * Java 17
 * Maven
@@ -377,5 +375,3 @@ spring.datasource.password=07102024
 
 ## WebClient Examples
 * [Get APIs](src/test/java/com/java/rest/client/webclient/GetControllerTest.java)
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
