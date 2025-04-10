@@ -12,6 +12,7 @@
 * [Strings](strings.md)
 * [Java 17 Notes](java-17-notes.md)
 * [Java 11 Notes](java-11-notes.md)
+* [Reflection](reflection.md)
 ------
 # POCs
 * Refer below for detailed classes or Refer [Core Java Project](core-java#readme)

@@ -8,6 +8,8 @@
 * [Security](4%20of%206%20-%20REST%20API%20-%20A%20to%20Z%20-%20Security.pdf)
 * [Swagger 2.0](5%20of%206%20-%20REST%20API%20-%20A%20to%20Z%20-%20Swagger%202.0.pdf)
 * [API Management](6%20of%206%20-REST%20API%20-%20A%20to%20Z%20-%20API%20Management.pdf)
+* [Versioning](versioning.md)
+* [Hateoas](hateoas.md)
 ------
 # POCs and Examples
 * [Spring Boot 3 REST API](rest-api#readme)
