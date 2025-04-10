@@ -45,13 +45,12 @@ Key Files:
 - [DurationPracticeTest.java](src/main/java/com/date/apis/DurationPracticeTest.java): Shows different ways of working with durations between dates and times in Java.
 - [OffsetDateTimePracticeTest.java](src/main/java/com/date/apis/OffsetDateTimePracticeTest.java): Demonstrates usage of the `OffsetDateTime` class for date-time operations with time zone offsets.
 - [ClockTest.java](src/main/java/com/date/apis/ClockTest.java): Showcases the usage of the `java.time.Clock` class for obtaining current date and time.
-- [DateUtilsTest.java](src/main/java/com/date/apis/DateUtilsTest.java): Tests utility methods for working with dates, including format conversions.
+- [DateUtilsTest.java](src/main/java/com/date/apis/DateUtilsTest.java): Tests utility methods for working with dates, including format conversions. Demonstrates conversions between different date and time representations in Java.
 - [InstantPracticeTest.java](src/main/java/com/date/apis/InstantPracticeTest.java): Demonstrates the usage of the `Instant` class for working with timestamps.
 - [LocalDatePracticeTest.java](src/main/java/com/date/apis/LocalDatePracticeTest.java): Shows operations and functionalities related to the `LocalDate` class.
 - [LocalTimePracticeTest.java](src/main/java/com/date/apis/LocalTimePracticeTest.java): Demonstrates different ways to create and use `LocalTime` objects.
 - [LocalDateTimePracticeTest.java](src/main/java/com/date/apis/LocalDateTimePracticeTest.java): Illustrates usage of `LocalDateTime` for working with date and time without time zones.
 - [ZonedDateTimePracticeTest.java](src/main/java/com/date/apis/ZonedDateTimePracticeTest.java): Shows how to work with `ZonedDateTime` for date-time operations with time zones.
-- [ConversionFromClassToClassTest.java](src/main/java/com/date/apis/ConversionFromClassToClassTest.java): Demonstrates conversions between different date and time representations in Java.
 
 ### com.java.util.regex
 

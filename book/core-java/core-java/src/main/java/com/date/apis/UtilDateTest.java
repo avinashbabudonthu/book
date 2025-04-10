@@ -5,7 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -194,7 +199,10 @@ public class UtilDateTest {
 		log.info("sixHoursNextDate={}", sixHoursNextDate);
 
 		long differenceInHours = TimeUnit.HOURS.convert((sixHouseMillis-dateMillis), TimeUnit.MILLISECONDS);
-		log.info("differenceInHours={}", differenceInHours);
+		log.info("differenceInHours={}", differenceInHours); // differenceInHours=6
+
+		long differenceInMinutes = TimeUnit.MINUTES.convert((sixHouseMillis-dateMillis), TimeUnit.MILLISECONDS);;
+		log.info("differenceInMinutes={}", differenceInMinutes); // differenceInMinutes=360
 	}
 
 	@Test
