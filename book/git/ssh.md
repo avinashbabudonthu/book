@@ -1,7 +1,9 @@
 # Connect to github repository using SSH key
 ------
 * Open Gitbash
-* Create new ssh key
+------
+### Generate ssh key pub file
+* Create new ssh key. This will generate default file `~/.ssh/id_rsa.pub`
 ```
 ssh-keygen -t rsa -b 4096 -C "email-id@example.com"
 ```
@@ -17,6 +19,16 @@ Enter a file in which to save the key (/home/you/.ssh/id_rsa): [Press enter]
 ```
 cat ~/.ssh/id_rsa.pub
 ```
+* Use below command to generate own pub file
+```
+ssh-keygen -t rsa -b 4096 -C "email-id@example.com" -f ~/.ssh/my_file
+```
+* Use this command to check ssh key
+```
+cat ~/.ssh/my_file.pub
+```
+------
+### Attach to github account
 * Copy the content
 * Open Github account and go to settings page\
 ![picture](img/github-settings.png)
