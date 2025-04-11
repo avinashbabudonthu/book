@@ -12,10 +12,10 @@ Host avinashbabu.donthu
   User git
   IdentityFile ~/.ssh/avinashbabu.donthu_github_rsa
 ```
-* Replace account-one, account-two with descriptive names for your accounts
+* Replace avinash4216, avinashbabu.donthu with descriptive names for your accounts
 * When cloning a repository, use the appropriate Host alias from your ~/.ssh/config file in the URL
 ```
-git clone git@account-one:your_username/your_repo.git
+git clone git@avinash4216:your_username/your_repo.git
 ```
 *  if using HTTPS, you can specify the key directly in the git clone command
 ```
