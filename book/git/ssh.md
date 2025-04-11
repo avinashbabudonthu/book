@@ -63,3 +63,5 @@ git clone git@github.com:avinashbabudonthu/devops.git
 ```
 git remote set-url origin git@github.com:git/git.git
 ```
+* Above urls point to default pub file - `~/.ssh/id_rsa.pub`
+* We attache different pub files to different accounts. Refer [here](two-github-accounts-in-same-machine-with-2-dffirent-ssh-keys.md)
