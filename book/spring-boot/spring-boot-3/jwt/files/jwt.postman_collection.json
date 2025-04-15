@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "9ae1c3d4-689f-422a-aee0-1fe49a4dd453",
+		"name": "jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9382235"
+	},
+	"item": [
+		{
+			"name": "user-login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usernameOrEmail\": \"ramesh@gmail.com\",\r\n    \"password\": \"ramesh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/jwt/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"jwt",
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usernameOrEmail\": \"admin@gmail.com\",\r\n    \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/jwt/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"jwt",
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-api",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDQ3MjM3OTgsImV4cCI6MTc0NTMyODU5OH0.IJK2O4x220WesF7qS8J-JB1zoIzoWHOvl3mSUqxRMpTuHffQXhz_18Q-ABYY4cv3",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/jwt/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"jwt",
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user-api",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyYW1lc2hAZ21haWwuY29tIiwiaWF0IjoxNzQ0NzQzOTk5LCJleHAiOjE3NDQ3NDc1OTl9.tZcYClLYIpuOqWDrgvPujzyNGfdZYXq6uAr_iC7PJslBc3P-YXTjF75eyc3tLUmD",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/jwt/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"jwt",
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
