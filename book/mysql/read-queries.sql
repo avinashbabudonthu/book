@@ -201,3 +201,6 @@ set @@global.sql_mode := concat('ONLY_FULL_GROUP_BY,', @@global.sql_mode);
 -- union
 
 -- union all
+
+-- check text string in all columns of table case insensitive
+SELECT * FROM employee WHERE LOWER(id) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(name) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(position) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(status) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(email) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(phone) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(notes) LIKE LOWER(concat('%', :filter, '%'));
