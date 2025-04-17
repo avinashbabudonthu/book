@@ -6,7 +6,7 @@ create user 'username'@'localhost' identified WITH mysql_native_password by 'pas
 
 -- Drop
 -- Drop User
-drop user 'poa_admin'@'localhost';
+drop user 'username'@'localhost';
 
 -- Grants 
 -- Grant permissions to user
