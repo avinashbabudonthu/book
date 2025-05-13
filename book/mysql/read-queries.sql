@@ -204,3 +204,14 @@ set @@global.sql_mode := concat('ONLY_FULL_GROUP_BY,', @@global.sql_mode);
 
 -- check text string in all columns of table case insensitive
 SELECT * FROM employee WHERE LOWER(id) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(name) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(position) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(status) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(email) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(phone) LIKE LOWER(concat('%', :filter, '%')) OR LOWER(notes) LIKE LOWER(concat('%', :filter, '%'));
+
+-- Get tables and columns
+SELECT 
+    TABLE_NAME, 
+    COLUMN_NAME, 
+    DATA_TYPE 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'mytdp' 
+-- AND TABLE_NAME LIKE '%user%'
+AND TABLE_NAME in ('emp', 'dept')
+ORDER BY TABLE_NAME, ORDINAL_POSITION;
