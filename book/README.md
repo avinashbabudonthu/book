@@ -16,6 +16,7 @@
 * [Apache commons-lang3](apache-commons-lang3#readme)
 * [AWS](aws#readme)
 * [Core Java](core-java#readme)
+* [Docker](docker#readme)
 * [Git](git#readme)
 * [Guava](guava#readme)
 * [HikariCP](hikari-cp#readme)
