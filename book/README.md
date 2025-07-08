@@ -13,7 +13,7 @@
 * [My Learnings and Certifications](learning#readme)
 ------
 # New Projects
-* Any New project development NFRs - [NFRs](new-project-development.md)
+* Any New project development NFRs - [NFRs](nfrs.md)
 ------
 # Table of contents
 * [Apache commons-lang3](apache-commons-lang3#readme)

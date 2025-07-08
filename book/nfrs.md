@@ -1,9 +1,5 @@
 # NFRs - Non Functional Requirements
 ------
-Absolutely! Here's your enhanced and consolidated list of Non-Functional Requirements (NFRs), now including the suggested additions. Each item includes a clear description to help guide implementation and ensure completeness across your project lifecycle.
-
----
-
 # ✅ Comprehensive Non-Functional Requirements (NFRs) List
 
 ## 🔐 Security
