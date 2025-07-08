@@ -12,6 +12,9 @@
 * [Java Architect Tech List](java-architect-tech-list.md)
 * [My Learnings and Certifications](learning#readme)
 ------
+# New Projects
+* Any New project development NFRs - [NFRs](new-project-development.md)
+------
 # Table of contents
 * [Apache commons-lang3](apache-commons-lang3#readme)
 * [AWS](aws#readme)
