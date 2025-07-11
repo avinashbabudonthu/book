@@ -1,0 +1,353 @@
+# EC2 Elastic Compute Cloud
+![picture](imgs/instance-life-cycle.jpg)
+------
+# Commands
+* To know how long instance is up and running. Run below command in EC2 instance console
+```
+uptime
+```
+------
+# Links
+* EC2 instance types - https://aws.amazon.com/ec2/instance-types/
+* Compare EC2 instances - https://ec2instances.info
+------
+# Important port numbers to know to work with EC2 instances
+![picture](imgs/ports.jpg)
+------
+# EC2 Instances Purchasing Options
+![picture](imgs/ec2-instances-purchasing-options.jpg)
+------
+# Instance Types
+* General purpose (t2, m4, m3)
+	* Low traffic websites and web applications
+	* Small and mid-size databases
+* Compute optimized - C series - Great for compute-intensive tasks that require high performance processors
+	* Batch processing work loads
+	* Media transcoding
+	* High performance web servers
+	* High performance computing (HPC)
+	* Scientific modeling & machine learning
+	* Dedicated gaming servers
+* Memory optimized: Fast performance for workloads that process large data sets in memory
+	* High performance databases
+	* Distributed memory caches
+	* R, X, Z1 series
+* Storage optimized
+	* High frequency online transaction processing (OLTP) systems
+	* Relational and NoSQL databases
+	* Cache for in-memory databases (Ex: Redis)
+	* Data warehousing applications
+	* Log or data-processing applications
+	* Distributed file systemts
+	* I, D, H1 series
+* GPU instances (g2)
+	* 3D application streaming
+	* Machine learning
+	* Graphic based applications
+* Check this link for EC2 instance types - https://ec2instances.info/
+------
+# Instance metadata
+* Data about instances
+* Public IP of instance
+* Can be used to configure or manage running instance
+* Getting instance metadata
+	* Window instance - open url - http://169.254.169.254/latest/meta-data/
+	* Linux instance - curl url from instance
+		* $ curl http://169.254.169.254/latest/meta-data/
+		* $ GET http://169.254.169.254/latest/meta-data/
+* all meta data is returned as text (content type text/plain)
+------
+# Instance user data
+* You can specify user data when launching the instance
+* user data can be
+	* linux script - executed by cloud-init
+	* windows batch or powershell scripts - executed by EC2Config service
+* user data scripts run once per instance-id by default
+* user data is limited to 16KB
+* user data should be Base64 encoded before submitted to API. Amazon EC2 command line tools can perform Base64 encoding
+* Getting user data - http://169.254.169.254/latest/user-data
+------
+# What is EC2
+* Service provided by AWS for computing needs
+* Computing services operating in remote data servers around the world
+------
+# What we can do with EC2 instance?
+* Instance is a computer
+* To run an application
+* Login and use it like a virtual machine
+------
+# What is Elastic means in EC2?
+* Instance running computing operations can increase and decrease at will
+------
+# What is instance?
+* Virtual server
+------
+# Create EC2 instance
+* Login to Amazon web console
+* click on EC2
+* click Launch Instance button
+* Select any image
+* Select instance Type
+* click on `Next: Configure Instance Details` button
+* Select Number of instances (replications of same image)
+* click on `Next:Add Storage` button
+* click `Next: Tag Instance` button
+* click `Next: Configure Security Group` button
+* click `Review and Launch` button
+* click `Launch` button
+* select security key pair option
+* click `Launch Instances` button
+------
+# Create EC2 instance
+* Login to Amazon web console
+* click on EC2
+* click Launch Instance button
+* click Select button of any image we want
+* select instance type we want, as of now I am selecting free ties instance type
+* click Next: Configure Instance Details button
+* give Number of instances as 1 (we can increase while giving AutoScaling configurations)
+* For Network select VPC we have created
+* Select any subnet under that VPC
+* Auto Assign Public IP: Disable
+* leave rest section to defaults
+* click Next: Add Storage button
+* keep defaults
+* click Next: Tag Instance button
+* Give Name to instance
+* click Next: Configure Security Group
+* give Security Group Name `any name for example security-group-1`
+* enter description
+* click Add Rule button
+* keep Type `Custom TCP Rule`
+* Port Range = 3000
+* Source == Anywhere in the drop down
+* click Review and Launch button
+* click Launch button
+* popup opens asking for key-pair
+* select `Create a new key pair` in the first drop down
+* give key pair name
+* click Download Key pair button
+* this will download a .pem file
+* save and keep it safe
+* click Launch Instances button
+------
+# Getting inside virtual machine with EC2 and VPC
+* AWS Console
+* click EC2
+* open EC2 dashboard
+* click 1 Running Instances under Resources
+* navigates to instance dashboard
+* at the bottom
+* under Description we can see there is no  Public IP for this instance
+* We can see Private IP
+* we can see Availability Zone where this instance has been created
+* we can see Key Pair, this is important because we will use same key-pair to connect via SSH
+------
+# Create and Assign Public IP address to VPC
+* To assign this instance an IP address first we need to create an Elastic IP
+* AWS Console
+	* EC2
+	* click Elastic IPs in the left menu
+	* click Allocate New Address button
+	* click Yes, Allocate button in the popup
+	* click Close button
+	* Now we have public IP address
+* select Elastic IP created above
+	* click Actions button
+	* click Associate Address
+	* On clicking Instance text box auto suggestion will come, select intance to which we want to assign this IP
+	* click Associate button
+	* Elastic IP address will be updated with EC2 instance that this IP address is associated with
+	* click on instance link
+	* navigates to instance details
+	* here we can see Public IP address assigned to this instance
+	* Copy this IP address so that we can use it in next configurations
+------
+# Elastic IP
+* Public IP addresses that are created, destroyed and assigned independently to EC2 instances
+* If underlying instance is terminated then associated IP address can still exist and can be assigned to different instance
+------
+# Connect using SSH from Linux or Mac
+* Update pem file permissions if you get error like `Permissions 0644 for my-file.pem are too open` 
+```
+chmod 0400 my-file.pem
+```
+* connect to ec2 instance
+```
+ssh -i my-file.pem ec2-user@public-ip
+```
+------
+# Connecting from Windows 10 or later
+* Open cmd or powershell
+* Navigate to path where `pem` file is present
+* Run below command
+```
+ssh -i my-file.pem ec2-user@ip-address
+```
+------
+# Connect using EC2 Instance connect
+* Login to aws console
+* Go to EC2 dashboard
+* Select EC2 instance which we want to connect
+* Click on `Connect` button
+* Opens new tab in browser and connects to EC2 instance
+------
+# AMI
+* AMI means `Amazon Machine Image`
+* Operating System + preinstalled softwares like Java, perl, python etc used on an EC2 instance
+* AMIs are customization of EC2 instance
+	* Add your own software, configuration, operating system, monitoring
+	* Faster boot/configuration time because all softwares are pre-packaged
+* AMIs are built for specific region (Can be copied across region)
+------
+# Storage termed as
+* EBS (Elastic Block Storage) in EC2. EBS is specific to storage used by EC2. EBS is not same as S3
+* Independent storage volumes used with EC2 instances
+------
+# Security Groups
+* Little firewals installed per instance basis
+![picture](imgs/0001-sg.jpg)\
+![picture](imgs/0002-sg.jpg)\
+![picture](imgs/0003-sg.jpg)\
+![picture](imgs/0004-sg.jpg)\
+![picture](imgs/0005-sg.jpg)
+------
+# EC2 dashboard 
+* Resources: Details of instances/resources we have created
+* Running Instances: EC2 instances we have
+* Volumes: Elastic Block Storage volumes
+* Launch Instance button: To launch new EC2 instance
+------
+# Scaling EC2 instances
+* Expand or Shrink pool of instances
+------
+# Auto Scaling Group
+* Expand or Shrink pool of instances based on pre-defined rules
+* Auto configuration has launch configuration which has an image in it, and scaling rules to expand or shrink a pool of instances automatically
+* In real life, load on your application can change time to time (sometimes high and sometimes low)
+* In the cloud, you can create and get rid of servers very quickly
+* Goal of Auto scaling groups (ASG)
+	* Scale out (add EC2 instances) to match increased load
+	* Scale in (remove EC2 instances) to match decreased load
+	* Enusure we have minimum and maximum number of EC2 instances Running
+	* Automatically register new instances to load balancer
+	* Recreate EC2 instance in case previous one is terminated
+* ASG is free (you pay only for underlying EC2 instances)\
+![picture](imgs/001-asg-high-level-flow.jpg)
+* Auto scaling group with load balancer
+![picture](imgs/001-asg-with-load-balancer.jpg)
+
+## Auto scaling group attributes
+* A launch template (older launch configurations are deprecated)
+	* AMI + Instance type
+	* EC2 user Data
+	* EBS volumes
+	* Security Group
+	* SSH
+	* IAM roles for EC2 instances
+	* Network + Subnet informaion
+	* Load balancer information\
+![picture](imgs/asg-attributes.jpg)
+* ASG has min size, max size, initial capacity
+* Scaling Policies
+
+## Scaling Policies
+* Auto scaling - CloudWatch alarms & scaling
+* It is possible to scale ASG based on CloudWatch alarms
+* An alarm monitors metric (such as average CPU, custom metric)
+* Metrics such as average CPU are computed for the overall ASG Instances
+* Based on the alarm
+	* We can create scale-out policies (increase number of instances)
+	* We can create scale-in policies (decrease number of instances)\
+![picture](imgs/002-asg-cloud-watch-alarm.jpg)
+* Dynamic scaling
+	* Target tracking scaling
+		* simple to setup
+		* I want the average ASG CPU to stay at around 40%
+	* Simple / Step Scaling
+		* When cloudWatch alarm is triggered (example CPU > 70%) then add 2 units
+		* When CloudWatch alarm is triggered (example CPU < 30%) then remove 1 unit
+* Scheduled Scaling
+	* Anticipate scaling based on known usage patterns
+	* Example: Increate the minimum capacity to 10 at 5 PM on Friday
+* Predictive Scaling
+![picture](imgs/asg-predictive-scaling.jpg)
+
+## Good metric to scale on
+* CPU Utilization: Average CPU utilization across your Instances
+* Request Count per target: To make sure the number of requests per EC2 instance is stable
+* Average Network In / Out (if your application is network bounded like lot of uploads and downloads)
+* Any custom metrics (that you push using CloudWatch)
+
+## Auto scaling groups - Scaling cooldowns
+![picture](imgs/asg-scaling-cooldown.jpg)
+------
+# Creating an AMI from Ec2 Instance
+* AWS console
+* click EC2
+* open EC2 dashboard
+* click on instances in the left menu
+* Select our instance we want to create AMI
+* click on Actions button open drop down
+* Image
+* click Create Image
+* give image name (any user defined name)
+* leave rest as defaults
+* click Create Image button
+* click Close button
+* We have an AMI created and ready for deployment
+------
+# Where to check our AMI
+* AWS console
+* click EC2
+* open EC2 dashboard
+* click on instances in the left menu
+* click Launch Instance button
+* click My AMIs tab
+* we can see AMI we have created
+* We can also see AMIs in :
+	* EC2 dashboard
+	* AMIs in left menu
+------
+# Deleting an EC2 Instance
+* AWS console
+* EC2
+* instances in the left menu
+* select the instances we want to delete
+* Actions drop down
+* Instance State
+* Terminate
+* click Yes, Terminate button
+* this will take some time
+------
+# placement groups
+![picture](imgs/placement-groups-1.jpg)
+![picture](imgs/placement-groups-2.jpg)
+![picture](imgs/placement-groups-03.jpg)
+![picture](imgs/placement-groups-4.jpg)
+------
+# EC2 Instance Store
+* EBS volumes are network drives with good but `limited` performance
+* if we need high performance hardware disk then use EC2 Instance store
+* Better IO performance because no network latency
+* EC2 Instance store lost thier storage if they are stopped
+* Good for buffer/cache/scratch data/temporary content
+* Risk of data loss if hardware fails
+* Backup and replication are your responsibility
+------
+# Stress test on EC2 instance
+* install stress in amazon linux 2 ami instance
+```
+sudo amazon-linux-extras install epel -y
+```
+```
+sudo yum install stress -y
+```
+* Use --timeout to stop it automatically e.g. stress --cpu 4 --timeout 60s
+* reference:
+	* https://gist.github.com/mikepfeiffer/d27f5c478bef92e8aff4241154b77e54
+	* Google search - install stress amazon linux 2
+------
+# Elastic Network Interface
+![picture](imgs/eni.jpg)
+* Read - https://aws.amazon.com/blogs/aws/new-elastic-network-interfaces-in-the-virtual-private-cloud/
