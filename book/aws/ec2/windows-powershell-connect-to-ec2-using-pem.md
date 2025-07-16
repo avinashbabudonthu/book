@@ -6,10 +6,18 @@
 ssh-add "C:\MyPC\test\aws\test-file.pem"
 ssh ec2-user@12.345.678.901
 ```
-
+or
 ```
 ssh-add "C:\MyPC\test\aws\test-file.pem"
 ssh -i C:\MyPC\test\aws\test-file.pem ec2-user@3.84.194.20
+```
+* Checking up time
+```
+uptime
+```
+* check user
+```
+whoami
 ```
 
 ### ⚠️ If You Encounter a Permission Error:
