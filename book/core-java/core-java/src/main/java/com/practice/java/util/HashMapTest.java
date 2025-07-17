@@ -36,6 +36,9 @@ public class HashMapTest {
 
         String fourValue = map.get(4);
         log.info("four-value={}", fourValue);
+
+        String nullValue = map.get(null);
+        log.info("nullValue={}", nullValue); // null
     }
 
     @Test
