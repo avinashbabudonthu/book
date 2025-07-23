@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Junit 5 dependencies
 * Add following dependencies for Junit 5 test cases
 * Check maven central for latest versions
@@ -64,5 +62,3 @@ Caused by: java.lang.ClassNotFoundException: org.junit.platform.commons.Precondi
 	<scope>test</scope>
 </dependency>
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

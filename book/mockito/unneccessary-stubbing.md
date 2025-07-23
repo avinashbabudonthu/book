@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Unnecessary Stubbing Junit 4 Junit 5
 * Junit 4 in RunWith
 ```
@@ -23,5 +21,3 @@ Mockito.lenient().when(mockedService.getUserById(any())).thenReturn(new User());
 @MockitoSettings(strictness = Strictness.LENIENT)
 class JUnit5MockitoTest {}
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
