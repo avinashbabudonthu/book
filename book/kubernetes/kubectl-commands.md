@@ -86,3 +86,11 @@ kubectl get deployment [deployment-name] -o yaml
 ```
 kubectl get deployment [deployment-name] -o yaml > deployment-name-result.yaml
 ```
+* Deploy container to kubernetes cluster
+```
+kubectl run hello-minikube
+```
+* get cluster info
+```
+kubectl cluster-info
+```
