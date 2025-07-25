@@ -1,7 +1,22 @@
-# Kubernetes Notes
-------
+# Kubernetes - K8s Notes
+---
 * Kubernetes cluster components\
 ![picture](img/kubernetes-cluster-components.jpg)
+---
+## Why
+* high availability
+* scalability
+* Disaster Recovery (DR)
+
+## K8 components
+* Node and Pod
+* Service
+* Ingress
+* Volumes
+* Secrets
+* ConfigMap
+* StatefulSet
+* Deployment
 ---
 # Install Kubectl in windows using scoop
 * Install using scoop: scoop install kubectl

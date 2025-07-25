@@ -10,3 +10,4 @@
 * [JdbcTemplate queryForObject Method Stubbing](jdbctemplate-queryforobject-stubbing.md)
 * [Pass null values](passing-null-values.md)
 * [Mock static classes](mock-static.md)
+* [Mock class with interface](mock-class-with-interface.md)
