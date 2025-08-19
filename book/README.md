@@ -11,6 +11,8 @@
 * [Software List for Java Engineer](softwares-list.md)
 * [Java Architect Tech List](java-architect-tech-list.md)
 * [My Learnings and Certifications](learning#readme)
+* [Email Skills](email-skills.jpeg)
+* [Code Review](code-review.jpeg)
 ------
 # New Projects
 * Any New project development NFRs - [NFRs](nfrs.md)
