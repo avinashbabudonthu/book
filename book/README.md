@@ -47,6 +47,7 @@
 * [Solr](solr#readme)
 * [Splunk](splunk#readme)
 * [Spring Boot](spring-boot#readme)
+* [Spring Security](spring-security#readme)
 * [SQL](sql#readme)
 * [SQL Server](sql-server#readme)
 * [System Design](system-design#readme)
