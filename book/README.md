@@ -13,6 +13,7 @@
 * [My Learnings and Certifications](learning#readme)
 * [Email Skills](email-skills.jpeg)
 * [Code Review](code-review.jpeg)
+* [SDE Road Map](https://drive.google.com/file/d/1F9k7t9pu9Toj48l3aXcmiKA7Q90qP7nl/view?usp=sharing)
 ------
 # New Projects
 * Any New project development NFRs - [NFRs](nfrs.md)
@@ -46,6 +47,7 @@
 * [Solr](solr#readme)
 * [Splunk](splunk#readme)
 * [Spring Boot](spring-boot#readme)
+* [SQL](sql#readme)
 * [SQL Server](sql-server#readme)
 * [System Design](system-design#readme)
 * [Windows](windows#readme)
