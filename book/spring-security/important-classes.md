@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Spring Security Important classes
 
 * org.springframework.boot.autoconfigure.security.SecurityProperties
@@ -16,5 +14,3 @@
 * User (c) extends UserDetails
 * MutableUserDetails (I) extends UserDetails
 * MutableUser (c) implements MutableUserDetails
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

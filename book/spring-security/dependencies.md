@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Spring Security Dependencies
 * Add below dependency for spring security
 * We don't need to specify version. Compatible version will be download based in `spring-boot-starter-parent` version
@@ -18,5 +16,3 @@
     <scope>test</scope>
 </dependency>
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Spring Security Generating Credentials
 * Implementing basic spring boot 3 spring security 6
 * Spring generates random password on start of the application
@@ -45,5 +43,3 @@ mvn clean compile spring-boot:run
 * Controller - [AppController](src/main/java/com/java/controller/AppController.java)
 * [application.properties](src/main/resources/application.properties)
 * [Postman collection](postman/spring-security-generated-credentials.postman_collection.json)
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Spring Security In Memory Credentials
 * Implementing basic spring boot 3 spring security 6
 * Define in memory credentials in java class 
@@ -39,5 +37,3 @@ mvn clean compile spring-boot:run
 * [SecurityConfig](src/main/java/com/java/config/SecurityConfig.java)
 * [application.properties](src/main/resources/application.properties)
 * [Postman collection](postman/in-memory.postman_collection.json)
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

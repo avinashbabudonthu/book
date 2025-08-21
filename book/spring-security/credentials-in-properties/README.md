@@ -1,6 +1,4 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
-# Credentials In Properties
+ Credentials In Properties
 * Implementing basic spring boot 3 spring security 6
 * Define credentials in application properties file
 ------
@@ -45,5 +43,3 @@ spring.security.user.password=${SECURITY_PASSWORD:pwd1}
 * Controller - [AppController](src/main/java/com/java/controller/AppController.java)
 * [application.properties](src/main/resources/application.properties)
 * [Postman collection](postman/credentials-in-properties.postman_collection.json)
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
