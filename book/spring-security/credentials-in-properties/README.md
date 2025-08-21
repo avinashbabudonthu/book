@@ -1,4 +1,4 @@
- Credentials In Properties
+# Credentials In Properties
 * Implementing basic spring boot 3 spring security 6
 * Define credentials in application properties file
 ------
