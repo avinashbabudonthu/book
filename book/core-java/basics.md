@@ -407,8 +407,6 @@ public class InterfaceWithMethodImpl implements InterfaceWithMethod {
 * Dis advantages of interfaces
 	* If n classes are implementing an interface then if we need common functionality to be available to all classes then we need either write that in one abstract class and all other classes have to extend that class or we need to implement that method in all classes. 
 	* This issue solved in JDK 8 by providing default methods in interfaces
-* Examples
-	* [Interfaces](core-java/basics/src/main/java/com/java/interfaces)
 ------
 # Primitive data types
 * int
