@@ -19,3 +19,7 @@
 | 43–45 | Advanced React · State Management | • Context API<br>• Redux Toolkit<br>• Redux Thunk<br>• Immer<br>• Custom hooks | Redux/Advanced React certs | ☐ |
 | 46–47 | UI Testing · Accessibility | • Jest<br>• React Testing Library<br>• Cypress E2E<br>• Lighthouse audits<br>• axe-core checks | Accessibility Specialist Cert | ☐ |
 | 48 | Full‑Stack Integration · Deployment | • API integration React↔Spring Boot<br>• JWT auth flows<br>• Vite/Webpack<br>• Netlify/Vercel deploy<br>• GitHub Actions | Full-Stack Dev Cert | ☐ |
+
+------
+# Core Java Material
+* https://github.com/avinashbabudonthu/book/tree/main/book/core-java#readme

@@ -399,13 +399,14 @@ public class StringTest {
      */
     @Test
     public void replaceAll() {
-        String str = "This is your password: {password}";
         // If password contains backslash(\) or dollar($) symbols then exception will be thrown so escape them with Matcher.quoteReplacement
         String password = "rC$6it";
         System.out.println("before-password:" + password); // before-password:rC$6it
         password = java.util.regex.Matcher.quoteReplacement(password);
         System.out.println("after-password:" + password); // after-password:rC\$6it
-        str = str.replaceAll("\\{password\\}", password);
+
+        String str = "This is your password: {password}";
+        str = str.replaceAll("\\{password}", password);
         System.out.println("str: " + str); // str: This is your password: rC$6it
 
         // Example 2
