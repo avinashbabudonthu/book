@@ -226,13 +226,17 @@ public class ArraysTest {
 	@Test
 	public void parallelPrefixPractice() {
 		String[] names = new String[] { "jack", "john", "jay", "jim", "jill", "jane" };
+		// names: before: jack,john,jay,jim,jill,jane
 		System.out.println("names: before: " + Arrays.stream(names).collect(Collectors.joining(",")));
 		Arrays.parallelPrefix(names, (x, y) -> x + "-" + y);
+		// names: after: jack,jack-john,jack-john-jay,jack-john-jay-jim,jack-john-jay-jim-jill,jack-john-jay-jim-jill-jane
 		System.out.println("names: after: " + Arrays.stream(names).collect(Collectors.joining(",")));
 
 		names = new String[] { "jack", "john", "jay", "jim", "jill", "jane" };
+		// names: before: jack,john,jay,jim,jill,jane
 		System.out.println("names: before: " + Arrays.stream(names).collect(Collectors.joining(",")));
 		Arrays.parallelPrefix(names, 1, 3, (x, y) -> x + "-" + y);
+		// names: after: jack,john,john-jay,jim,jill,jane
 		System.out.println("names: after: " + Arrays.stream(names).collect(Collectors.joining(",")));
 
 	}
@@ -248,11 +252,18 @@ public class ArraysTest {
 		Integer[] array1 = new Integer[] { 1, 2, 3, 4, 5 };
 		Integer[] array2 = new Integer[] { 1, 2, 3, 4, 5 };
 		Integer[] array3 = new Integer[] { 6, 7, 8, 9, 0 };
+		Integer[] array4 = new Integer[] { 3, 4, 5, 1, 2 };
 
+		// Arrays.deepEquals(null, null) : true
 		System.out.println("Arrays.deepEquals(null, null) : " + Arrays.deepEquals(null, null));
+		//Arrays.deepEquals(array1, null) : false
 		System.out.println("Arrays.deepEquals(array1, null) : " + Arrays.deepEquals(array1, null));
+		//Arrays.deepEquals(array1, array2) : true
 		System.out.println("Arrays.deepEquals(array1, array2) : " + Arrays.deepEquals(array1, array2));
+		//Arrays.deepEquals(array1, array3) : false
 		System.out.println("Arrays.deepEquals(array1, array3) : " + Arrays.deepEquals(array1, array3));
+		//Arrays.deepEquals(array1, array4) : false
+		System.out.println("Arrays.deepEquals(array1, array4) : " + Arrays.deepEquals(array1, array4));
 	}
 
 	/**
