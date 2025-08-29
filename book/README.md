@@ -3,6 +3,9 @@
 # General Java Errors and Solutions
 * [Unable to make field private static final jdk.internal.misc.Unsafe java.util.Properties.UNSAFE accessible: module java.base does not opens java.util to unnamed module](module-does-not-open.md)
 ------
+# Preparation
+* [Architect Preparation Plan](architect-preparation.md)
+------
 # Misc
 * [Encoding vs Encryption vs Tokenization](encoding-encryption-tokenization.md)
 * [Environment Variables vs System properties (or VM Arguments) vs Program arguments (or Command line arguments)](env-variables-vm-variables-program-arguments.md)
