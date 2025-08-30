@@ -1,6 +1,6 @@
-# 🏗️ Architect Prep Plan – 48 Weeks + Expansion Modules (Updated)
+# 🏗️ Architect Prep Plan – 48 Weeks + Expansion Modules (Updated with ELK Stack)
 
----
+## 📘 Essential Modules (3 Weeks Each)
 
 | Weeks  | Focus Area | Key Topics | Certification(s) |
 |--------|------------|------------|------------------|
@@ -17,12 +17,13 @@
 | 25–26 | - Kubernetes<br>- Terraform<br>- EC2 Ops | - Kubernetes core<br>- Helm charts<br>- Terraform basics<br>- EC2 provisioning<br>- SSH ops<br>- Disk monitoring | - CKA<br>- Terraform Associate |
 | 27–28 | - Go Language | - Go syntax & types<br>- Concurrency (goroutines, channels)<br>- REST APIs in Go<br>- CLI tools<br>- Go modules<br>- Building Kubernetes operators | - Go Developer Certification (Gophercises/GoBridge) |
 | 29–30 | - Splunk<br>- Monitoring<br>- Security | - Splunk ingestion<br>- Dashboards & alerts<br>- `auditctl`, `ufw`, `fail2ban`<br>- logrotate<br>- Audit trails | - Splunk Core Certified Power User |
-| 31–33 | - NoSQL Databases | - MongoDB schema design<br>- Aggregations & indexing<br>- Cassandra partitioning<br>- Redis caching, pub/sub, TTL<br>- Couchbase N1QL queries & indexing | - MongoDB<br>- Cassandra<br>- Redis<br>- Couchbase certs |
-| 34–36 | - Columnar DBs<br>- Data Warehousing | - Parquet format & compression<br>- Schema evolution<br>- Amazon Redshift columnar storage<br>- Analytics queries & tuning | - AWS Data Analytics – Specialty |
-| 37–39 | - AI/ML<br>- Data Engineering | - ML fundamentals<br>- LLM integration<br>- Model serving<br>- Spark pipelines<br>- Kafka stream processing | - Databricks Spark Developer |
-| 40–42 | - Architecture Strategy<br>- Interview Prep | - Cost optimization<br>- Trade-off analysis<br>- Stakeholder alignment<br>- Mock interviews | - AWS Solutions Architect – Pro<br>- TOGAF 9 |
-| 43–45 | - HTML<br>- CSS<br>- JavaScript Fundamentals | - Semantic HTML<br>- Flexbox/Grid<br>- Responsive design<br>- ES6+<br>- DOM manipulation<br>- Form validation | - Meta Front-End Dev |
-| 46–48 | - React<br>- Component Architecture<br>- Advanced React<br>- State Management<br>- GraphQL | - JSX<br>- Props & State<br>- Hooks<br>- Lifecycle methods<br>- Component composition<br>- React DevTools<br>- Context API<br>- Redux Toolkit<br>- Redux Thunk<br>- Immer<br>- Custom hooks<br>- GraphQL fundamentals<br>- Apollo Client | - Meta React Developer<br>- Redux/Advanced React certs<br>- Apollo GraphQL Cert |
+| 31–32 | - ELK Stack (Elasticsearch, Logstash, Kibana, Beats) | - ELK architecture<br>- Log ingestion with Logstash & Beats<br>- Elasticsearch indexing & queries<br>- Kibana dashboards & alerts<br>- Scaling & securing ELK | - Elastic Certified Engineer |
+| 33–35 | - NoSQL Databases | - MongoDB schema design<br>- Aggregations & indexing<br>- Cassandra partitioning<br>- Redis caching, pub/sub, TTL<br>- Couchbase N1QL queries & indexing | - MongoDB<br>- Cassandra<br>- Redis<br>- Couchbase certs |
+| 36–38 | - Columnar DBs<br>- Data Warehousing | - Parquet format & compression<br>- Schema evolution<br>- Amazon Redshift columnar storage<br>- Analytics queries & tuning | - AWS Data Analytics – Specialty |
+| 39–41 | - AI/ML<br>- Data Engineering | - ML fundamentals<br>- LLM integration<br>- Model serving<br>- Spark pipelines<br>- Kafka stream processing | - Databricks Spark Developer |
+| 42–44 | - Architecture Strategy<br>- Interview Prep | - Cost optimization<br>- Trade-off analysis<br>- Stakeholder alignment<br>- Mock interviews | - AWS Solutions Architect – Pro<br>- TOGAF 9 |
+| 45–47 | - HTML<br>- CSS<br>- JavaScript Fundamentals | - Semantic HTML<br>- Flexbox/Grid<br>- Responsive design<br>- ES6+<br>- DOM manipulation<br>- Form validation | - Meta Front-End Dev |
+| 48 | - React<br>- Component Architecture<br>- Advanced React<br>- State Management<br>- GraphQL | - JSX<br>- Props & State<br>- Hooks<br>- Lifecycle methods<br>- Component composition<br>- React DevTools<br>- Context API<br>- Redux Toolkit<br>- Redux Thunk<br>- Immer<br>- Custom hooks<br>- GraphQL fundamentals<br>- Apollo Client | - Meta React Developer<br>- Redux/Advanced React certs<br>- Apollo GraphQL Cert |
 ---
 
 ## 🧠 Parallel Track: Data Structures & Algorithms (Weekly Goals)
