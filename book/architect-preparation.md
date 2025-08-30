@@ -1,6 +1,6 @@
-# 🏗️ Architect Prep Plan – 48 Weeks + Expansion Modules (Updated with ELK Stack)
+# 🏗️ Architect Prep Plan – Extended (Updated with Maven, Gradle, Python, Go, ELK, UML)
 
-## 📘 Essential Modules (3 Weeks Each)
+## 📘 Essential Modules
 
 | Weeks  | Focus Area | Key Topics | Certification(s) |
 |--------|------------|------------|------------------|
@@ -9,21 +9,22 @@
 | 7–8 | - Maven | - Build lifecycle<br>- Dependency management<br>- Multi-module projects<br>- Plugins<br>- Profiles<br>- Integration with IDEs | - Apache Maven Fundamentals |
 | 9–10 | - Gradle | - Gradle build scripts (Groovy/Kotlin DSL)<br>- Tasks & dependencies<br>- Multi-project builds<br>- Build caching<br>- Gradle Wrapper<br>- Comparing Gradle vs Maven | - Gradle Certified Build Developer |
 | 11–13 | - Spring Boot<br>- REST APIs<br>- Unit Testing | - Spring Boot fundamentals<br>- Spring Data JPA<br>- Spring Security<br>- JUnit 5<br>- Mockito<br>- Spock<br>- Cucumber (BDD)<br>- REST clients: RestTemplate, WebClient, Feign<br>- CI test automation | - Spring Professional Certification |
-| 14–15 | - System Design<br>- Apache Camel | - Design patterns<br>- Domain-Driven Design<br>- Modular API boundaries<br>- Camel routes, processors, endpoints<br>- Error handling & retries | - Red Hat Camel Specialist |
-| 16–18 | - Microservices Architecture<br>- Design Patterns | - Service registry & discovery<br>- API Gateway<br>- Circuit breaker<br>- Saga pattern<br>- CQRS<br>- Observability | - Microservices Architect Cert |
-| 19–20 | - Kafka Foundations<br>- Event‑Driven Design | - Kafka architecture<br>- Producers/Consumers<br>- Topics mgmt<br>- Avro serialization<br>- Kafka CLI tools<br>- Shell health checks | - Confluent CCDAK |
-| 21–22 | - Python | - Python syntax & data structures<br>- Virtual environments<br>- File I/O<br>- REST API clients<br>- Data processing (pandas)<br>- Automation scripting<br>- Integrating Python in CI/CD | - PCEP / PCAP (Python Institute) |
-| 23–24 | - CI/CD<br>- Jenkins<br>- GitHub Actions<br>- SonarQube<br>- Docker | - Jenkins pipelines<br>- GitHub Actions<br>- SonarQube setup<br>- Dockerfiles<br>- Container builds<br>- Volume mgmt<br>- Container security | - Docker Certified Associate<br>- Jenkins Certification |
-| 25–26 | - Kubernetes<br>- Terraform<br>- EC2 Ops | - Kubernetes core<br>- Helm charts<br>- Terraform basics<br>- EC2 provisioning<br>- SSH ops<br>- Disk monitoring | - CKA<br>- Terraform Associate |
-| 27–28 | - Go Language | - Go syntax & types<br>- Concurrency (goroutines, channels)<br>- REST APIs in Go<br>- CLI tools<br>- Go modules<br>- Building Kubernetes operators | - Go Developer Certification (Gophercises/GoBridge) |
-| 29–30 | - Splunk<br>- Monitoring<br>- Security | - Splunk ingestion<br>- Dashboards & alerts<br>- `auditctl`, `ufw`, `fail2ban`<br>- logrotate<br>- Audit trails | - Splunk Core Certified Power User |
-| 31–32 | - ELK Stack (Elasticsearch, Logstash, Kibana, Beats) | - ELK architecture<br>- Log ingestion with Logstash & Beats<br>- Elasticsearch indexing & queries<br>- Kibana dashboards & alerts<br>- Scaling & securing ELK | - Elastic Certified Engineer |
-| 33–35 | - NoSQL Databases | - MongoDB schema design<br>- Aggregations & indexing<br>- Cassandra partitioning<br>- Redis caching, pub/sub, TTL<br>- Couchbase N1QL queries & indexing | - MongoDB<br>- Cassandra<br>- Redis<br>- Couchbase certs |
-| 36–38 | - Columnar DBs<br>- Data Warehousing | - Parquet format & compression<br>- Schema evolution<br>- Amazon Redshift columnar storage<br>- Analytics queries & tuning | - AWS Data Analytics – Specialty |
-| 39–41 | - AI/ML<br>- Data Engineering | - ML fundamentals<br>- LLM integration<br>- Model serving<br>- Spark pipelines<br>- Kafka stream processing | - Databricks Spark Developer |
-| 42–44 | - Architecture Strategy<br>- Interview Prep | - Cost optimization<br>- Trade-off analysis<br>- Stakeholder alignment<br>- Mock interviews | - AWS Solutions Architect – Pro<br>- TOGAF 9 |
-| 45–47 | - HTML<br>- CSS<br>- JavaScript Fundamentals | - Semantic HTML<br>- Flexbox/Grid<br>- Responsive design<br>- ES6+<br>- DOM manipulation<br>- Form validation | - Meta Front-End Dev |
-| 48 | - React<br>- Component Architecture<br>- Advanced React<br>- State Management<br>- GraphQL | - JSX<br>- Props & State<br>- Hooks<br>- Lifecycle methods<br>- Component composition<br>- React DevTools<br>- Context API<br>- Redux Toolkit<br>- Redux Thunk<br>- Immer<br>- Custom hooks<br>- GraphQL fundamentals<br>- Apollo Client | - Meta React Developer<br>- Redux/Advanced React certs<br>- Apollo GraphQL Cert |
+| 14–15 | - UML & Architecture Diagramming | - UML basics<br>- Class, Component, Deployment diagrams<br>- Sequence & Activity diagrams<br>- Use Case diagrams<br>- Tools: draw.io, Lucidchart, PlantUML | - OMG Certified UML Professional |
+| 16–17 | - System Design<br>- Apache Camel | - Design patterns<br>- Domain-Driven Design<br>- Modular API boundaries<br>- Camel routes, processors, endpoints<br>- Error handling & retries | - Red Hat Camel Specialist |
+| 18–20 | - Microservices Architecture<br>- Design Patterns | - Service registry & discovery<br>- API Gateway<br>- Circuit breaker<br>- Saga pattern<br>- CQRS<br>- Observability | - Microservices Architect Cert |
+| 21–22 | - Kafka Foundations<br>- Event‑Driven Design | - Kafka architecture<br>- Producers/Consumers<br>- Topics mgmt<br>- Avro serialization<br>- Kafka CLI tools<br>- Shell health checks | - Confluent CCDAK |
+| 23–24 | - Python | - Python syntax & data structures<br>- Virtual environments<br>- File I/O<br>- REST API clients<br>- Data processing (pandas)<br>- Automation scripting<br>- Integrating Python in CI/CD | - PCEP / PCAP (Python Institute) |
+| 25–26 | - CI/CD<br>- Jenkins<br>- GitHub Actions<br>- SonarQube<br>- Docker | - Jenkins pipelines<br>- GitHub Actions<br>- SonarQube setup<br>- Dockerfiles<br>- Container builds<br>- Volume mgmt<br>- Container security | - Docker Certified Associate<br>- Jenkins Certification |
+| 27–28 | - Kubernetes<br>- Terraform<br>- EC2 Ops | - Kubernetes core<br>- Helm charts<br>- Terraform basics<br>- EC2 provisioning<br>- SSH ops<br>- Disk monitoring | - CKA<br>- Terraform Associate |
+| 29–30 | - Go Language | - Go syntax & types<br>- Concurrency (goroutines, channels)<br>- REST APIs in Go<br>- CLI tools<br>- Go modules<br>- Building Kubernetes operators | - Go Developer Certification (Gophercises/GoBridge) |
+| 31–32 | - Splunk<br>- Monitoring<br>- Security | - Splunk ingestion<br>- Dashboards & alerts<br>- `auditctl`, `ufw`, `fail2ban`<br>- logrotate<br>- Audit trails | - Splunk Core Certified Power User |
+| 33–34 | - ELK Stack (Elasticsearch, Logstash, Kibana, Beats) | - ELK architecture<br>- Log ingestion with Logstash & Beats<br>- Elasticsearch indexing & queries<br>- Kibana dashboards & alerts<br>- Scaling & securing ELK | - Elastic Certified Engineer |
+| 35–37 | - NoSQL Databases | - MongoDB schema design<br>- Aggregations & indexing<br>- Cassandra partitioning<br>- Redis caching, pub/sub, TTL<br>- Couchbase N1QL queries & indexing | - MongoDB<br>- Cassandra<br>- Redis<br>- Couchbase certs |
+| 38–40 | - Columnar DBs<br>- Data Warehousing | - Parquet format & compression<br>- Schema evolution<br>- Amazon Redshift columnar storage<br>- Analytics queries & tuning | - AWS Data Analytics – Specialty |
+| 41–43 | - AI/ML<br>- Data Engineering | - ML fundamentals<br>- LLM integration<br>- Model serving<br>- Spark pipelines<br>- Kafka stream processing | - Databricks Spark Developer |
+| 44–46 | - Architecture Strategy<br>- Interview Prep | - Cost optimization<br>- Trade-off analysis<br>- Stakeholder alignment<br>- Mock interviews | - AWS Solutions Architect – Pro<br>- TOGAF 9 |
+| 47–49 | - HTML<br>- CSS<br>- JavaScript Fundamentals | - Semantic HTML<br>- Flexbox/Grid<br>- Responsive design<br>- ES6+<br>- DOM manipulation<br>- Form validation | - Meta Front-End Dev |
+| 50–52 | - React<br>- Component Architecture<br>- Advanced React<br>- State Management<br>- GraphQL | - JSX<br>- Props & State<br>- Hooks<br>- Lifecycle methods<br>- Component composition<br>- React DevTools<br>- Context API<br>- Redux Toolkit<br>- Redux Thunk<br>- Immer<br>- Custom hooks<br>- GraphQL fundamentals<br>- Apollo Client | - Meta React Developer<br>- Redux/Advanced React certs<br>- Apollo GraphQL Cert |
 ---
 
 ## 🧠 Parallel Track: Data Structures & Algorithms (Weekly Goals)
