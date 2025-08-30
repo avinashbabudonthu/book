@@ -43,15 +43,14 @@
 
 ## 🧩 Post-Core Expansion Modules (Optional Mastery)
 
-| Weeks | Focus Area | Key Topics | Certification(s) | Start Date | End Date | Status |
-|-------|------------|------------|------------------|------------|----------|--------|
-| 49–51 | - API Gateway<br>- Service Mesh | - Istio fundamentals<br>- Envoy proxy<br>- Rate limiting<br>- Traffic routing | - Istio Fundamentals<br>- Envoy Labs | TBD | TBD | Todo |
-| 52–54 | - Cloud Architecture Patterns | - AWS Well-Architected Framework<br>- Multi-tenancy<br>- Resilience & scalability | - AWS Advanced Architecting | TBD | TBD | Todo |
-| 55–57 | - Infra-as-Code (Advanced) | - Terraform modules<br>- CloudFormation<br>- Pulumi<br>- Secrets mgmt | - Terraform Expert<br>- Pulumi Cert | TBD | TBD | Todo |
-| 58–60 | - Observability<br>- Tracing | - OpenTelemetry<br>- Jaeger<br>- Prometheus<br>- Distributed tracing | - Certified Observability Practitioner | TBD | TBD | Todo |
-| 61–63 | - Container Orchestration at Scale | - Kubernetes Operators<br>- Cluster autoscaling<br>- Pod disruption budgets<br>- Multi-cluster mgmt | - CKS<br>- Kubernetes Advanced Ops | TBD | TBD | Todo |
-| 64–66 | - Soft Skills<br>- Leadership | - Stakeholder communication<br>- Conflict resolution<br>- Mentorship<br>- Architecture storytelling | - PMI Leadership<br>- Architect Interview Prep | TBD | TBD | Todo |
-
+| Weeks  | Focus Area                                | Key Topics                                                                 | Certification(s)                         |
+|--------|--------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------|
+| 49–51  | - API Gateway<br>- Service Mesh            | - Istio fundamentals<br>- Envoy proxy<br>- Rate limiting<br>- Traffic routing | - Istio Fundamentals<br>- Envoy Labs     |
+| 52–54  | - Cloud Architecture Patterns              | - AWS Well-Architected Framework<br>- Multi-tenancy<br>- Resilience & scalability | - AWS Advanced Architecting              |
+| 55–57  | - Infra-as-Code (Advanced)                 | - Terraform modules<br>- CloudFormation<br>- Pulumi<br>- Secrets mgmt      | - Terraform Expert<br>- Pulumi Cert      |
+| 58–60  | - Observability<br>- Tracing               | - OpenTelemetry<br>- Jaeger<br>- Prometheus<br>- Distributed tracing       | - Certified Observability Practitioner   |
+| 61–63  | - Container Orchestration at Scale         | - Kubernetes Operators<br>- Cluster autoscaling<br>- Pod disruption budgets<br>- Multi-cluster mgmt | - CKS<br>- Kubernetes Advanced Ops       |
+| 64–66  | - Soft Skills<br>- Leadership              | - Stakeholder communication<br>- Conflict resolution<br>- Mentorship<br>- Architecture storytelling | - PMI Leadership<br>- Architect Interview Prep |
 ---
 
 # 🎓 Optional Certifications to Consider
@@ -149,7 +148,3 @@ A curated list of advanced certifications to complement your architect journey. 
 - **Certified SOA Architect**  
   *Provider:* Arcitura Education  
   *Focus:* Service-oriented architecture, governance, and integration
-
-------
-# Core Java Material
-* https://github.com/avinashbabudonthu/book/tree/main/book/core-java#readme
