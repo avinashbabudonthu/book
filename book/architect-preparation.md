@@ -58,13 +58,101 @@
 
 ---
 
-## 🎓 Optional Certifications to Consider
+# 🎓 Optional Certifications to Consider
 
-- AWS Certified DevOps Engineer – Professional  
-- Google Professional Cloud Architect  
-- HashiCorp Vault Associate  
-- Certified Kubernetes Security Specialist (CKS)  
-- Certified Observability Practitioner  
+A curated list of advanced certifications to complement your architect journey. Organized by domain for strategic planning.
+
+---
+
+## 🧠 Architecture & Design
+
+- **TOGAF 9 Certified Architect**  
+  *Provider:* The Open Group  
+  *Focus:* Enterprise architecture frameworks, ADM lifecycle
+
+- **Certified Professional for Software Architecture (CPSA-F / CPSA-A)**  
+  *Provider:* iSAQB  
+  *Focus:* Software architecture fundamentals and advanced practices
+
+- **SEI Software Architecture Professional Certificate**  
+  *Provider:* Carnegie Mellon University  
+  *Focus:* Architecture evaluation, design principles, quality attributes
+
+- **Certified Advanced Software Architect**  
+  *Provider:* Global Tech Council  
+  *Focus:* Design patterns, modeling, architecture documentation
+
+- **Graduate Certificate in Software Architecture**  
+  *Provider:* Academic institutions (e.g., UC Irvine, Penn State)  
+  *Focus:* Formal education in software architecture and systems design
+
+---
+
+## 🏢 Enterprise & Systems Architecture
+
+- **Certified Enterprise Architect (CEA)**  
+  *Provider:* FEAC Institute  
+  *Focus:* Enterprise modeling, governance, and transformation
+
+- **Zachman Certified – Enterprise Architect**  
+  *Provider:* Zachman International  
+  *Focus:* Enterprise architecture schema and classification
+
+- **ITIL Master**  
+  *Provider:* AXELOS  
+  *Focus:* IT service management and strategic alignment
+
+- **MCSE: Core Infrastructure**  
+  *Provider:* Microsoft  
+  *Focus:* Windows Server, networking, virtualization, identity
+
+- **Red Hat Certified Architect (RHCA)**  
+  *Provider:* Red Hat  
+  *Focus:* Advanced Linux systems, cloud, and automation
+
+---
+
+## ☁️ Cloud Architecture
+
+- **AWS Certified Solutions Architect – Professional**  
+  *Provider:* Amazon Web Services  
+  *Focus:* Complex cloud solutions, migration, hybrid architecture
+
+- **AWS Certified DevOps Engineer – Professional**  
+  *Provider:* Amazon Web Services  
+  *Focus:* CI/CD, automation, monitoring, and operations
+
+- **Google Professional Cloud Architect**  
+  *Provider:* Google Cloud  
+  *Focus:* GCP architecture, scalability, security, and compliance
+
+- **Microsoft Azure Solutions Architect Expert**  
+  *Provider:* Microsoft  
+  *Focus:* Azure compute, storage, networking, and governance
+
+- **IBM Cloud Solution Architect**  
+  *Provider:* IBM  
+  *Focus:* IBM Cloud services, hybrid cloud, and enterprise solutions
+
+---
+
+## 🔐 Security & Observability
+
+- **Certified Kubernetes Security Specialist (CKS)**  
+  *Provider:* CNCF  
+  *Focus:* Kubernetes security, RBAC, network policies, runtime protection
+
+- **HashiCorp Vault Associate**  
+  *Provider:* HashiCorp  
+  *Focus:* Secrets management, encryption, access control
+
+- **Certified Observability Practitioner**  
+  *Provider:* New Relic / Dynatrace  
+  *Focus:* Metrics, logs, traces, dashboards, and alerting
+
+- **Certified SOA Architect**  
+  *Provider:* Arcitura Education  
+  *Focus:* Service-oriented architecture, governance, and integration
 
 ------
 # Core Java Material
