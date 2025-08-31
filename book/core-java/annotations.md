@@ -128,7 +128,7 @@ class UnmodifiableList<T> implements @Readonly List<@Readonly T> { ... }
 void monitorTemperature() throws @Critical TemperatureException { ... }
 ```
 ------
-* An Introduction to Annotations and Annotation Processing in Java - https://app.box.com/s/85790esbcgs6dakpumz7t0xm3rlz4l9m
+* An Introduction to Annotations and Annotation Processing in Java - [here](https://drive.google.com/file/d/1mZlu_yL2GMuE67n8j9Fve9N6q82YjQrj/view?usp=sharing)
 ------
 # Examples
 * [Table Test](../core-java/src//main/java/com/practice/annotations/TableTest.java)
