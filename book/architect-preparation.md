@@ -26,7 +26,57 @@
 | 47–49 | - HTML<br>- CSS<br>- JavaScript Fundamentals | - Semantic HTML<br>- Flexbox/Grid<br>- Responsive design<br>- ES6+<br>- DOM manipulation<br>- Form validation | - Meta Front-End Dev |
 | 50–52 | - React<br>- Component Architecture<br>- Advanced React<br>- State Management<br>- GraphQL | - JSX<br>- Props & State<br>- Hooks<br>- Lifecycle methods<br>- Component composition<br>- React DevTools<br>- Context API<br>- Redux Toolkit<br>- Redux Thunk<br>- Immer<br>- Custom hooks<br>- GraphQL fundamentals<br>- Apollo Client | - Meta React Developer<br>- Redux/Advanced React certs<br>- Apollo GraphQL Cert |
 ---
+# 🧭 Architect Certification Roadmap
 
+## 🔹 AWS Certifications
+1. **AWS Certified Solutions Architect – Associate**  
+   Foundation for cloud architecture, networking, and deployment.
+
+2. **AWS Certified Data Analytics – Specialty**  
+   Focused on data lakes, streaming analytics, and DWH.
+
+3. **AWS Certified Solutions Architect – Professional**  
+   Advanced design, scalability, and optimization across cloud systems.
+
+## 🔹 Kafka
+4. **Confluent Certified Developer for Apache Kafka (CCDAK)**  
+   Core for event-driven architecture and stream processing.
+
+## 🔹 Docker
+5. **Docker Certified Associate**  
+   Containerization fundamentals, image management, and orchestration basics.
+
+## 🔹 Kubernetes
+6. **Kubernetes Certified Administrator (CKA)**  
+   Cluster management, deployments, and scaling in production.
+
+## 🔹 Splunk
+7. **Splunk Core Certified Power User**  
+   Observability, log analysis, and operational intelligence.
+
+## 🔹 Terraform
+8. **Terraform Associate**  
+   Infrastructure-as-code for reproducible, scalable cloud deployments.
+
+## 🔹 MongoDB
+9. **MongoDB Certified Developer Associate**  
+   NoSQL modeling, flexible schema design, and CRUD operations.
+
+## 🔹 Spring
+10. **Spring Professional Certification**  
+    Enterprise-grade backend development and framework fluency.
+
+## 🔹 Java
+11. **Oracle Certified Professional: Java SE 21 Developer**  
+    Validates modern Java mastery and backend depth.
+
+## 🔹 Strategic Certifications
+12. **TOGAF 9 Certification**  
+    Strategic enterprise architecture frameworks and planning.
+
+13. **Project Management Professional (PMP)**  
+    Delivery leadership, stakeholder alignment, and execution strategy.
+---
 ## 🧠 Parallel Track: Data Structures & Algorithms (Weekly Goals)
 
 | Week     | Focus Area                                | Key Topics                                                                 | Platform(s)                              |
