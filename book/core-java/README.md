@@ -90,6 +90,7 @@
 * [Displaying Name of the Day of the Week in Java](core-java/src/main/java/com/practice/dates/DisplayDayNameOfWeekTest.java)
 ------
 # Materials and References
+* [Head First Java](https://drive.google.com/file/d/1MAXdgvIJL_9zaC6KA-tGmOpEROmpvGU8/view?usp=drive_link)
 * [https://jenkov.com/tutorials/java/index.html](https://jenkov.com/tutorials/java/index.html)
 * [Java Docs](http://docs.oracle.com/javase/tutorial/index.html)
 * [Java Platform Standard Edition 8 Documentation](https://docs.oracle.com/javase/8/docs/index.html)
