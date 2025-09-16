@@ -4,6 +4,7 @@
 
 ------
 # POCs and Examples
+* [Practice Tables With Data](practice-tables-data.sql)
 * [Create](create.sql)
 * [Read Queries](read.sql)
 * [Update Queries](update.sql)
