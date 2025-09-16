@@ -1,0 +1,17 @@
+-- delete queries
+--------------------
+-- drop cities table
+DROP TABLE IF EXISTS cities;
+-- drop tables
+DROP TABLE [IF EXISTS] TABLE_NAME;
+DROP TABLE [IF EXISTS] "TABLE_NAME";
+DROP TABLE IF EXISTS TAB_DEF;
+DROP TABLE IF EXISTS tab_2022_12_16;
+DROP TABLE IF EXISTS "tab_2022-12-16";
+DROP TABLE IF EXISTS TAB;
+
+-- drop trigger
+DROP TRIGGER IF EXISTS part_trig ON TAB;
+
+-- drop function
+DROP FUNCTION IF EXISTS part_trig();
