@@ -5,6 +5,7 @@
 ------
 # Preparation
 * [Architect Preparation Plan](architect-preparation.md)
+* [SDE Road Map](https://drive.google.com/file/d/10Uh-f_IAgnWNexeKjPFOfTZtwraXHBHj/view?usp=sharing)
 ------
 # Misc
 * [Encoding vs Encryption vs Tokenization](encoding-encryption-tokenization.md)
@@ -26,6 +27,7 @@
 * [AWS](aws#readme)
 * [Core Java](core-java#readme)
 * [Cucumber](cucumber#readme)
+* [Data Structures Algorithms](data-structures-algorithms#readme)
 * [Docker](docker#readme)
 * [Git](git#readme)
 * [Guava](guava#readme)
@@ -35,6 +37,7 @@
 * [JSON Jackson Library](json-jackson#readme)
 * [Junit 4](junit-4#readme)
 * [Junit 5](junit-5#readme)
+* [JWT](jwt#readme)
 * [Kafka](kafka#readme)
 * [Kubernetes K8s](kubernetes#readme)
 * [Linux](linux#readme)
