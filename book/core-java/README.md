@@ -99,6 +99,8 @@
 * [ClassNotFoundException vs NoClassDefFoundError](https://drive.google.com/file/d/1U6SQy5_cBQOlExP4waW--8RUyUATeCa2/view?usp=sharing)
 * [Dynamic Proxies](https://drive.google.com/file/d/1pHUqOdVoMkwIMLljdni4erLzTcGJHVgr/view?usp=sharing)
 * [Synthatic Constructor](http://javapapers.com/core-java/java-synthetic-class-method-field/)
+* [Internals of class loading](https://drive.google.com/file/d/1A0TNmLbmuA_JH7Ydi97w4aYByXsULS0r/view?usp=sharing)
+* [Class loading issue and solution](https://drive.google.com/file/d/1o9mGcbyMTEIaQxSsxW1VE9XtZ-Mo7bv2/view?usp=sharing)
 * [Java Docs](http://docs.oracle.com/javase/tutorial/index.html)
 * [Java Platform Standard Edition 8 Documentation](https://docs.oracle.com/javase/8/docs/index.html)
 * [Oracle Java Platform, Standard Edition Documentation](https://docs.oracle.com/en/java/javase/index.html)
