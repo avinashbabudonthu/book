@@ -82,23 +82,13 @@ VALUES
 
 SELECT * FROM users;
 
-DROP TABLE IF EXISTS photos;
+DROP TABLE photos IF EXISTS;
 
 CREATE TABLE photos
 (
 	id SERIAL PRIMARY KEY,
 	url VARCHAR(100),
-	-- user_id INTEGER REFERENCES users(id)
-	-- user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
-	
-	user_id INTEGER,
-	CONSTRAINT photos_user_id_fk FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
-	-- Following are on delete options
-	-- ON DELETE RESTRICT
-	-- ON DELETE NO ACTION
-	-- ON DELETE CASCADE
-	-- ON DELETE SET NULL
-	-- ON DELETE SET DEFAULT
+	user_id INTEGER REFERENCES users(id)
 );
 
 INSERT INTO photos(url, user_id)

@@ -2,6 +2,7 @@
 --------------------
 -- drop cities table
 DROP TABLE IF EXISTS cities;
+
 -- drop tables
 DROP TABLE [IF EXISTS] TABLE_NAME;
 DROP TABLE [IF EXISTS] "TABLE_NAME";

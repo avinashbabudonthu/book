@@ -5,10 +5,10 @@
 ------
 # POCs and Examples
 * [Practice Tables With Data](practice-tables-data.sql)
-* [Create](create.sql)
+* [Create Table Insert Queries](create-insert.sql)
 * [Read Queries](read.sql)
 * [Update Queries](update.sql)
-* [Drop Delete Queries](delete.sql)
+* [Drop Delete Queries](delete-drop.sql)
 * [Other Queries](others.sql)
 * [Date Column Mapping](date-column-mapping.md)
 * [Java connection details](java-connection-details.md)

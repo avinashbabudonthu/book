@@ -145,6 +145,15 @@ SELECT first_name, last_name, email FROM customer;
 SELECT * FROM information_schema.columns;
 SELECT table_name, column_name FROM information_schema.columns WHERE table_name = 'customer';
 
+-- get list of tables
+SELECT * FROM information_schema.tables;
+SELECT * FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';
+SELECT * FROM information_schema.tables WHERE table_schema = 'pg_catalog' AND table_type = 'VIEW';
+SELECT * FROM pg_catalog.pg_tables;
+
+-- get list of users
+SELECT * FROM pg_catalog.pg_user;
+
 -- count queries
 select count(*) from film;
 select count(*) from actor;
@@ -179,3 +188,6 @@ select * from pg_class where relispartition is FALSE;
 
 -- partitions of table - tab
 SELECT * FROM PG_CLASS WHERE RELNAME LIKE 'emp%';
+
+-- user one-to-many photos - refer create.sql
+SELECT username, url FROM users JOIN photos ON users.id = photos.user_id
