@@ -52,6 +52,7 @@
 * [REST API](rest-api#readme)
 * [Solr](solr#readme)
 * [Splunk](splunk#readme)
+* [Spring Batch](spring-batch#readme)
 * [Spring Boot](spring-boot#readme)
 * [Spring Security](spring-security#readme)
 * [SQL](sql#readme)
