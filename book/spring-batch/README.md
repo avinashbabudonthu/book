@@ -2,6 +2,7 @@
 ---
 # Table of Contents
 * [High level architecture](img/high-level-architecture.jpg)
+* [Notes](notes.md)
 * [Read CSV File - Write to Database]()
 ---
 # Materials
