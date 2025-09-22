@@ -1,12 +1,12 @@
 -- show databases;
 -- create database if not exists practice;
--- create user 'user1'@'localhost' identified by 'Password22092025';
--- grant all on practice.* to 'user1'@'localhost';
+-- create user 'springbatchuser'@'localhost' identified by 'Password22092025';
+-- grant all on springbatch.* to 'springbatchuser'@'localhost';
 -- select * from mysql.user;
--- drop user 'user1'@'localhost';
--- drop database practice;
+-- drop user 'springbatchuser'@'localhost';
+-- drop database springbatch;
 
-USE practice;
+USE springbatch;
 DROP TABLE IF EXISTS person;
 
 CREATE TABLE person  (

@@ -17,12 +17,12 @@ public class Main {
 		SpringApplication.run(Main.class, args);
 	}
 
-	@Scheduled(fixedRate = 5000)
+	// @Scheduled(fixedRate = 5000)
 	public void demoSchedule() {
 		log.info("demoSchedule:: Scheduled task executed, {}, {}", Thread.currentThread().getName(), new Date());
 	}
 
-	@Scheduled(fixedRate = 10000)
+	// @Scheduled(fixedRate = 10000)
 	public void demoSchedule2() {
 		log.info("demoSchedule2:: Scheduled task executed, {}, {} ", Thread.currentThread().getName(), new Date());
 	}
