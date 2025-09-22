@@ -1,6 +1,9 @@
 # CSV Processor - Spring Batch Application
 
-A Spring Boot application that demonstrates batch processing capabilities by reading person data from a CSV file, transforming it, and storing it in a MySQL database.
+- A Spring Boot application that demonstrates batch processing capabilities by reading person data from a CSV file, transforming it, and storing it in a MySQL database.
+- Spring creates necessary tables for job metadata management. These table scripts can be in
+- The scripts are located in the package: `org.springframework.batch.core` within the JAR file `spring-batch-core-<version>.jar`
+- File names follow the format: schema-<db>.sql where <db> is the short name of your database (Ex: mysql, postgresql, oracle, h2, etc.)
 
 ## Overview
 
