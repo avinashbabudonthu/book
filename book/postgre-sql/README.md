@@ -1,9 +1,6 @@
-# Postgresql Table of Contents
+# Postgresql
 ------
-# Theory
-
-------
-# POCs and Examples
+# Table of Contents
 * [Practice Tables With Data](practice-tables-data.sql)
 * [Create Table Insert Queries](create-insert.sql)
 * [Read Queries](read.sql)
@@ -16,7 +13,7 @@
 * [Allow password based connection from Java](password-based-connection.md)
 * [Xml Column Mapping](xml-column-mapping.md)
 ------
-# Materials and References
+# Materials
 * Datetime documentation: https://www.postgresql.org/docs/8.2/functions-datetime.html
 * Tutorials point: https://www.tutorialspoint.com/postgresql/index.htm
 * Udemy - SQL and PostgreSQL: The Complete Developer's Guide
