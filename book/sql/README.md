@@ -1,6 +1,6 @@
 # SQL
 ---
-# Study
+# Table of Contents
 
 ---
 # Materials

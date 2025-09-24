@@ -4,12 +4,13 @@ SELECT * FROM emp WHERE sal > 2000;
 SELECT * FROM emp WHERE sal BETWEEN 2000 AND 4000;
 SELECT * FROM emp WHERE sal IN (2850, 2450);
 SELECT * FROM emp WHERE sal NOT IN (2850, 2450);
-
 SELECT * FROM dept;
-
 SELECT * FROM salgrade;
-
 SELECT * FROM cities;
+
+-- DUAL not needed
+SELECT NULL = NULL;
+SELECT 1 + 1;
 
 SELECT name, country FROM cities;
 
@@ -191,3 +192,97 @@ SELECT * FROM PG_CLASS WHERE RELNAME LIKE 'emp%';
 
 -- user one-to-many photos - refer create.sql
 SELECT username, url FROM users JOIN photos ON users.id = photos.user_id
+
+---------------------------------------------------------------------------------
+-------------- Refer practice-queries.sql for below queries ---------------------
+---------------------------------------------------------------------------------
+SELECT * FROM users;
+SELECT * FROM photos;
+SELECT * FROM comments;
+SELECT * FROM comments ORDER BY user_id;
+
+SELECT 
+    c.contents, 
+    c.photo_id,
+    u.username,
+    u.id
+FROM comments c 
+JOIN users u ON u.id = c.user_id;
+
+SELECT
+    c.contents,
+    p.url
+FROM comments c
+JOIN photos p ON p.id = c.photo_id;
+
+SELECT
+    c.id,
+    p.id
+FROM comments c
+JOIN photos p ON p.id = c.photo_id;
+
+-- 
+SELECT
+ c.contents,
+ p.url,
+ u.username
+FROM comments c
+JOIN photos p ON p.id = c.photo_id
+JOIN users u ON u.id = p.user_id
+WHERE c.user_id = p.user_id;
+
+SELECT
+ c.contents,
+ p.url,
+ u.username
+FROM comments c
+JOIN photos p ON p.id = c.photo_id
+JOIN users u ON u.id = c.user_id AND u.id = p.user_id;
+
+-- 
+SELECT
+ c.contents,
+ p.url,
+ u.username
+FROM comments c
+JOIN photos p ON p.id = c.photo_id
+JOIN users u ON u.id = p.user_id
+WHERE c.user_id <> p.user_id;
+
+--
+SELECT
+ a.name,
+ b.title,
+ r.rating
+FROM reviews r
+JOIN books b ON b.id = r.book_id 
+JOIN authors a ON a.id = b.author_id
+WHERE r.reviewer_id = b.author_id;
+
+-- GROUP BY
+SELECT user_id FROM comments GROUP BY user_id;
+SELECT user_id FROM comments GROUP BY user_id ORDER BY user_id;
+SELECT user_id, COUNT(user_id) FROM comments GROUP BY user_id ORDER BY user_id;
+SELECT user_id, COUNT(id) FROM comments GROUP BY user_id ORDER BY user_id;
+SELECT user_id, MAX(id) FROM comments GROUP BY user_id ORDER BY user_id;
+SELECT photo_id, COUNT(id) FROM comments GROUP BY photo_id;
+SELECT photo_id, COUNT(id) FROM comments GROUP BY photo_id HAVING COUNT(id) > 20;
+SELECT photo_id, COUNT(id) FROM comments GROUP BY photo_id HAVING COUNT(id) >= 20;
+SELECT photo_id, COUNT(id) FROM comments WHERE photo_id < 3 GROUP BY photo_id HAVING COUNT(id) > 2;
+SELECT author_id, COUNT(id) FROM books GROUP BY author_id;
+SELECT 
+a.name, COUNT(*) 
+FROM books b
+JOIN authors a ON a.id = b.author_id
+GROUP BY a.name;
+
+SELECT 
+    manufacturer,
+    SUM(price * units_sold) AS total_revenue
+FROM phones
+GROUP BY manufacturer 
+HAVING SUM(price * units_sold) > 2000000;
+
+-- AGGREGATES
+SELECT COUNT(*) FROM comments;
+SELECT MAX(user_id) FROM comments;
