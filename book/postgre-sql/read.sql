@@ -286,3 +286,127 @@ HAVING SUM(price * units_sold) > 2000000;
 -- AGGREGATES
 SELECT COUNT(*) FROM comments;
 SELECT MAX(user_id) FROM comments;
+
+--------------------------------------------------------------------------
+---------- refer e-commerce-database.sql for tables and data -------------
+--------------------------------------------------------------------------
+SELECT * FROM users;
+SELECT COUNT(*) FROM users;
+SELECT * FROM products;
+SELECT COUNT(*) FROM products;
+SELECT * FROM orders;
+SELECT COUNT(*) FROM orders;
+
+-- paid order and unpaid orders count
+SELECT paid, COUNT(*) FROM orders GROUP BY paid;
+
+SELECT
+first_name,
+last_name,
+paid
+FROM
+users u
+JOIN orders o ON u.id = o.user_id;
+
+SELECT * FROM products ORDER BY price;
+SELECT * FROM products ORDER BY price ASC;
+SELECT * FROM products ORDER BY price DESC;
+SELECT * FROM products ORDER BY department, price DESC;
+
+-- OFFSET 3 - Skip the first three rows of the result set
+-- LIMIT 2 - Only give the first two rows of the result set
+
+-- skip first 40 rows
+SELECT * FROM users OFFSET 40;
+
+-- Get 10 rows
+SELECT * FROM users LIMIT 10;
+
+-- skip first 40 rows & Get 5 rows
+SELECT * FROM users OFFSET 40 LIMIT 5;
+
+-- most expensive products
+SELECT * FROM products
+ORDER BY price DESC
+LIMIT 5;
+
+-- least expensive products
+SELECT * FROM products
+ORDER BY price
+LIMIT 5;
+
+-- JOIN RESULTS OF 2 QUERIES
+-- UNION - REMOVES DUPLICATES
+-- UNION ALL - DO NOT REMOVES DUPLICATES
+
+(
+    SELECT
+    *
+    FROM products
+    ORDER BY price DESC
+    LIMIT 4
+)
+UNION ALL
+(
+    SELECT
+    *
+    FROM products
+    ORDER BY price/weight DESC
+    LIMIT 4
+);
+
+-- INTERSECT
+-- INTERSECT ALL
+(
+    SELECT
+    *
+    FROM products
+    ORDER BY price DESC
+    LIMIT 4
+)
+INTERSECT ALL
+(
+    SELECT
+    *
+    FROM products
+    ORDER BY price/weight DESC
+    LIMIT 4
+);
+
+-- EXCEPT -- (A-B)
+(
+    SELECT
+    *
+    FROM products
+    ORDER BY price DESC
+    LIMIT 4
+)
+EXCEPT
+(
+    SELECT
+    *
+    FROM products
+    ORDER BY price/weight DESC
+    LIMIT 4
+);
+
+--
+(
+SELECT
+manufacturer
+FROM 
+phones
+WHERE price < 170
+)
+UNION
+(
+SELECT
+manufacturer
+FROM 
+phones
+GROUP BY manufacturer
+HAVING COUNT(*) > 2
+);
+--------------------------------------------------------------------------
+---------- refer e-commerce-database.sql for tables and data -------------
+--------------------------------------------------------------------------
