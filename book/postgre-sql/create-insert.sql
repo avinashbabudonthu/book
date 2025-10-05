@@ -111,3 +111,91 @@ commit;
 
 SELECT * FROM photos;
 SELECT * FROM photos WHERE user_id = 4;
+
+-- Database: 001-practice
+-- DROP DATABASE IF EXISTS "001-practice";
+
+CREATE DATABASE "001-practice"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+COMMENT ON DATABASE "001-practice" IS 'Postgres practice database';
+
+-- SCHEMA: public
+
+-- DROP SCHEMA IF EXISTS public ;
+
+CREATE SCHEMA IF NOT EXISTS public
+    AUTHORIZATION postgres;
+
+COMMENT ON SCHEMA public
+    IS 'standard public schema';
+
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+GRANT ALL ON SCHEMA public TO postgres;
+
+-- Step 1: Create the user
+CREATE USER your_username WITH PASSWORD 'your_password';
+
+-- Step 2: Grant all privileges on the schema
+GRANT ALL PRIVILEGES ON SCHEMA public TO your_username;
+
+-- Step 3: Grant all privileges on all tables in the schema
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO your_username;
+
+-- Step 4: Grant all privileges on all sequences in the schema
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO your_username;
+
+-- Step 5: Grant all privileges on all functions in the schema (optional)
+GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO your_username;
+
+-- Step 6: Allow future objects to be accessible
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO your_username;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO your_username;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO your_username;
+
+-- ADD NOT NULL CONSRAINT
+CREATE TABLE person
+(
+ id SERIAL PRIMARY KEY,
+ first_name VARCHAR(100) NOT NULL,
+ last_name VARCHAR(100)
+);
+
+-- ADD NOT NULL TO EXISTING TABLE
+ALTER TABLE person ALTER COLUMN last_name SET NOT NULL;
+
+-- DEFAULT VALUE
+CREATE TABLE products_2
+(
+  name VARCHAR(100),
+  price INTEGER DEFAULT 999,
+  weight INTEGER
+);
+-- To add default value to existing column
+ALTER TABLE products ALTER COLUMN weight SET DEFAULT 1;
+SELECT * FROM information_schema.columns WHERE table_name = 'products_2';
+SELECT * FROM information_schema.tables WHERE table_name = 'products_2';
+SELECT * FROM pg_catalog.pg_tables WHERE tablename = 'products_2';
+
+-- add unique constraint
+ALTER TABLE products_2 ADD UNIQUE(name);
+ALTER TABLE products_2 DROP CONSTRAINT products_2_name_key;
+
+
+-- CHECK VALUE
+CREATE TABLE products_3
+(
+  name VARCHAR(100),
+  price INTEGER,
+  weight INTEGER
+);
+-- To add default value to existing column
+ALTER TABLE products_3 ADD CHECK (price > 0);
+ALTER TABLE products_3 ADD CHECK (price < 1000);

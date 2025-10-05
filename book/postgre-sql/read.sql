@@ -410,3 +410,105 @@ HAVING COUNT(*) > 2
 --------------------------------------------------------------------------
 ---------- refer e-commerce-database.sql for tables and data -------------
 --------------------------------------------------------------------------
+
+SELECT * FROM products;
+SELECT name, department, COUNT(*) name_count FROM products GROUP BY name, department HAVING COUNT(*) >= 1 ORDER BY name DESC;
+
+SELECT 
+ name,
+ price
+FROM 
+ products 
+WHERE 
+ price > (
+    SELECT MAX(price) FROM products WHERE UPPER(department) = 'TOYS'
+ )
+ORDER BY price;
+
+SELECT 
+name,
+price,
+(SELECT MAX(price) FROM products) AS max_price,
+(SELECT MAX(price)FROM products) - price AS price_diff
+FROM
+products
+ORDER BY price_diff;
+
+SELECT
+name,
+price,
+price_weight_ration
+FROM
+(
+SELECT name, price, price/weight AS price_weight_ration FROM products
+) AS p; -- ALIAS IS MANDATORY FOR SUB QUERY IN FROM
+
+SELECT name
+FROM phones
+WHERE price > ALL
+(
+    SELECT price 
+    FROM phones 
+    WHERE manufacturer = 'Samsung'
+);
+
+-- CORRELATED SUB QUERIES - USING COLUMN FROM OUTER QUERY IN INNER QUERY
+-- GET EXPENSIVE PRODUCT IN EACH DEPARTMENT
+SELECT name, department, price
+FROM products p1
+WHERE price = (
+    SELECT MAX(price)
+    FROM products p2
+    WHERE p1.department = p2.department
+);
+
+-- GREATEST
+SELECT name, price, GREATEST(price * 2, 400)
+FROM products;
+
+-- LEAST
+SELECT name, price, LEAST(price * 2, 400)
+FROM products;
+
+-- CASE
+SELECT name, price,
+CASE 
+    WHEN price > 600 THEN 'HIGH'
+    WHEN price > 300 THEN 'MEDIUM'
+    ELSE 'CHEAP'
+END
+FROM products;
+
+-- "ABCDE"
+SELECT ('ABCDEFGHIJK'::CHAR(5));
+
+-- "A    "
+SELECT ('A'::CHAR(5));
+
+-- true
+SELECT ('t'::BOOLEAN);
+SELECT ('1'::BOOLEAN);
+SELECT ('y'::BOOLEAN);
+
+SELECT ('1980-Nov-20'::DATE);
+SELECT ('1980 Nov 20'::DATE);
+SELECT ('1980 November 20'::DATE);
+
+-- "01:23:00"
+SELECT ('1:23'::TIME);
+-- "13:23:00"
+SELECT ('1:23 PM'::TIME);
+-- "13:23:00+02:00"
+SELECT ('1:23 PM IST'::TIME WITH TIME ZONE);
+
+-- UTC TIME
+-- "13:23:00+00:00"
+SELECT ('1:23 PM Z'::TIME WITH TIME ZONE);
+
+SELECT ('1980 November 20 1:23 PM IST'::TIMESTAMP WITH TIME ZONE);
+
+-- DATE DIFFERENCE
+SELECT
+ CURRENT_TIMESTAMP
+ - 
+ ('20 JULY 1987 4:10 PM IST':: TIMESTAMP WITH TIME ZONE);
