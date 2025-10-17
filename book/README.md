@@ -44,6 +44,7 @@
 * [Log4J](log4j#readme)
 * [MapStruct](map-struct#readme)
 * [Maven](maven#readme)
+* [Microservices](microservices#readme)
 * [Mockito](mockito#readme)
 * [MySQL](mysql#readme)
 * [Oracle](oracle#readme)
