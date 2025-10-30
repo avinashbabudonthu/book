@@ -239,7 +239,7 @@
 * Helps reduce load on databases for read intensive workloads
 * Helps make your application stateless
 * AWS takes care of OS maintenance/patching, optimization, setup, configuration, monitoring, failure recovery and backups
-* `Using ElastiCache involves heavy application code changes`
+* `Using ElastiCache involves heavy application code changes` means - To use ElastiCache we need to make many changes in application code. We need to change application to query cache before or after querying database
 
 # ElastiCache solution architecture and DB cache
 ![picture](imgs/001-elasticache-solution-architecture.jpg)
