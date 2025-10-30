@@ -24,7 +24,7 @@
 ------
 # Table of contents
 * [Apache commons-lang3](apache-commons-lang3#readme)
-* [AWS](aws#readme)
+* [AWS](aws/README.md)
 * [Core Java](core-java#readme)
 * [Cucumber](cucumber#readme)
 * [Data Structures Algorithms](data-structures-algorithms#readme)

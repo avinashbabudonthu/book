@@ -1,2 +1,2 @@
 # Welcome to Book
-* [Table of Contents](book#readme)
+* [Table of Contents](book/README.md)
