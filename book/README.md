@@ -43,7 +43,7 @@
 * [Linux](linux#readme)
 * [Log4J](log4j#readme)
 * [MapStruct](map-struct#readme)
-* [Maven](maven#readme)
+* [Maven](maven/README.md)
 * [Microservices](microservices#readme)
 * [Mockito](mockito/README.md)
 * [MongoDB](mongo-db/README.md)
