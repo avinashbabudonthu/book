@@ -12,11 +12,11 @@
 * MongoDB with Java - https://www.mongodb.com/docs/languages/java/
 ---
 # Examples
-* [Basics Notes](001-notes.md)
-* [Notes Version 2](002-notes.md)
 * [Installation](installation.md)
 * [Install with docker container](install-docker-container.md)
 * [Install Mongosh](install-mongosh.md)
+* [Basics Notes](001-notes.md)
+* [Notes Version 2](002-notes.md)
 * [Practice Collections and Data](practice-collections-data.md)
 * [Queries](queries.js)
 * [DB Queries](db-queries.md)

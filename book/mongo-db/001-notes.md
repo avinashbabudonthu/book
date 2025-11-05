@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Database categories
 * High level view
 	* OLTP (RDBMS) - Real Time Storage
@@ -297,5 +295,3 @@ mongod.exe --config="C:\mongo\config\mongo.config"
 ```
 mongod.exe --config="C:\mongo\config\mongo.config"
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

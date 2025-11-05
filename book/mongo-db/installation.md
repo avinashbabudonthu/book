@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Install MongoDB
 * Download mongo db from - https://www.mongodb.com/try/download/community
 	* Select appropriate `version`, `platform`, `package`
@@ -21,5 +19,3 @@ or
 mongod.exe --dbpath C:\mongodb\data\db
 ```
 * Connect with [Mongosh](install-mongosh.md)
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
