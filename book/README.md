@@ -39,7 +39,7 @@
 * [Junit 4](junit-4#readme)
 * [Junit 5](junit-5#readme)
 * [JWT](jwt#readme)
-* [Kafka](kafka#readme)
+* [Kafka](kafka/README.md)
 * [Kubernetes K8s](kubernetes#readme)
 * [Linux](linux#readme)
 * [Log4J](log4j#readme)
