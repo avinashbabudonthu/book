@@ -3,6 +3,7 @@
 * [Notes](notes.md)
 * [Windows powershell connecting to EC2 using pem](windows-powershell-connect-to-ec2-using-pem.md)
 * [Install Java 17](install-java-17.md)
+* [Install Java 17](install-java-21.md)
 * [Install docker](install-docker.md)
 * [User data script to start web server](user-data-script-to-start-web-server.md)
 * [User data script with Availability zone informaion](User-data-script-with-Availability-zone-informaion.md)
