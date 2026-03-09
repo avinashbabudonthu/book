@@ -7,7 +7,7 @@ ps xw
 ```
 sudo rm nohup.out
 ```
-* Fore remove file
+* Fore remove folder
 ```
 sudo rm -rf logs/
 ```
@@ -15,17 +15,9 @@ sudo rm -rf logs/
 ```
 ls -alh
 ls -ltr
-sudo ls -alh /opt/java-services/
 ls -alh /opt/java-services/
 ls -ltr /opt/java-services/
-ls -alh /opt/java-services/service-discovery.jar
-ls -alh /opt/java-services/gateway.jar
-ls -alh /opt/java-services/person-profile.jar
-ls -alh /opt/java-services/employee-profile.jar
-ls -alh /opt/java-services/incidents.jar
-ls -alh /opt/java-services/asset-management.jar
-ls -alh /opt/java-services/file-service.jar
-ls -alh /opt/java-services/leave-management.jar
+sudo ls -alh /opt/java-services/
 ```
 * Monito any file
 ```
