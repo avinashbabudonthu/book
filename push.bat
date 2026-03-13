@@ -18,9 +18,9 @@ echo Checking status:
 git status
 echo -----------------------------------------------
 echo Committing:
-::set /p commitMessage=Enter Commit Message: 
-::git commit -m "%commitMessage%"
-git commit -m "java"
+set /p commitMessage=Enter Commit Message: 
+git commit -m "%commitMessage%"
+::git commit -m "java"
 echo Committed
 echo -----------------------------------------------
 echo Pushing:
