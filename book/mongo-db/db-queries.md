@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # DB Commands
 * Run mongodb by giving db path
 ```
@@ -31,5 +29,25 @@ show users
 ```
 db.dropDatabase()
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
+* Get distinct values of specific field
+```
+db.order.distinct("status")
+db.order.distinct("sourceType")
+```
+* Get distinct by multiple fields
+```
+db.order.aggregate([
+  {
+    $group: {
+      _id: { status: "$status", sourceType: "$sourceType" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      status: "$_id.status",
+      sourceType: "$_id.sourceType"
+    }
+  }
+])
+```
