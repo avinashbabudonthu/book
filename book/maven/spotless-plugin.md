@@ -43,7 +43,8 @@
 				<version>1.24.0</version>
 			</googleJavaFormat>
 			<licenseHeader>
-				<file>${basedir}/license-header.txt</file>
+				<!-- <file>${basedir}/license-header.txt</file> -->
+                <file>license-header.txt</file>
 			</licenseHeader>
 			<importOrder/>
 			<removeUnusedImports/>
