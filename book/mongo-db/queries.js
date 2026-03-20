@@ -2,16 +2,15 @@
 show dbs
 
 // create and use database
-use database1
+use practiceDatabase
 
 // check database in use
 db
 
-// create collection named - emp
+// create collections
 db.createCollection("collectionName")
 db.createCollection("emp")
-db.createCollection("company")
-db.createCollection("address")
+db.createCollection("company")db.createCollection("address")
 
 // show all collections
 show collections
@@ -26,7 +25,6 @@ db.student.insert({"name": "Jane", "mail": "jane@gmail.com",
 db.student.insert({"name": "Ana", "mail": "ana2@gmail.com"})
 
 db.student.insertMany([
-
     {"name": "Jack", "mail": "jack@gmail.com", "subjects": [{"name": "Java", "grade": 4.0}], "department": {"name": "Dept1", "location": "Hyerabad"}},
 
     {"name": "John", "mail": "john@gmail.com", "subjects": [{"name": "MongoDB", "grade": 3.9}], "department": {"name": "Dept2", "location": "Hyerabad"}},
@@ -99,67 +97,36 @@ db.student.find({$or: [{"name": "Jane"}, {"name": "Jack"}]})
 // update one document
 db.student.update({"name": "Jack"}, {$set: {"mail": "jack@gmail.com"}})
 
-
-
 // limit number of records
 
 db.student.find({}).limit(3)
 
-
-
 // skip number of records
-
 db.student.find({}).skip(2)
 
-
-
 // using skip and limit for pagination
-
 db.student.find({}).skip(2).limit(1)
 
-
-
 // sort by name in ascending order
-
 db.student.aggregate(
-
 [
-
     {$sort: {name: 1}}
-
 ]
-
 )
-
-    
 
 // sort by name in descending order
-
 db.student.aggregate(
-
 [
-
     {$sort: {name: -1}}
-
 ]
-
 )
-
-    
 
 // sort by name and mail in ascending order
-
 db.student.aggregate(
-
 [
-
     {$sort: {name: 1, mail: 1}}
-
 ]
-
 )
-
-    
 
 // like query - no need of double quotes
 db.student.find({"mail": /gmail/})
