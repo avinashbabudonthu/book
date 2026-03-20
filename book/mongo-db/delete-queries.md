@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Delete Commands
 * Delete collection
 ```
@@ -49,5 +47,3 @@ db.emp.update({}, {$unset: {"hno": 1}}, {"multi": true} )
 db.emp.updateMany({}, {$unset: {hno: 1}} )
 db.emp.update({}, {$unset: {hno: 1}}, false, true ) //The last true is for multiple documents update
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

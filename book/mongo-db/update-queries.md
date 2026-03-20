@@ -1,5 +1,3 @@
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)
-------
 # Update Commands
 * Update document. set age to 25 where age = 24
 ```
@@ -36,5 +34,3 @@ db.emp.insert({
 
 db.emp.update({"age": 25}, {$set: {"address.hno": "7-8-9"}})
 ```
-------
-### [<<Back](../README.md) | [Java V2 All Examples](https://github.com/avinashbabudonthu/java/blob/master/java-v2/README.md) | [Java All Examples](https://github.com/avinashbabudonthu/java/blob/master/README.md)

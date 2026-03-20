@@ -14,26 +14,26 @@
 		* HBase
 		* Neo4J
 		* Elastic Search\
-![picture](../img/database-categories.jpg)
+![picture](img/database-categories.jpg)
 * Specifics\
-![picture](../img/specifics-database-categories.jpg)
+![picture](img/specifics-database-categories.jpg)
 * Sql vs NoSql
 	* Vertical scaling vs Horizontal scaling
 		* Horizontal scaling means scaling by adding more machines to your pool of resources (also described as `scaling out`)
 		* Vertical scaling means scaling by adding more power (e.g. CPU, RAM) to an existing machine (also described as `scaling up`)\
-![picture](../img/sql-vs-no-sql.jpg)
+![picture](img/sql-vs-no-sql.jpg)
 * Sql ACID properties\
-![picture](../img/sql-acid-properties.jpg)
+![picture](img/sql-acid-properties.jpg)
 * NoSql flow\
-![picture](../img/no-sql-flow.jpg)
+![picture](img/no-sql-flow.jpg)
 * NoSql `BASE` property\
-![picture](../img/no-sql-base-property.jpg)
+![picture](img/no-sql-base-property.jpg)
 * Every NoSql works on `CAP` theory
-![picture](../img/no-sql-cap-theory.jpg)
+![picture](img/no-sql-cap-theory.jpg)
 * CAP combinations\
-![picture](../img/cap-combinations.jpg)
+![picture](img/cap-combinations.jpg)
 * CAP combinations with NoSql DBs\
-![picture](../img/cap-combinations-2.jpg)
+![picture](img/cap-combinations-2.jpg)
 ------
 # Limitations of RDBMS
 * Scalability
@@ -62,7 +62,7 @@
 * Quickly adopts to changing requirements with frequent updates and new features
 * Handles semi and unstructured data
 * Database storage\
-![picture](../img/no-sql-database-storage.jpg)
+![picture](img/no-sql-database-storage.jpg)
 ------
 # Advantage of NoSql Database
 * VVVV - Volume, Velocity, Variability, Veracity
@@ -109,9 +109,9 @@
 	* Graph
 		* OreintDB
 		* Neo4J\
-![picture](../img/categories.jpg)
+![picture](img/categories.jpg)
 * Examples of categories\
-![picture](../img/categories-examples.jpg)
+![picture](img/categories-examples.jpg)
 * Horizontal Scaling
 * Supports distributed by default
 * No joins in most of the NoSql databases
@@ -134,10 +134,10 @@
 * Easy scalability
 * Data stores in the form of `JSON`
 * Features\
-![picture](../img/mongo-features.jpg)
+![picture](img/mongo-features.jpg)
 * Reasons to use mongo
-![picture](../img/mongo-reason-to-use.jpg)
-![picture](../img/mongo-reason-to-use-2.jpg)
+![picture](img/mongo-reason-to-use.jpg)
+![picture](img/mongo-reason-to-use-2.jpg)
 * Queries focused on collection of documents
 * We can have embedded documents
 * Document key-values are `not fixed`
@@ -180,15 +180,15 @@
 	* Do not enforce schema
 	* Documents within collection can have different fields
 * RDBMS terminology and MongoDB\
-![picture](../img/terminology-rdbms-vs-mongo.jpg)
+![picture](img/terminology-rdbms-vs-mongo.jpg)
 * Mongo Tools\
-![picture](../img/mongo-tools.jpg)
+![picture](img/mongo-tools.jpg)
 ------
 # JSON And BSON
 * JSON\
-![picture](../img/json.jpg)
+![picture](img/json.jpg)
 * BSON - Binary Script Object Notation\
-![picture](../img/bson.jpg)
+![picture](img/bson.jpg)
 * BSON features
 	* Lightweight
 		* Optimising spatial overhead, specially when used over network
@@ -197,7 +197,7 @@
 	* Efficient
 		* Encoding/decoding data to/from BSON can be performed quickly
 * JSON Vs BSON
-![picture](../img/json-vs-bson.jpg)
+![picture](img/json-vs-bson.jpg)
 ------
 # Which features mongo ignore for scalability
 * indexes
@@ -269,26 +269,26 @@ mongod.exe --config="C:\mongo\config\mongo.config"
 * Extract zip downloaded using above link
 * Click `Nosqlclient.exe`
 * Click `Connect` on top right corner\
-![picture](../img/no-sql-client-1.jpg)
+![picture](img/no-sql-client-1.jpg)
 * Click `Create New` button\
-![picture](../img/no-sql-client-2.jpg)
+![picture](img/no-sql-client-2.jpg)
 * Enter following details to connect to admin db\
-![picture](../img/no-sql-client-3.jpg)
+![picture](img/no-sql-client-3.jpg)
 * Enter following details to connect to specific db. In this case I am connecting to `mycart` db\
-![picture](../img/no-sql-client-4.jpg)
+![picture](img/no-sql-client-4.jpg)
 * Click `Save changes` button
 * Select connection details, click `Connect Now`\
-![picture](../img/no-sql-client-5.jpg)
+![picture](img/no-sql-client-5.jpg)
 * setup `mongo.exe` path to execute commands
 	* Tools
 	* Shell
 	* `More` on top right corner
 	* Settings
 	* Give path to `bin` where `mongo.exe` is present\
-![picture](../img/no-sql-client-6.jpg)
+![picture](img/no-sql-client-6.jpg)
 * Click `Save`
 * Now we can execute commands from Shell\
-![picture](../img/no-sql-client-7.jpg)
+![picture](img/no-sql-client-7.jpg)
 
 # Mongo Commands
 * Run mongodb with config. refer [setup](#setup) for config file
