@@ -204,7 +204,14 @@ sudo apt-get install python-pip
 ```
 sudo pip install --upgrade awscli
 ```
-* Install dig. dig is same as [nslookup](../windows/README.md#nslookup) in windows
+* Install dig. dig is same as nslookup in windows
 ```
 sudo yum -y insall bind-utils
+```
+* Find search file
+```
+find . -type f -name "filename"
+find . -type f -name "notes.txt"
+find . -type f -iname "notes.txt"   # case-insensitive
+find . -type f -name "*.log"        # by extension/pattern
 ```
