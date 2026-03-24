@@ -31,6 +31,7 @@
 * [Data Structures Algorithms](data-structures-algorithms/README.md)
 * [Docker](docker/README.md)
 * [Git](git/README.md)
+* [Gitops ArgoCD](gitops-argocd/README.md)
 * [Guava](guava#readme)
 * [HikariCP](hikari-cp#readme)
 * [IntelliJ](intellij#readme)

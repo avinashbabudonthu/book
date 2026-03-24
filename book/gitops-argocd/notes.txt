@@ -1,0 +1,19 @@
+Leverage git as single source of truth
+declarative infrastructure and application configurations
+streamline application delivery process, automative deployments, improve collaboration
+Giotps coined by Weaveworks
+
+core principles:
+declarative configuration - using formats like yaml, json, hcl
+version control
+automatic synchronization
+Continuous feedback
+
+Benefits:
+Increase productivity
+Improved collaboration
+Enhanced Security
+Faster Recovery - Easy rollbacks to previous good state. Minimizes downtime, potential risks
+Relies on tools - ArgoCD, Flux, Jenkins. Watches changes in git repository. Trigger deployment pipelines
+
+Introduction to ArgoCD:
