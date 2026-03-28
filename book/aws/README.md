@@ -4,6 +4,7 @@
 * [CLI Commands](aws-cli-commands.md)
 * [Certifications](certifications.md)
 * [Materials](materials.md)
+* [AWS Java Connection](aws-java-connection.md)
 ---
 * [EC2 - Elastic Compute Cloud](ec2/README.md)
 * [ELB - Elastic Load Balancer](elb/README.md)
