@@ -1,0 +1,33 @@
+press release:
+    if we are not able to present feature to customer then no use of developing it
+
+documentation:
+    business
+    product design and architecture
+    database schema or ER diagrams
+    confluence
+    documentation should be easily searchable and accessible
+
+development
+    error handling
+    validation
+    responsive
+    reslience - should handle errors gracefully
+    db scripts should be maintained as sql files release wise
+
+unit testing:
+    junit test cases
+    integration testing
+    load testing
+    performance testing
+    business functionality testing automation
+
+product health check
+    health check
+    info check - should give build number deployed
+
+CI/CD pipeline
+
+Security
+    Authentication
+    Authorization

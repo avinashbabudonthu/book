@@ -19,6 +19,7 @@
 * [Code Review](code-review.jpeg)
 * [SDE Road Map](https://drive.google.com/file/d/1F9k7t9pu9Toj48l3aXcmiKA7Q90qP7nl/view?usp=sharing)
 * [Java Developer Essential Skills](java-essentials.txt)
+* [Product Development Essentials](product-development-points.txt)
 ------
 # New Projects
 * Any New project development NFRs - [NFRs](nfrs.md)
