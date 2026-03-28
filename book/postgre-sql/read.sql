@@ -150,7 +150,9 @@ SELECT table_name, column_name FROM information_schema.columns WHERE table_name 
 SELECT * FROM information_schema.tables;
 SELECT * FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';
 SELECT * FROM information_schema.tables WHERE table_schema = 'pg_catalog' AND table_type = 'VIEW';
+SELECT * FROM information_schema.tables WHERE table_name = 'products_3';
 SELECT * FROM pg_catalog.pg_tables;
+SELECT * FROM pg_catalog.pg_tables WHERE tablename = 'person';
 
 -- get list of users
 SELECT * FROM pg_catalog.pg_user;

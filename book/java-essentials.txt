@@ -1,0 +1,74 @@
+Git
+Maven
+Core Java Basics
+Core Java String
+Core Java Loops
+Core Java Enums
+Core Java Exception Handling
+Core Java Generics
+Core Java Collections
+Core Java Annotations
+Core Java Multi threading
+Core Java Data Time APIs
+Core Java File IO
+Core Java Internactionalization
+Core Java Regex
+Core Java Optional class
+Core Java Runtime class
+Core Java System class
+Core Java Serialization
+Core Java Reflection
+Core Java Properties files
+Core Java Resource Bundles
+Core Java BigDecimal class
+Core Java 8 Functional Interface
+Core Java 8 Method references
+Core Java 8 Lambdas
+Core Java 8 streams
+Core Java Dynamic Proxies
+Core Java Reference Types
+Junit 4 & 5
+Mockito
+Log4J
+SLF4J
+SQL Basics
+SQL - Oracle
+SQL - MySQL
+SQL - PostgreSQL
+NoSQL - Mongo DB
+HikariCP
+JSON
+Spring Core
+Spring JDBC
+Spring AOP
+Spring Boot
+Spring Security
+Spring Batch
+Spring Scheduler
+Spring Data JPA
+Spring Data Mongo
+Cucumber
+Postman
+Docker
+Kubernetes
+Kafka Basics
+Kafka Streams
+Kafka Connect
+Apache Camel
+JWT
+AWS
+Jenkins
+JDK and JVM Internals
+Data Structures and Algorithms
+System Design 
+Python - https://jenkov.com/tutorials/python/index.html
+Elastic Search
+Splunk
+Java Application Performance testing and fine tuning
+REST API testing tools & automation
+MapStruct
+Solr
+Linux commands
+Windows commands
+Couchbase
+SAML

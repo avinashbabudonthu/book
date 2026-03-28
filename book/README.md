@@ -18,6 +18,7 @@
 * [Email Skills](email-skills.jpeg)
 * [Code Review](code-review.jpeg)
 * [SDE Road Map](https://drive.google.com/file/d/1F9k7t9pu9Toj48l3aXcmiKA7Q90qP7nl/view?usp=sharing)
+* [Java Developer Essential Skills](java-essentials.txt)
 ------
 # New Projects
 * Any New project development NFRs - [NFRs](nfrs.md)

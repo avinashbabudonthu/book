@@ -14,3 +14,4 @@
 * [Copy jar files batch file](copy-jar-files.bat)
 * [Remove jar files batch file](remove-jar-files.bat)
 * [Important commands](important-commands.md)
+* [EC2 Initialization Script](ec2-init-script-user-data.sh)

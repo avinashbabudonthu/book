@@ -13,7 +13,7 @@
                 <include>src/test/java/**/*.java</include>
             </includes>
             <eclipse>
-                <file>${basedir}/eclipse-formatter.xml</file>
+                <file>${basedir}/eclipse-formatter.xml</file> <!-- refer eclipse-formatter.xml file -->
                 <version>4.7.1</version>
             </eclipse>
             <removeUnusedImports />
