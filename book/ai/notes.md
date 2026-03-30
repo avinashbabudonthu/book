@@ -111,5 +111,5 @@ Artificial Super Intelligence
 * Used in information management, fraud detection, virus detection, managing medical and hospital records
 
 ---
-**AI vs Machine Learning vs Deep Learning**
+## AI vs Machine Learning vs Deep Learning
 ![picture](imgs/ai-vs-ml-vs-dl.jpg)
