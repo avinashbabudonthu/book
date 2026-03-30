@@ -112,4 +112,4 @@ Artificial Super Intelligence
 
 ---
 **AI vs Machine Learning vs Deep Learning**
-* [AI vs Machine Learning vs Deep Learning](ai-vs-ml-vs-dl.jpg)
+![picture](imgs/ai-vs-ml-vs-dl.jpg)
