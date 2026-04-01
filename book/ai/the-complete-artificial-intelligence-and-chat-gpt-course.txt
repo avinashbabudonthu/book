@@ -1,5 +1,5 @@
 the-complete-artificial-intelligence-and-chat-gpt-course
------------------------------------------------------------------
+---------------------------------------
 Artificial Narrow Intelligence - ANI - Weak AI
 Artificial General Intelligence - AGI - Strong AI
 Artificial Super Intelligence - ASI
@@ -44,7 +44,7 @@ Process that finds and tests multiple algorithms based on our data. It tries to 
 Hyper parameters which controls learning process and behavior of our machine learning algorithms. AutoML optimizes these parameters. This process is called hyper paramter optimization. AutoML can search for optimal condition automatically for given machine learning model improves performance and reducing time and effor required for manual training. 
 
 Transfer Learning:
---------------------------------------------
+---------------------------------------
 AI Challenges and Limitations
 Data quality and quantity
 Bias and Fairness
@@ -55,7 +55,7 @@ computational resources
 regulation & governance
 human-ai collaboration
 long-term consequences
---------------------------------------------
+---------------------------------------
 Job positions in data world:
 Data Analyst
 Data Scientist
@@ -64,3 +64,5 @@ Data Engineer
 BI Analyst
 Database Admin
 Data Architect
+---------------------------------------
+GPT - Generative Pre-training Transformer
