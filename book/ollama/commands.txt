@@ -1,0 +1,10 @@
+Commands
+---------------------------------
+shows list of commands to use:
+ollama help
+---------------------------------
+list downloaded models:
+ollama list
+---------------------------------
+run specific model:
+ollama run [model-name]

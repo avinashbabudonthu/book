@@ -52,6 +52,7 @@
 * [Mockito](mockito/README.md)
 * [MongoDB](mongo-db/README.md)
 * [MySQL](mysql/README.md)
+* [Ollama](ollama/README.md)
 * [Oracle](oracle#readme)
 * [Postgresql](postgre-sql#readme)
 * [Postman](postman#readme)

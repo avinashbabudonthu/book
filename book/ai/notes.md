@@ -113,3 +113,63 @@ Artificial Super Intelligence
 ---
 ## AI vs Machine Learning vs Deep Learning
 ![picture](imgs/ai-vs-ml-vs-dl.jpg)
+---
+LLM - Large Language Model
+Model is an Algorithm with pre-trained dataset
+
+Generative AI - Software which interacts using native language with LLMs which is pre-trained with existing datasets and can generate artifacts out of existing trained datasets based on it's neural network
+
+LLM has Foundational Model (which we train using datasets). It has modules for text, image, video processing for individual use cases.
+---
+Common LLMs:
+Open AI - GPT
+Google - Gemini(Ultra, Pro, Nano), PaLM 2
+Meta - Llama 2
+Cohere - Coral
+xAI - Grok
+---
+AI ML hierarchy from low to high:
+GenAI -> Deep Learning -> Machine Learning (Supervied/NonSupervised/ReInforced) -> Artifical Intelligence
+---
+Prompt Engineering: How to talk to AI efficiently?
+fine tune models using prompts
+zero-shot, one-shot, few-shot learning
+Tokens - check chatGPT tokenizer
+BPE - Byte Pair Encoding
+Vectors
+Hallucinations - Like bluf - LLMs can bluf if they don't know answer
+---
+RAG - Retrieval Augmented Generation - Scalable Architecture for LLMs
+Architecture using which we can have external datasources be used by LLMs. Also called as GG (Grounded Generation)
+Simple RAG - For example document reading
+Complex RAG - Like food delivery chatbot (get user details, get delivery partner details, his location, calculation distance between customer and delivery partner, tell approximate estimated time)
+LLM with Dynamic Data -> Need RAG Architecture
+---
+SLM - Small Language Model
+compact and effecient generative ai model designed for understanding and processing human language with fewer parameters than larger models
+Some SLMs:
+Ollama - ollama.com
+Google Gemma
+Microsoft - Phi-3, Orca 2
+Mistral AI 70B
+Open AI - GPT-Neo, GPT-J
+BERT - mini, small, medium, tiny, MobileBERT, DistilBERT
+T5-small
+---
+ollama:
+download and install
+ollama help - shows list of commands to use
+ollama list - list downloaded models
+ollama run [model-name] - run specific model
+---
+Refer - https://huggingface.co/
+---
+Artificial General Intelligence / Strong AI
+IBM Deep Blue Chess Game
+TensorFlow
+ScikitLearn
+NumPy
+Theano
+Keras
+Natural Language Analysis with NLTK (Natural Language Tool Kit)
+---
