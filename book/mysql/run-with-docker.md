@@ -17,4 +17,3 @@ docker run -p 3307:3306 --name mysqlcontainer1 -e MYSQL_ROOT_PASSWORD=root -e MY
 	* Port - 3307
 	* Username - root
 	* Password - root
-![picture](../img/000001.jpg)

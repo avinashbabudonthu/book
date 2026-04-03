@@ -22,7 +22,7 @@ TPU - Tensor Processing Unit (Invented by Google)
 Supervised and Unsupervised Machine Learning and Reinforcement Learning
 
 Supervised Learning:
-Involved using labeles data. Meaning each piece of data comes with desired outcome or answer
+Involved using labeled data. Meaning each piece of data comes with desired outcome or answer
 
 Unsupervised Machine:
 Aims to discover underlying patterns or groups in unlabeled data, which is applicable in tasks like customer segmentation and anamoly detection
@@ -40,7 +40,8 @@ Open source AI/ML library platform created by Google
 
 AutoML and Transfer Learning
 AutoML: 
-Process that finds and tests multiple algorithms based on our data. It tries to leverage other AI algorithms to automatically select what actually works best based on criteria we set. This is called automatic model selection
+Process that finds and tests multiple algorithms based on our data. It tries to leverage other AI algorithms to automatically select what actually works best based on criteria we set. This is called automatic model selection.
+
 Hyper parameters which controls learning process and behavior of our machine learning algorithms. AutoML optimizes these parameters. This process is called hyper paramter optimization. AutoML can search for optimal condition automatically for given machine learning model improves performance and reducing time and effor required for manual training. 
 
 Transfer Learning:
