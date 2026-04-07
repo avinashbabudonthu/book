@@ -4,6 +4,22 @@
 -- use employees database
 use employees;
 
+-- Count all tables in the current database
+SELECT COUNT(*) AS total_tables
+FROM information_schema.tables
+WHERE table_schema = DATABASE()
+AND table_type = 'BASE TABLE';
+
+-- List all tables in the current database
+SELECT 
+    table_name AS table_name,
+    table_rows AS no_of_rows,
+    ROUND(((data_length + index_length) / 1024 / 1024), 2) AS size_mb
+FROM information_schema.tables
+WHERE table_schema = DATABASE()
+AND table_type = 'BASE TABLE'
+ORDER BY table_name;
+
 -- select all rows and columns from table
 -- select * from table_name;
 select * from employees;
@@ -195,8 +211,6 @@ select @@global.sql_mode;
 -- to prevent it from happening, we must execute the following statement
 set @@global.sql_mode := replace(@@global.sql_mode, 'ONLY_FULL_GROUP_BY', '');
 set @@global.sql_mode := concat('ONLY_FULL_GROUP_BY,', @@global.sql_mode);
-
-
 
 -- union
 
