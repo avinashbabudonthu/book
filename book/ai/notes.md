@@ -286,6 +286,9 @@ Encourage the model to generate a series of intermediate reasoning steps that le
 * Nvidia - Nemo - they call it `AI Team mates`
 * Salesforce - Agent force
 
+## AI Agents must know terms
+![picture](imgs/ai-agents-must-know-terms.jpeg)
+
 ## Some AI Agents examples
 * Self driving car AI Agent
 * Shopping Assistant AI Agent
@@ -422,3 +425,125 @@ Encourage the model to generate a series of intermediate reasoning steps that le
 ## Ways to orgnize work of multiple agents
 * Manager structure
 * Decentralized structure
+
+# Guardrails
+* Why are the needed? - To provide necessary protection to mitigate risk while agent taking actions
+
+## How guardrails protect us in the context of AI Agents?
+* Information security guradrails - Provide guardrails to identify personal information and hide them
+* Brand alignment guardrails - Agent should reflect company tone and culture. Misalignment may cause damage to company brand
+* Accuracy guardrails - Prevent agents from hallucinating and providing incorrect answers. Agent responding as `I don't know` is better than false answer/info
+
+### Key points in designing guardrails
+* Prioritize data privacy and content safety
+* Add new guardrails based on real world edge cases and failures
+* Balance security with user experience. Continuously refine guardrails as agent evolves
+
+---
+# Human intervention
+* Human intution and common sense help identify agent failures, edge cases, improvements and fix them
+* Human intervention acts as very good feedback 
+* For example - Custom service agent escalates issue to human if it does not know the answer
+
+---
+# How to evaluate agents
+* What makes AI Agent effective? - Depends on use cases. Some need speed, polite and high in ethics, some need reasoning etc
+* Good agents must meet certain criterias:
+	* Accuracy
+	* Speed
+	* Coherence - means logical consistency and clear flow
+	* Cost
+	* Safety
+	* UX - User Experience
+
+# n8n
+* Used for build agent workflow, ai agents
+
+# Node types
+## 4 node types
+* Triggers
+* Action nodes
+* Logic nodes
+* AI Agent nodes
+
+## Workflow
+* Every workflow starts with `Triggers` which defines how automation begins
+
+## POC - build email agent
+* Build Agent to read information from user
+* Draft professional email
+* Check name, designation, email address from google sheet
+* Send email to that email address
+
+# Infrastructure for AI Agents
+* APIs - Connect out AI Agent to External LLMs like (OpenAI, Anthropic, Google) using APIs. Send prompts and receive response
+* Cloud services - Deploy AI agents/solutions in cloud services like AWS, Azure, Google Cloud. They are offering robust solutions tailored explicitely for AI workloads. They provide powerful GPUs, extensive storage, Integrated APIs, AI Agent tools to stream development and deployment of AI Agents
+* Data adn knowledge integration - AI Agents perform best when they are given access to data like `Databases, Enterprise systems, Knowledge bases, Internet` etc
+
+---
+## Development frameworks
+* LangChain & LangGraph
+* Microsoft AutoGen
+* CrewAI
+* Google ADK (Agents Development Kit)
+* Flowise
+
+## LangChain
+* Provides 2 essential building blocks - `Chains`, `Agents`
+* Chains - used to create agentic workflows. Agentic workflow has `pre-defined steps`
+* AI Agents - can adjust actions based on new information
+* LangChain has tools that help us easily build agents
+
+## LangGraph
+* Add on created by `LangChain`
+* Required when single linear chain is not enough
+* LangGraph allows draw workflow as explicit directed graph (Graph of Nodes)
+
+## LangChain and LangGraph
+* Beginner friendly. Ideal for flexibile learning foundation
+* Can work for basic and advanced applications. Like simple FAQ bot to graph of collaborating sub-agents
+
+## Microsoft AutoGen
+* Focus on multi agent conversations
+* Not as user friendly as `LangChain` tools
+* Assign specific roles like `Researcher`, `Coder`, `Reviewer`
+* Framework manages structure dailogue where agents `exchange message`, `share memory`, `vote on decisions`
+* Because it is Microsoft maintained, it integrates easily with `Azure`, `OpenAI`
+* Ideal for `agenet specialization and collaboration`
+
+## CrewAI
+* Organizes group of agents
+* Operated more streamlined API
+* No-code studio interface designed for business users
+* Agents coordinate with built-in task-delegation logic
+* It internally uses `LangChain` without taking all its complexity
+
+## Google ADK (Agents Development Kit)
+* Package google's complex, collaborative agent systems
+* allows direct integration to `Vertx ai`, `Gemini` models
+* More enterprise connectors like `Big Query`, `SAP`
+
+## Flowise
+* Perfect tool for beginners
+* Democratize the ability to build agents
+* Simplifies much of langchain javascript
+* Supports branching logic
+* HITL check points
+* Observability
+* Deploy completed flow as `Rest End Point` or `Chat widget`
+
+---
+# Deployment of AI Agents
+* Ai agents deployment tools from AWS
+	* AWS Lambda
+	* Bedrock
+	* SageMaker
+	* Lex
+
+---
+# LangChain- Agentic AI Engineering with LangChain & LangGraph
+* Develop LLM powered agents with langchain & LangGraph
+
+## LLM Applications types
+* Agents
+* Retrieval Augmentation Generation (RAG)
