@@ -279,4 +279,146 @@ Provide a few examples of desired output along with the prompt to help the model
 Chain of Thought prompting:
 Encourage the model to generate a series of intermediate reasoning steps that lead to the final answer. This can help improve the model's performance on complex tasks that require multi-step reasoning.
 
----------------------------------------------------
+---
+# Udemy - Intro to AI Agents and Agentic AI
+* AI Agents are autonomous in decision making process
+* Google Gemini 2.0 - Multimodal AI model designed for `Agentic era`
+* Nvidia - Nemo - they call it `AI Team mates`
+* Salesforce - Agent force
+
+## Some AI Agents examples
+* Self driving car AI Agent
+* Shopping Assistant AI Agent
+
+## Key components to build AI agents:
+* Environment - where the agent operates
+* Sensors - to perceive the environment
+* Model - to process information and make decisions
+* Decision making logic - how agent select appropriate action
+* Actuators - allows agents to interact with environment. To execute actions in the environment
+* Feedback machinism/loop- Allow agents to evaluate whether it has successfully achieved its goals and make adjustments accordingly. To learn and improve over time
+
+## Environment - where the agent operates
+* AI Agents responds considering digital data, web data to respond based on environments it is working like self driving cars, shopping cart etc
+
+## Sensors - to perceive the environment
+* By which agents receives input from their environment
+* Allow gathering information like scraping web (apis, intepreting images from cameras, capturing audio through microphones, analyzing data from IoTs). So allowing agents to sense environments and take appropriate actions
+
+## Model - to process information and make decisions
+* Like human brain. After collecting data using `sensors`, it fed to `Model` which acts as tool to interpret incoming perceptions.
+* Means knowing and understanding information
+
+## Decision making logic - how agent select appropriate action
+* Takes input apply structured rules or algorithms to come with recommendation or actions
+* Understand and reason internally. Generate and selection appropriate actions
+* Sometime need thin decision making layer to confirm like financial transaction need transaction limits and user authentication before approving
+* In some cases we can use prompt engineering and assist LLMs
+
+## Actuators - to execute actions in the environment
+* Some cases physical actuators like `Robot arm`, `Steering system` of self driving car
+* Virtual actuators - APIs to execute
+
+---
+# Key characteristics of AI Agents
+* Profile & Persona
+* Memory
+* Reasoning
+* Actions
+* Learning capabilities
+
+## Profile & Persona
+* Define agent leading role and function
+* Area of specialization
+* Communication style
+* Output formatting
+* Tone of voice
+* Guidelines it should follow
+* Unique charecteristics or traits
+* How agent should interacts with users
+* Values/guidelines the agent should follow
+* Unique characteristics or traits
+
+## Reasoning
+* Use available information to draw conclusions and solve problems
+
+## Actions
+* Steps agent takes to achieve its goals. Like social media post
+
+## Learning capabilities
+* Monitor social media post done as part `Actions` and improve next performance task
+
+---
+# Simple Reflex Agent
+* Fundamental tool reacts based on immediate perception
+* No internal memory
+* Ex: Thermostat - read environment give temporature. Do not connect to models
+* This is not an `AI Agent`. Just `Agent`
+
+---
+# Model based reflex agent
+* Perceive environment
+* Use memory to maintain `internal representation` of environment
+* Construct model around them
+* Ex: RoboMop - Builds map of premises and obstacles. Then determine which area alreay cleaned
+* Simple form of AI
+* Doesn't learn or adapt
+* Internal model is static or updated through fixed rules
+* Follows static rules. Doesn't improve based on experience
+
+---
+# Goal based agent
+* Search for action sequences to achieve goal and plan actions
+* Like Google map shows the route. If we miss anyline it recalculates immediately for next best route
+* Sometimes overlook some details, because always focusing on optimizing goal completion
+
+---
+# Utility based agent
+* Consider multiple factors to evaluate utility
+
+---
+# Learning agent
+* Similar to utility based agent
+* New experiences are added each time. This enhances its ability to operate in unfamiliar environments and improve performance
+* Enhances the model over time based on feedback
+
+---
+# Learning from humans
+* AI Agents require goals and pre defined rules created by humans
+* HITL - Human in the Loop - continuous involvement of humans in the training, monitoring, refinining an AI system
+
+## Customer support chatbot
+* Select and curate the training data
+* Design chatbot's algorithms and architecture
+* Set ethical guidelines and constraints
+* Define chatbot's specific objectives
+
+## Learning from external systems
+* Learning from other agents
+* Connecting to external sources like internet, external databases, apis, web searches
+* Human feedback
+* Collabarative agent-to-agent learning can speed up response times
+
+---
+# AI Agent architecture patterns
+* LLMs vs AI Workflows vs AI Agents
+* Frameworks to build AI Agents - ReAct(Reason and Act), ReWoo(Reasoning Without Observation)
+* LLMs and AI Workflows - Need human inputs to perform actions
+
+## AI Agents
+* Proactive and flexibility limitations. Don't need HITL to start working
+* Figure out best course of action without humans
+
+---
+# Single Agent System
+* One agent in system
+
+---
+# Multi agent system
+* Multiple agents in system. Each agent performing one specialized task
+* To use multiple agents effectively we need to orchestrate their tasks inside the overall project workflow
+* Agents use tool-calling in the backend to obtain up-to-date information, optimize workflows, create sub-tasks autonomously to achieve complex goals
+
+## Ways to orgnize work of multiple agents
+* Manager structure
+* Decentralized structure
