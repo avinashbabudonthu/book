@@ -255,6 +255,12 @@ git reset --soft origin/feature/my-cool-stuff
 * Remove file from local git repo. we need to commit after deleting
 ```
 git rm [file-name]
+```
+```
+Removes all files
+git rm -rf .
+```
+```
 git status
 git commit -m "commit-message"
 ```
