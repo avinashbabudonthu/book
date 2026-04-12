@@ -88,16 +88,16 @@ Word Artificial Intelligence first coined by John McCarthy in 1956
 
 ---
 ## AI vs Machine Learning vs Deep Learning
+* AI ML hierarchy from low to high
+* GenAI -> Deep Learning -> Machine Learning (Supervied/NonSupervised/ReInforced) -> Artifical Intelligence\
 ![picture](imgs/ai-vs-ml-vs-dl.jpg)
 
 ---
-LLM - Large Language Model
-Model is an Algorithm with pre-trained dataset
-
-Generative AI - Software which interacts using native language with LLMs which is pre-trained with existing datasets and can generate artifacts out of existing trained datasets based on it's neural network
-
-LLM has Foundational Model (which we train using datasets). It has modules for text, image, video processing for individual use cases.
-
+## LLM - Large Language Model
+* Model is an Algorithm with pre-trained dataset
+* Generative AI - Software which interacts using native language with LLMs which is pre-trained with existing datasets and can generate artifacts out of existing trained datasets based on it's neural network
+* LLM has Foundational Model (which we train using datasets). It has modules for `text`, `image`, `video processing` for individual use cases
+* GPT - Generative Pre-training Transformer
 ---
 Common LLMs:
 * Open AI - GPT
@@ -105,10 +105,6 @@ Common LLMs:
 * Meta - Llama 2
 * Cohere - Coral
 * xAI - Grok
-
----
-## AI ML hierarchy from low to high
-* GenAI -> Deep Learning -> Machine Learning (Supervied/NonSupervised/ReInforced) -> Artifical Intelligence
 
 ---
 Prompt Engineering: How to talk to AI efficiently?
@@ -128,10 +124,11 @@ Prompt Engineering: How to talk to AI efficiently?
 
 ---
 ## SLM - Small Language Model
-compact and effecient generative ai model designed for understanding and processing human language with fewer parameters than larger models
-Some SLMs:
+* Compact and effecient GenAI model designed for understanding and processing human language with fewer parameters than larger models
+
+### Some SLMs
 * Ollama - ollama.com
-* Google Gemma
+* Google - Gemma
 * Microsoft - Phi-3, Orca 2
 * Mistral AI 70B
 * Open AI - GPT-Neo, GPT-J
@@ -233,9 +230,6 @@ Data Engineer
 BI Analyst
 Database Admin
 Data Architect
-
----------------------------------------
-GPT - Generative Pre-training Transformer
 
 ---------------------------------------
 ChatGPT - Chat Generative Pre-trained Transformer
@@ -563,3 +557,4 @@ Encourage the model to generate a series of intermediate reasoning steps that le
 
 ## Document loaders
 * Helps us to load different data sources like Notion, pdf files, notepads, email etc
+
