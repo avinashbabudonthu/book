@@ -137,7 +137,7 @@ Prompt Engineering: How to talk to AI efficiently?
 
 ---
 ## ollama - Open source SLM
-* download and install. Refer [Ollama](..\ollama\README.md)
+* download and install. Refer [Ollama](../ollama/README.md)
 * ollama help - shows list of commands to use
 * ollama list - list downloaded models
 * ollama run [model-name] - run specific model
